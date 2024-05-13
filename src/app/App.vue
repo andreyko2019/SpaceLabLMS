@@ -7,5 +7,5 @@
 </script>
 
 <style>
-@import './index.scss';
+@import './styles/index.scss';
 </style>
