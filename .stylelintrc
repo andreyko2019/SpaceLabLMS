@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "stylelint-config-recommended-scss"
+  ],
+  "ignoreFiles": ["**/variables.scss"],
+  "rules": {
+    "color-named": "never",
+    "color-no-hex": true,
+    "function-disallowed-list": [
+      ["color", "rgb", "hsl", "hsla", "hwb", "gray", "linear-gradient"],
+      {
+        "severity": "error",
+        "message": "Avoid using color functions other than hex, rgb, rgba, hsl, hsla, hwb, or gray."
+      }
+    ]
+  }
+}
