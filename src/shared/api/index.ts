@@ -1,1 +1,1 @@
-export { https } from './https'
+export * as RestApi from './rest'

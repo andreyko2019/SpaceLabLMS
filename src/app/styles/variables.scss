@@ -2,6 +2,8 @@ $max-width: 1920;
 $min-width: 320;
 $max-width-container: 1556;
 
+$grayish-blue: #495057;
+
 $main-font: 'Inter';
 $main-weight: 400;
 
@@ -10,6 +12,8 @@ $inherit-color: inherit;
 $transparent-color: transparent;
 
 $font-family: $main-font, sans-serif;
-$font-color: $white-color;
+$font-color: white;
 $font-size: 14;
 $font-weight: $main-weight;
+
+// Checkbox

@@ -1,3 +1,3 @@
-import {app} from "./app";
+import { application } from '@/app'
 
-app.mount('#app')
+application.mount('#app')

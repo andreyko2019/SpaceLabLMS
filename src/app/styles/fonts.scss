@@ -6,7 +6,7 @@
   src:
           local('Inter Regular'),
           local('Inter-Regular'),
-          url('fonts/Inter-Regular.woff2') format('woff2');
+          url('@/../fonts/Inter-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -17,7 +17,7 @@
   src:
           local('Inter Medium'),
           local('Inter-Medium'),
-          url('fonts/Inter-Medium.woff2') format('woff2');
+          url('@/../fonts/Inter-Medium.woff2') format('woff2');
 }
 
 @font-face {
@@ -28,7 +28,7 @@
   src:
           local('Inter SemiBold'),
           local('Inter-SemiBold'),
-          url('fonts/Inter-SemiBold.woff2') format('woff2');
+          url('@/../fonts/Inter-SemiBold.woff2') format('woff2');
 }
 
 @font-face {
@@ -39,5 +39,5 @@
   src:
           local('Inter Bold'),
           local('Inter-Bold'),
-          url('fonts/Inter-Bold.woff2') format('woff2');
+          url('@/../fonts/Inter-Bold.woff2') format('woff2');
 }

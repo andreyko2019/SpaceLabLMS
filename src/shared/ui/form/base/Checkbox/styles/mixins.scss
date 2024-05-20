@@ -1,0 +1,40 @@
+//TODO: refactoring
+
+@mixin checkboxHover () {
+  .checkbox__icon-wrap {
+    > path {
+      fill: #ccc;
+    }
+  }
+}
+
+@mixin checkboxFocus {
+  .checkbox__icon-bg {
+    color: var(--color__white);
+  }
+}
+
+@mixin checkboxChecked () {
+  .checkbox__icon-checked {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@mixin checkboxActive {
+  .checkbox__icon-wrap {
+    animation: .3s rotateCheckboxIcon linear infinite;
+  }
+}
+
+@keyframes rotateCheckboxIcon {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+  100%  {
+    transform: rotate(0);
+  }
+}
