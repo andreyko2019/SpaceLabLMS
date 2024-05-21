@@ -1,0 +1,1 @@
+import{d as o,C as t,o as r,a as s,D as a,h as n}from"./index-CBK-E1zH.js";import{u as c}from"./useAppRoutes-BRF4mza6.js";const d=o({__name:"AdminCoursesPage",setup(p){return c(),(m,u)=>{const e=t("router-view");return r(),s("div",null,[a("Admin courses page "),n(e)])}}});export{d as default};

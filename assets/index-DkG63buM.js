@@ -1,0 +1,1 @@
+import{d as e,o as t,a}from"./index-CBK-E1zH.js";import{u as r}from"./useAppRoutes-BRF4mza6.js";const c=e({__name:"StudentLiteraturePage",setup(o){return r(),(n,u)=>(t(),a("div",null,"Student literature page"))}});export{c as default};
