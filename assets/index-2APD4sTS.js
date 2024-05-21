@@ -1,0 +1,1 @@
+import{d as t,o as e,a as s}from"./index-CBK-E1zH.js";import{u as a}from"./useAppRoutes-BRF4mza6.js";const u=t({__name:"StudentStatisticsPage",setup(o){return a(),(n,p)=>(e(),s("div",null,"Student statistics page"))}});export{u as default};

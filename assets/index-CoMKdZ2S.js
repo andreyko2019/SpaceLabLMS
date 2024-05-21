@@ -1,0 +1,1 @@
+import{d as e,o as a,a as t}from"./index-CBK-E1zH.js";import{u as o}from"./useAppRoutes-BRF4mza6.js";const c=e({__name:"AdminCreatePage",setup(n){return o(),(r,p)=>(a(),t("div",null,"Admin create page"))}});export{c as default};

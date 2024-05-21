@@ -1,0 +1,1 @@
+import{d as e,o as a,a as o}from"./index-CBK-E1zH.js";import{u as t}from"./useAppRoutes-BRF4mza6.js";const c=e({__name:"AdminTaskPage",setup(n){return t(),(s,p)=>(a(),o("div",null,"Admin task page"))}});export{c as default};
