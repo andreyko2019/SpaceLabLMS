@@ -1,1 +1,0 @@
-import{d as e,o as t,a as o}from"./index-CBK-E1zH.js";import{u as a}from"./useAppRoutes-BRF4mza6.js";const m=e({__name:"AdminContactsPage",setup(n){return a(),(s,c)=>(t(),o("div",null,"Admin contacts page"))}});export{m as default};

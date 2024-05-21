@@ -1,1 +1,0 @@
-import{d as t,C as o,o as a,a as s,D as n,h as r}from"./index-CBK-E1zH.js";import{u as p}from"./useAppRoutes-BRF4mza6.js";const i=t({__name:"StudentTasksPage",setup(c){return p(),(u,_)=>{const e=o("router-view");return a(),s("div",null,[n("Student tasks page "),r(e)])}}});export{i as default};

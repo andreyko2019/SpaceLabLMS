@@ -1,1 +1,0 @@
-import{d as e,o as a,a as o}from"./index-CBK-E1zH.js";import{u as n}from"./useAppRoutes-BRF4mza6.js";const d=e({__name:"AdminDashboardPage",setup(r){return n(),(s,t)=>(a(),o("div",null,"Admin dashboard page"))}});export{d as default};
