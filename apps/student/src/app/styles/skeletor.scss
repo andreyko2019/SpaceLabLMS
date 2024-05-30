@@ -1,0 +1,25 @@
+@import "./variables";
+
+.vue-skeletor {
+  background-color: $light-gray-3-color;
+}
+
+[data-theme='dark'] .vue-skeletor {
+  background: $charcoal-color;
+}
+
+.vue-skeletor--text {
+  border-radius: 0;
+}
+
+.vue-skeletor:not(.vue-skeletor--shimmerless):after {
+  background: $white-fade-gradient-color;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

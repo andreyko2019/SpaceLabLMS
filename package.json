@@ -4,9 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "student:dev": "pnpm --filter \"{apps/student/**}\" dev",
+    "admin:dev": "pnpm --filter \"{apps/student/**}\" dev",
+    "student:build": "cd apps/student && npm run build",
+    "admin:build": "cd apps/admin && npm run build",
+    "student:preview": "cd apps/student && npm run preview",
+    "admin:preview": "cd apps/admin && npm run preview",
+    "prebuild": "pnpm -r lint",
+    "build": "pnpm -r --stream build",
+    "admin:deploy": "gh-pages -d apps/admin/dist -b admin-site",
+    "student:deploy": "gh-pages -d apps/student/dist -b student-site"
   },
   "dependencies": {
     "@vee-validate/yup": "^4.12.8",
@@ -24,6 +31,8 @@
     "@vue/eslint-config-prettier": "^9.0.0",
     "eslint": "^9.2.0",
     "eslint-plugin-vue": "^9.26.0",
+    "gh-pages": "^6.1.1",
+    "pnpm": "^9.1.2",
     "prettier": "^3.2.5",
     "sass": "^1.77.1",
     "sass-loader": "^14.2.1",
