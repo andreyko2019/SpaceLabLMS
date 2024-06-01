@@ -21,9 +21,9 @@
 <script setup lang="ts">
 import './styles/index.scss'
 
-import { TheHeader } from '@/widgets/TheHeader'
-import { TheFooter } from '@/widgets/TheFooter'
-import {TheSidebar} from "@/widgets/TheSidebar";
+import { TheHeader } from '../widgets/header'
+import { TheFooter } from '../widgets/footer'
+import {TheSidebar} from "../widgets/sidebar";
 
 import {EmptyLayout, MainLayout} from '@/shared/ui/layouts'
 

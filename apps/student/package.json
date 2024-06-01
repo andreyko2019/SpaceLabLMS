@@ -1,5 +1,5 @@
 {
-  "name": "@app/student",
+  "name": "@spacelablms/student",
   "version": "1.0.0",
   "description": "",
   "main": "./src/main.ts",
@@ -12,5 +12,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC"
-
 }
+

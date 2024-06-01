@@ -1,18 +1,38 @@
-import { fileURLToPath, URL } from 'url'
-
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import checker from 'vite-plugin-checker'
+import path from 'path'
 
-export default defineConfig({
-  plugins: [
-    vue()
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+export default defineConfig(({ mode }) => {
+  const envDir = path.resolve(__dirname, '../..')
+  const env = loadEnv(mode, envDir)
+
+  return{
+    base: env.VITE_STUDENT_PATH_PREFIX,
+
+    envDir,
+
+    server: {
+      host: env.VITE_STUDENT_HOST,
+      port: Number(env.VITE_STUDENT_PORT) || 3000,
     },
-  },
-  server: {
-    port: 3000,
-  },
+
+    plugins: [
+      vue({
+        script: {
+          defineModel: true,
+        },
+      }),
+
+      checker({
+        vueTsc: true,
+      }),
+    ],
+
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
+    },
+  }
 });

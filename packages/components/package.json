@@ -1,0 +1,71 @@
+{
+  "name": "@spacelablms/components",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": "21.7.3",
+    "npm": "10.8.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/style.css",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style.css": {
+      "import": "./dist/style.css"
+    },
+    "./dist/scss/*": "./dist/scss/*"
+  },
+  "scripts": {
+    "dev": "del dist && vite build --watch",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint:js": "eslint src --ext .ts,.vue",
+    "lint:css": "stylelint --fix **/*.{css,scss}"
+  },
+  "dependencies": {
+    "pinia": "^2.0.32",
+    "vee-validate": "^4.7.4",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "yup": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.13.0",
+    "@types/vue-select": "^3.16.2",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/eslint-config-typescript": "^11.0.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.9.0",
+    "prettier": "^2.8.4",
+    "rollup-plugin-copy": "^3.5.0",
+    "sass": "^1.58.0",
+    "stylelint": "^14.16.1",
+    "stylelint-config-standard": "^29.0.0",
+    "stylelint-config-standard-scss": "^6.1.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.3.5",
+    "vite-plugin-checker": "^0.6.4",
+    "vite-plugin-dts": "^3.9.1",
+    "vite-plugin-eslint": "^1.8.1",
+    "vue-eslint-parser": "^9.1.0",
+    "vue-tsc": "^1.6.5"
+  },
+  "eslintConfig": {
+    "extends": []
+  }
+}

@@ -21,7 +21,7 @@
 <script setup lang="ts">
 
 
-import {ButtonSubmit} from "@/shared/ui/buttons/ButtonSubmit";
+import {ButtonSubmit} from "../../../buttons/button-submit";
 
 interface IVForm {
   handlerSubmit: (e?: Event | undefined) => Promise<Promise<void> | undefined>
