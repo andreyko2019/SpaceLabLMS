@@ -20,10 +20,12 @@
     "build:all": "npm run build -w @spacelablms/student && npm run build -w @spacelablms/admin",
     "preview:student": "npm run preview -w @spacelablms/student",
     "preview:admin": "npm run preview -w @spacelablms/admin",
+    "deploy:student": "gh-pages -d apps/student/dist -b student-site",
+    "deploy:admin": "gh-pages -d apps/admin/dist -b admin-site",
+    "api-generate:student": "npx @openapitools/openapi-generator-cli generate -i ./apps/student/src/shared/api/swagger.json -o ./apps/student/src/shared/api/gen -g typescript-axios --additional-properties=supportsES6=true,useSingleRequestParameter=true",
+    "api-generate:admin": "npx @openapitools/openapi-generator-cli generate -i ./apps/admin/src/shared/api/swagger.json -o ./apps/admin/src/shared/api/gen -g typescript-axios --additional-properties=supportsES6=true,useSingleRequestParameter=true",
     "lint:js": "eslint src --ext .ts,.vue",
-    "lint:css": "stylelint --fix **/*.{css,scss}",
-    "admin:deploy": "gh-pages -d apps/admin/dist -b admin-site",
-    "student:deploy": "gh-pages -d apps/student/dist -b student-site"
+    "lint:css": "stylelint --fix **/*.{css,scss}"
   },
   "dependencies": {
     "@vee-validate/yup": "^4.12.8",

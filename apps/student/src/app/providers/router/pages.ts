@@ -6,18 +6,18 @@ import { routeName as Dashboard } from './routes/dashboard'
 import { routeName as Tasks } from './routes/tasks'
 import { routeName as Task } from './routes/tasks/task'
 import { routeName as Main } from './routes/main'
-import { routeName as notFound } from './routes/not-found.ts'
-import { routeName as Redirect } from './routes/redirect.ts'
+import { routeName as notFound } from './routes/not-found'
+import { routeName as Redirect } from './routes/redirect'
 
 export const pages = {
-    signIn,
-    Statistics,
-    Literature,
-    Lessons,
-    Dashboard,
-    Tasks,
-    Task,
-    Main,
-    notFound,
-    Redirect,
+  signIn,
+  Statistics,
+  Literature,
+  Lessons,
+  Dashboard,
+  Tasks,
+  Task,
+  Main,
+  notFound,
+  Redirect,
 } as const

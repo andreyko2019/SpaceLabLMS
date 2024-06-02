@@ -1,1 +1,2 @@
-export * as RestApi from './rest'
+export * from './gen'
+export * from './base'

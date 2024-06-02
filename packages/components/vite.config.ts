@@ -1,5 +1,5 @@
 import path from 'path'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from "vite";
 import vue from '@vitejs/plugin-vue'
 import checker from 'vite-plugin-checker'
 import dtsPlugin from 'vite-plugin-dts'

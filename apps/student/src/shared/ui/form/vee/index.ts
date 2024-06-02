@@ -1,1 +1,1 @@
-export * from './VeeInput'
+export * from './vee-input'

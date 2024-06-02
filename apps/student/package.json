@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview",
-    "generate-api-windows": "npx @openapitools/openapi-generator-cli generate -i ./src/shared/api/swagger.json -o ./src/shared/api/gen -g typescript-axios --additional-properties=supportsES6=true,useSingleRequestParameter=true"
+    "preview": "vite preview"
+
   },
   "keywords": [],
   "author": "",

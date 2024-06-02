@@ -1,18 +1,17 @@
 <template>
   <div class="app-bg" />
-  <EmptyLayout v-if="isEmptyLayout">
-  </EmptyLayout>
+  <EmptyLayout v-if="isEmptyLayout"></EmptyLayout>
 
   <MainLayout v-else>
-    <template v-slot:header>
+    <template #header>
       <TheHeader />
     </template>
 
-    <template v-slot:sidebar>
+    <template #sidebar>
       <TheSidebar />
     </template>
 
-    <template v-slot:footer>
+    <template #footer>
       <TheFooter />
     </template>
   </MainLayout>
@@ -21,26 +20,17 @@
 <script setup lang="ts">
 import './styles/index.scss'
 
-import { TheHeader } from '../widgets/header'
-import { TheFooter } from '../widgets/footer'
-import {TheSidebar} from "../widgets/sidebar";
-
-import {EmptyLayout, MainLayout} from '@/shared/ui/layouts'
-
-import {computed, provide} from 'vue'
+import { TheHeader, TheFooter, TheSidebar } from '@/widgets'
+import { EmptyLayout, MainLayout } from '@/shared/ui/layouts'
+import { computed, provide } from 'vue'
 import { EAppProviders, AppRoutes } from './providers'
 import { AppPages } from './providers/router'
-import {useRoute} from "vue-router";
-
-
+import { useRoute } from 'vue-router'
 
 provide(EAppProviders.AppRoutes, AppRoutes)
 provide(EAppProviders.AppPages, AppPages)
 
 const route = useRoute()
 
-
 const isEmptyLayout = computed(() => route.meta.layout === 'EmptyLayout')
-
 </script>
-

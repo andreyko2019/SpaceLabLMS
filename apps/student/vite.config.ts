@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   const envDir = path.resolve(__dirname, '../..')
   const env = loadEnv(mode, envDir)
 
-  return{
+  return {
     base: env.VITE_STUDENT_PATH_PREFIX,
 
     envDir,
