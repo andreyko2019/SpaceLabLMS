@@ -2,7 +2,7 @@
   "name": "@spacelablms/student",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/main.ts",
+  "main": "./src/app/main.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",

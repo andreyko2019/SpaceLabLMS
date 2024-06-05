@@ -1,8 +1,5 @@
 <template>
-  <div class="app-bg" />
-  <EmptyLayout v-if="isEmptyLayout"></EmptyLayout>
-
-  <MainLayout v-else>
+  <MainLayout v-if="isMainLayout">
     <template #header>
       <TheHeader />
     </template>
@@ -15,11 +12,11 @@
       <TheFooter />
     </template>
   </MainLayout>
+
+  <EmptyLayout v-else></EmptyLayout>
 </template>
 
 <script setup lang="ts">
-import './styles/index.scss'
-
 import { TheHeader, TheFooter, TheSidebar } from '@/widgets'
 import { EmptyLayout, MainLayout } from '@/shared/ui/layouts'
 import { computed, provide } from 'vue'
@@ -32,5 +29,5 @@ provide(EAppProviders.AppPages, AppPages)
 
 const route = useRoute()
 
-const isEmptyLayout = computed(() => route.meta.layout === 'EmptyLayout')
+const isMainLayout = computed(() => route.meta.layout === 'MainLayout')
 </script>

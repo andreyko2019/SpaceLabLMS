@@ -1,0 +1,23 @@
+@import '@/shared/assets/scss/colors';
+@import '@/shared/assets/scss/font';
+
+.form-input{
+  &__label{
+    font-family: $font-inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.75;
+    color: $gray-blue;
+  }
+
+  &__field-wrap{
+    margin-top: 8px;
+    border: 1px solid $shade-blue;
+    border-radius: 4px;
+    padding: 8px 16px;
+  }
+
+  &__field{
+
+  }
+}
