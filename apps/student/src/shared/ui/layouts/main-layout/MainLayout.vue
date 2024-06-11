@@ -1,9 +1,8 @@
 <template>
   <slot name="header" />
+  <slot name="sidebar" />
+
   <main class="main">
-    <aside>
-      <slot name="sidebar" />
-    </aside>
     <article class="page">
       <router-view />
     </article>
@@ -12,8 +11,7 @@
   <slot />
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 @import './styles';

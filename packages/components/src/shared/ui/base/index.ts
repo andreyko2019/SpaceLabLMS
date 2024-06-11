@@ -1,3 +1,6 @@
 export * from './button'
 export * from './icon'
-export * from './checkbox'
+export * from './images'
+export * from './svg'
+export * from './dropdown'
+export * from './input-file'

@@ -55,7 +55,7 @@ import {
   BaseCheckbox,
   useAppForm,
   useCookiesStorage,
-} from '@spacelablms/components'
+} from "@spacelablms/components"
 
 const schema = yup.object({
   username: yup.string(),
@@ -89,9 +89,9 @@ const onSubmit = handleSubmit(async () => {
         password: password.value,
       },
     })
-    useCookiesStorage('student-access-token').setItem(data.accessToken)
-    useCookiesStorage('student-refresh-token').setItem(data.refreshToken)
-    useCookiesStorage('student-remember').setItem(data.refreshToken)
+    useCookiesStorage('student-access-token').setItem(<string>data.accessToken)
+    useCookiesStorage('student-refresh-token').setItem(<string>data.refreshToken)
+    useCookiesStorage('student-remember').setItem(<string>data.refreshToken)
   } catch (error) {
     console.error('Login failed:', error)
   } finally {

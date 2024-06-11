@@ -1,0 +1,65 @@
+@import '@/shared/assets/scss/colors';
+@import '@/shared/assets/scss/font';
+@import "@/shared/assets/scss/mixins";
+
+.file {
+  &__label{
+    font-family: $font-inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.75;
+    color: $gray-blue;
+    margin-bottom: 8px;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    border: 1px solid $shade-blue;
+    border-radius: 4px;
+    height: 34px;
+    overflow: hidden;
+
+    .form-input{
+      display: flex;
+      align-items: center;
+      margin: 0;
+      width: 143px;
+
+
+      &__label{
+        padding: 8px 16px;
+        background:$shade-blue ;
+        color: $white;
+        border-radius: 0 4px  4px 0 ;
+
+        @include media-breakpoint-down(xs){
+          font-size: 14px;
+          padding: 8px ;
+        }
+      }
+
+      &__field{
+        display: none;
+      }
+
+      &__field-wrap{
+        margin: 0;
+        width: auto;
+        border: none;
+        padding: 0;
+        border-radius: 0;
+      }
+    }
+
+
+  }
+
+  &__name{
+    margin: 0 auto 0 20px;
+  }
+
+
+}

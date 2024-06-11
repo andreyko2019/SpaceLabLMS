@@ -32,9 +32,10 @@ interface IBaseCheckbox {
   name?: string
   isDisabled?: boolean
   error?: string
+  modelValue: any[]
 }
 
-const checkboxValue = defineModel<string>()
+ // defineModel<string>()
 
 const props = withDefaults(defineProps<IBaseCheckbox>(), {})
 

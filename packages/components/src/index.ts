@@ -1,4 +1,5 @@
 export * from './shared'
+export * from './widgets'
 
 export {
   useForm as useAppForm,

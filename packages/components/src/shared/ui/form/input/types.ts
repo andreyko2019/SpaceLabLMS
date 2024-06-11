@@ -1,1 +1,1 @@
-export type TInputType = 'text' | 'password' | 'number' | 'email'
+export type TInputType = 'text' | 'password' | 'number' | 'email' | 'file'

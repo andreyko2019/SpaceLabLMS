@@ -28,6 +28,7 @@
   },
   "scripts": {
     "dev": "del dist && vite build --watch",
+    "dev-mac": "rm -rf dist && vite build --watch",
     "build": "vite build",
     "preview": "vite preview",
     "lint:js": "eslint src --ext .ts,.vue",

@@ -2,23 +2,22 @@
   <div class="form-input">
     <label v-if="label" class="form-input__label" :for="name">
       {{ label }}
-
-      <div class="form-input__field-wrap">
-        <input
-          class="form-input__field"
-          ref="input"
-          :type="type"
-          :name="name"
-          :id="name"
-          :required="required"
-          :placeholder="placeholder"
-          :disabled="isDisabled"
-          autocomplete="off"
-          v-model="inputValue"
-        />
-      </div>
     </label>
 
+    <div class="form-input__field-wrap">
+      <input
+        class="form-input__field"
+        ref="input"
+        :type="type"
+        :name="name"
+        :id="name"
+        :required="required"
+        :placeholder="placeholder"
+        :disabled="isDisabled"
+        autocomplete="off"
+        v-model="inputValue"
+      />
+    </div>
     <small v-if="error" class="form-input__error">{{ error }}</small>
   </div>
 </template>

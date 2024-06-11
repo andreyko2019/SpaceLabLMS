@@ -1,19 +1,29 @@
-.container {
-  max-width: 1210px;
+@import "mixins";
+
+.container {;
   margin: 0 auto;
   padding: 0 15px;
 }
 
 #app{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer" auto/ min-content auto ;
   min-height: 100vh;
   height: 100%;
+
+  @include media-breakpoint-down(sm){
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    overflow: hidden;
+  }
 }
 
 main{
+  grid-area: main ;
   width: 100%;
 }
 

@@ -1,15 +1,12 @@
 <template>
-  <label
-      class="checkbox"
-      :class="classes"
-  >
+  <label class="checkbox" :class="classes">
     <input
-        type="checkbox"
-        class="checkbox__input"
-        :name="name"
-        :checked="modelValue"
-        :disabled="isDisabled"
-        @change="onChange"
+      type="checkbox"
+      class="checkbox__input"
+      :name="name"
+      :checked="modelValue"
+      :disabled="isDisabled"
+      @change="onChange"
     />
 
     <span class="checkbox__icon-wrap">
@@ -20,11 +17,7 @@
       {{ label }}
     </span>
 
-    <small
-        v-if="error"
-        class="checkbox__error"
-    >{{ error }}</small
-    >
+    <small v-if="error" class="checkbox__error">{{ error }}</small>
   </label>
 </template>
 
@@ -43,12 +36,12 @@ interface IVCheckbox {
 }
 
 const props = withDefaults(defineProps<IVCheckbox>(), {
-  modelValue: false
+  modelValue: false,
 })
 
 const classes = computed(() => ({
   'disabled events-none': props.isDisabled,
-  error: props.error
+  error: props.error,
 }))
 
 function onChange() {
