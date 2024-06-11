@@ -28,16 +28,15 @@ import { computed } from 'vue'
 const emit = defineEmits(['update:modelValue'])
 
 interface IBaseCheckbox {
-  modelValue?: boolean
   label: string
   name?: string
   isDisabled?: boolean
   error?: string
 }
 
-const props = withDefaults(defineProps<IBaseCheckbox>(), {
-  modelValue: false,
-})
+const checkboxValue = defineModel<string>()
+
+const props = withDefaults(defineProps<IBaseCheckbox>(), {})
 
 const classes = computed(() => ({
   'disabled events-none': props.isDisabled,
