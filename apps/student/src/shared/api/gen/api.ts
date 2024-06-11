@@ -90,7 +90,7 @@ export const AuthControllerApiAxiosParamCreator = function (configuration?: Conf
         /**
          * 
          * @summary Authorization user
-         * @param {JwtRequest} jwtRequest 
+         * @param {JwtRequest} jwtRequest Data for authorization
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -177,7 +177,7 @@ export const AuthControllerApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Authorization user
-         * @param {JwtRequest} jwtRequest 
+         * @param {JwtRequest} jwtRequest Data for authorization
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -240,7 +240,7 @@ export const AuthControllerApiFactory = function (configuration?: Configuration,
  */
 export interface AuthControllerApiLoginRequest {
     /**
-     * 
+     * Data for authorization
      * @type {JwtRequest}
      * @memberof AuthControllerApiLogin
      */
@@ -304,16 +304,16 @@ export const LessonControllerApiAxiosParamCreator = function (configuration?: Co
         /**
          * 
          * @summary The request for getting tasks.
-         * @param {number} arg0 Page for pagination
-         * @param {number} arg1 Number of elements for pagination
+         * @param {number} page Page for pagination
+         * @param {number} size Number of elements for pagination
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllActive: async (arg0: number, arg1: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'arg0' is not null or undefined
-            assertParamExists('getAllActive', 'arg0', arg0)
-            // verify required parameter 'arg1' is not null or undefined
-            assertParamExists('getAllActive', 'arg1', arg1)
+        getAllActive: async (page: number, size: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('getAllActive', 'page', page)
+            // verify required parameter 'size' is not null or undefined
+            assertParamExists('getAllActive', 'size', size)
             const localVarPath = `/api/v1/lessons/getAllActive`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -330,12 +330,12 @@ export const LessonControllerApiAxiosParamCreator = function (configuration?: Co
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (arg0 !== undefined) {
-                localVarQueryParameter['arg0'] = arg0;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
-            if (arg1 !== undefined) {
-                localVarQueryParameter['arg1'] = arg1;
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
             }
 
 
@@ -352,16 +352,16 @@ export const LessonControllerApiAxiosParamCreator = function (configuration?: Co
         /**
          * 
          * @summary The request for getting tasks.
-         * @param {number} arg0 Page for pagination
-         * @param {number} arg1 Number of elements for pagination
+         * @param {number} page Page for pagination
+         * @param {number} size Number of elements for pagination
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllFinished: async (arg0: number, arg1: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'arg0' is not null or undefined
-            assertParamExists('getAllFinished', 'arg0', arg0)
-            // verify required parameter 'arg1' is not null or undefined
-            assertParamExists('getAllFinished', 'arg1', arg1)
+        getAllFinished: async (page: number, size: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('getAllFinished', 'page', page)
+            // verify required parameter 'size' is not null or undefined
+            assertParamExists('getAllFinished', 'size', size)
             const localVarPath = `/api/v1/lessons/getAllFinished`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -378,12 +378,12 @@ export const LessonControllerApiAxiosParamCreator = function (configuration?: Co
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (arg0 !== undefined) {
-                localVarQueryParameter['arg0'] = arg0;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
-            if (arg1 !== undefined) {
-                localVarQueryParameter['arg1'] = arg1;
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
             }
 
 
@@ -410,13 +410,13 @@ export const LessonControllerApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary The request for getting tasks.
-         * @param {number} arg0 Page for pagination
-         * @param {number} arg1 Number of elements for pagination
+         * @param {number} page Page for pagination
+         * @param {number} size Number of elements for pagination
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllActive(arg0: number, arg1: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllActive(arg0, arg1, options);
+        async getAllActive(page: number, size: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllActive(page, size, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LessonControllerApi.getAllActive']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -424,13 +424,13 @@ export const LessonControllerApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary The request for getting tasks.
-         * @param {number} arg0 Page for pagination
-         * @param {number} arg1 Number of elements for pagination
+         * @param {number} page Page for pagination
+         * @param {number} size Number of elements for pagination
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllFinished(arg0: number, arg1: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllFinished(arg0, arg1, options);
+        async getAllFinished(page: number, size: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllFinished(page, size, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LessonControllerApi.getAllFinished']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -453,7 +453,7 @@ export const LessonControllerApiFactory = function (configuration?: Configuratio
          * @throws {RequiredError}
          */
         getAllActive(requestParameters: LessonControllerApiGetAllActiveRequest, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.getAllActive(requestParameters.arg0, requestParameters.arg1, options).then((request) => request(axios, basePath));
+            return localVarFp.getAllActive(requestParameters.page, requestParameters.size, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -463,7 +463,7 @@ export const LessonControllerApiFactory = function (configuration?: Configuratio
          * @throws {RequiredError}
          */
         getAllFinished(requestParameters: LessonControllerApiGetAllFinishedRequest, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.getAllFinished(requestParameters.arg0, requestParameters.arg1, options).then((request) => request(axios, basePath));
+            return localVarFp.getAllFinished(requestParameters.page, requestParameters.size, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -479,14 +479,14 @@ export interface LessonControllerApiGetAllActiveRequest {
      * @type {number}
      * @memberof LessonControllerApiGetAllActive
      */
-    readonly arg0: number
+    readonly page: number
 
     /**
      * Number of elements for pagination
      * @type {number}
      * @memberof LessonControllerApiGetAllActive
      */
-    readonly arg1: number
+    readonly size: number
 }
 
 /**
@@ -500,14 +500,14 @@ export interface LessonControllerApiGetAllFinishedRequest {
      * @type {number}
      * @memberof LessonControllerApiGetAllFinished
      */
-    readonly arg0: number
+    readonly page: number
 
     /**
      * Number of elements for pagination
      * @type {number}
      * @memberof LessonControllerApiGetAllFinished
      */
-    readonly arg1: number
+    readonly size: number
 }
 
 /**
@@ -526,7 +526,7 @@ export class LessonControllerApi extends BaseAPI {
      * @memberof LessonControllerApi
      */
     public getAllActive(requestParameters: LessonControllerApiGetAllActiveRequest, options?: RawAxiosRequestConfig) {
-        return LessonControllerApiFp(this.configuration).getAllActive(requestParameters.arg0, requestParameters.arg1, options).then((request) => request(this.axios, this.basePath));
+        return LessonControllerApiFp(this.configuration).getAllActive(requestParameters.page, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -538,7 +538,7 @@ export class LessonControllerApi extends BaseAPI {
      * @memberof LessonControllerApi
      */
     public getAllFinished(requestParameters: LessonControllerApiGetAllFinishedRequest, options?: RawAxiosRequestConfig) {
-        return LessonControllerApiFp(this.configuration).getAllFinished(requestParameters.arg0, requestParameters.arg1, options).then((request) => request(this.axios, this.basePath));
+        return LessonControllerApiFp(this.configuration).getAllFinished(requestParameters.page, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -553,16 +553,16 @@ export const LiteratureControllerApiAxiosParamCreator = function (configuration?
         /**
          * 
          * @summary The request for getting Literatures.
-         * @param {number} arg1 
-         * @param {number} arg2 
+         * @param {number} size Number of elements for pagination
+         * @param {number} page Page for pagination
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAll1: async (arg1: number, arg2: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'arg1' is not null or undefined
-            assertParamExists('getAll1', 'arg1', arg1)
-            // verify required parameter 'arg2' is not null or undefined
-            assertParamExists('getAll1', 'arg2', arg2)
+        getAll1: async (size: number, page: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'size' is not null or undefined
+            assertParamExists('getAll1', 'size', size)
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('getAll1', 'page', page)
             const localVarPath = `/api/v1/literature/getAll`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -579,12 +579,12 @@ export const LiteratureControllerApiAxiosParamCreator = function (configuration?
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (arg1 !== undefined) {
-                localVarQueryParameter['arg1'] = arg1;
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
             }
 
-            if (arg2 !== undefined) {
-                localVarQueryParameter['arg2'] = arg2;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
 
@@ -611,13 +611,13 @@ export const LiteratureControllerApiFp = function(configuration?: Configuration)
         /**
          * 
          * @summary The request for getting Literatures.
-         * @param {number} arg1 
-         * @param {number} arg2 
+         * @param {number} size Number of elements for pagination
+         * @param {number} page Page for pagination
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAll1(arg1: number, arg2: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAll1(arg1, arg2, options);
+        async getAll1(size: number, page: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAll1(size, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LiteratureControllerApi.getAll1']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -640,7 +640,7 @@ export const LiteratureControllerApiFactory = function (configuration?: Configur
          * @throws {RequiredError}
          */
         getAll1(requestParameters: LiteratureControllerApiGetAll1Request, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.getAll1(requestParameters.arg1, requestParameters.arg2, options).then((request) => request(axios, basePath));
+            return localVarFp.getAll1(requestParameters.size, requestParameters.page, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -652,18 +652,18 @@ export const LiteratureControllerApiFactory = function (configuration?: Configur
  */
 export interface LiteratureControllerApiGetAll1Request {
     /**
-     * 
+     * Number of elements for pagination
      * @type {number}
      * @memberof LiteratureControllerApiGetAll1
      */
-    readonly arg1: number
+    readonly size: number
 
     /**
-     * 
+     * Page for pagination
      * @type {number}
      * @memberof LiteratureControllerApiGetAll1
      */
-    readonly arg2: number
+    readonly page: number
 }
 
 /**
@@ -682,7 +682,7 @@ export class LiteratureControllerApi extends BaseAPI {
      * @memberof LiteratureControllerApi
      */
     public getAll1(requestParameters: LiteratureControllerApiGetAll1Request, options?: RawAxiosRequestConfig) {
-        return LiteratureControllerApiFp(this.configuration).getAll1(requestParameters.arg1, requestParameters.arg2, options).then((request) => request(this.axios, this.basePath));
+        return LiteratureControllerApiFp(this.configuration).getAll1(requestParameters.size, requestParameters.page, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -694,6 +694,88 @@ export class LiteratureControllerApi extends BaseAPI {
  */
 export const PersonalAreaControllerApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @summary The request for updating page size
+         * @param {number} pageSize The number of pages that will be displayed for the authorized user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        changePageSize: async (pageSize: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'pageSize' is not null or undefined
+            assertParamExists('changePageSize', 'pageSize', pageSize)
+            const localVarPath = `/api/v1/personalArea/changePageSize`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary The request for updating theme
+         * @param {boolean} theme If value is false theme is light, if value is true theme is dark
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        changeTheme: async (theme: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'theme' is not null or undefined
+            assertParamExists('changeTheme', 'theme', theme)
+            const localVarPath = `/api/v1/personalArea/changeTheme`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (theme !== undefined) {
+                localVarQueryParameter['theme'] = theme;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @summary The request for edit personal data.
@@ -852,12 +934,80 @@ export const PersonalAreaControllerApiAxiosParamCreator = function (configuratio
         },
         /**
          * 
+         * @summary The request for getting page size
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPageSize: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/personalArea/getPageSize`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary The request for getting personal data.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getPersonalData: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/personalArea/getPersonalData`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary The request for getting theme
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTheme: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/personalArea/getTheme`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -894,6 +1044,32 @@ export const PersonalAreaControllerApiAxiosParamCreator = function (configuratio
 export const PersonalAreaControllerApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PersonalAreaControllerApiAxiosParamCreator(configuration)
     return {
+        /**
+         * 
+         * @summary The request for updating page size
+         * @param {number} pageSize The number of pages that will be displayed for the authorized user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async changePageSize(pageSize: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.changePageSize(pageSize, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PersonalAreaControllerApi.changePageSize']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary The request for updating theme
+         * @param {boolean} theme If value is false theme is light, if value is true theme is dark
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async changeTheme(theme: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.changeTheme(theme, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PersonalAreaControllerApi.changeTheme']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
         /**
          * 
          * @summary The request for edit personal data.
@@ -934,6 +1110,18 @@ export const PersonalAreaControllerApiFp = function(configuration?: Configuratio
         },
         /**
          * 
+         * @summary The request for getting page size
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPageSize(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPageSize(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PersonalAreaControllerApi.getPageSize']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary The request for getting personal data.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -942,6 +1130,18 @@ export const PersonalAreaControllerApiFp = function(configuration?: Configuratio
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPersonalData(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PersonalAreaControllerApi.getPersonalData']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary The request for getting theme
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTheme(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTheme(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PersonalAreaControllerApi.getTheme']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -954,6 +1154,26 @@ export const PersonalAreaControllerApiFp = function(configuration?: Configuratio
 export const PersonalAreaControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = PersonalAreaControllerApiFp(configuration)
     return {
+        /**
+         * 
+         * @summary The request for updating page size
+         * @param {PersonalAreaControllerApiChangePageSizeRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        changePageSize(requestParameters: PersonalAreaControllerApiChangePageSizeRequest, options?: RawAxiosRequestConfig): AxiosPromise<string> {
+            return localVarFp.changePageSize(requestParameters.pageSize, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary The request for updating theme
+         * @param {PersonalAreaControllerApiChangeThemeRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        changeTheme(requestParameters: PersonalAreaControllerApiChangeThemeRequest, options?: RawAxiosRequestConfig): AxiosPromise<string> {
+            return localVarFp.changeTheme(requestParameters.theme, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @summary The request for edit personal data.
@@ -975,6 +1195,15 @@ export const PersonalAreaControllerApiFactory = function (configuration?: Config
         },
         /**
          * 
+         * @summary The request for getting page size
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPageSize(options?: RawAxiosRequestConfig): AxiosPromise<number> {
+            return localVarFp.getPageSize(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary The request for getting personal data.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -982,8 +1211,45 @@ export const PersonalAreaControllerApiFactory = function (configuration?: Config
         getPersonalData(options?: RawAxiosRequestConfig): AxiosPromise<object> {
             return localVarFp.getPersonalData(options).then((request) => request(axios, basePath));
         },
+        /**
+         * 
+         * @summary The request for getting theme
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTheme(options?: RawAxiosRequestConfig): AxiosPromise<boolean> {
+            return localVarFp.getTheme(options).then((request) => request(axios, basePath));
+        },
     };
 };
+
+/**
+ * Request parameters for changePageSize operation in PersonalAreaControllerApi.
+ * @export
+ * @interface PersonalAreaControllerApiChangePageSizeRequest
+ */
+export interface PersonalAreaControllerApiChangePageSizeRequest {
+    /**
+     * The number of pages that will be displayed for the authorized user
+     * @type {number}
+     * @memberof PersonalAreaControllerApiChangePageSize
+     */
+    readonly pageSize: number
+}
+
+/**
+ * Request parameters for changeTheme operation in PersonalAreaControllerApi.
+ * @export
+ * @interface PersonalAreaControllerApiChangeThemeRequest
+ */
+export interface PersonalAreaControllerApiChangeThemeRequest {
+    /**
+     * If value is false theme is light, if value is true theme is dark
+     * @type {boolean}
+     * @memberof PersonalAreaControllerApiChangeTheme
+     */
+    readonly theme: boolean
+}
 
 /**
  * Request parameters for editPersonalData operation in PersonalAreaControllerApi.
@@ -1099,6 +1365,30 @@ export interface PersonalAreaControllerApiEditPersonalDataRequest {
 export class PersonalAreaControllerApi extends BaseAPI {
     /**
      * 
+     * @summary The request for updating page size
+     * @param {PersonalAreaControllerApiChangePageSizeRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PersonalAreaControllerApi
+     */
+    public changePageSize(requestParameters: PersonalAreaControllerApiChangePageSizeRequest, options?: RawAxiosRequestConfig) {
+        return PersonalAreaControllerApiFp(this.configuration).changePageSize(requestParameters.pageSize, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary The request for updating theme
+     * @param {PersonalAreaControllerApiChangeThemeRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PersonalAreaControllerApi
+     */
+    public changeTheme(requestParameters: PersonalAreaControllerApiChangeThemeRequest, options?: RawAxiosRequestConfig) {
+        return PersonalAreaControllerApiFp(this.configuration).changeTheme(requestParameters.theme, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary The request for edit personal data.
      * @param {PersonalAreaControllerApiEditPersonalDataRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -1122,6 +1412,17 @@ export class PersonalAreaControllerApi extends BaseAPI {
 
     /**
      * 
+     * @summary The request for getting page size
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PersonalAreaControllerApi
+     */
+    public getPageSize(options?: RawAxiosRequestConfig) {
+        return PersonalAreaControllerApiFp(this.configuration).getPageSize(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary The request for getting personal data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1129,6 +1430,17 @@ export class PersonalAreaControllerApi extends BaseAPI {
      */
     public getPersonalData(options?: RawAxiosRequestConfig) {
         return PersonalAreaControllerApiFp(this.configuration).getPersonalData(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary The request for getting theme
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PersonalAreaControllerApi
+     */
+    public getTheme(options?: RawAxiosRequestConfig) {
+        return PersonalAreaControllerApiFp(this.configuration).getTheme(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1699,16 +2011,16 @@ export const TaskControllerApiAxiosParamCreator = function (configuration?: Conf
         /**
          * 
          * @summary The request for getting tasks.
-         * @param {number} arg1 Page for pagination
-         * @param {number} arg2 Number of elements for pagination
+         * @param {number} page Page for pagination
+         * @param {number} size Number of elements for pagination
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAll: async (arg1: number, arg2: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'arg1' is not null or undefined
-            assertParamExists('getAll', 'arg1', arg1)
-            // verify required parameter 'arg2' is not null or undefined
-            assertParamExists('getAll', 'arg2', arg2)
+        getAll: async (page: number, size: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('getAll', 'page', page)
+            // verify required parameter 'size' is not null or undefined
+            assertParamExists('getAll', 'size', size)
             const localVarPath = `/api/v1/tasks/getAll`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1725,12 +2037,12 @@ export const TaskControllerApiAxiosParamCreator = function (configuration?: Conf
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (arg1 !== undefined) {
-                localVarQueryParameter['arg1'] = arg1;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
-            if (arg2 !== undefined) {
-                localVarQueryParameter['arg2'] = arg2;
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
             }
 
 
@@ -1811,13 +2123,13 @@ export const TaskControllerApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary The request for getting tasks.
-         * @param {number} arg1 Page for pagination
-         * @param {number} arg2 Number of elements for pagination
+         * @param {number} page Page for pagination
+         * @param {number} size Number of elements for pagination
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAll(arg1: number, arg2: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAll(arg1, arg2, options);
+        async getAll(page: number, size: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAll(page, size, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TaskControllerApi.getAll']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1863,7 +2175,7 @@ export const TaskControllerApiFactory = function (configuration?: Configuration,
          * @throws {RequiredError}
          */
         getAll(requestParameters: TaskControllerApiGetAllRequest, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.getAll(requestParameters.arg1, requestParameters.arg2, options).then((request) => request(axios, basePath));
+            return localVarFp.getAll(requestParameters.page, requestParameters.size, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1903,14 +2215,14 @@ export interface TaskControllerApiGetAllRequest {
      * @type {number}
      * @memberof TaskControllerApiGetAll
      */
-    readonly arg1: number
+    readonly page: number
 
     /**
      * Number of elements for pagination
      * @type {number}
      * @memberof TaskControllerApiGetAll
      */
-    readonly arg2: number
+    readonly size: number
 }
 
 /**
@@ -1955,7 +2267,7 @@ export class TaskControllerApi extends BaseAPI {
      * @memberof TaskControllerApi
      */
     public getAll(requestParameters: TaskControllerApiGetAllRequest, options?: RawAxiosRequestConfig) {
-        return TaskControllerApiFp(this.configuration).getAll(requestParameters.arg1, requestParameters.arg2, options).then((request) => request(this.axios, this.basePath));
+        return TaskControllerApiFp(this.configuration).getAll(requestParameters.page, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

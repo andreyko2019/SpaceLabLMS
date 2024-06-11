@@ -1,23 +1,67 @@
 @import '@/shared/assets/scss/colors';
 @import '@/shared/assets/scss/font';
 
-.form-input{
-  &__label{
+.form-input {
+  &__label {
     font-family: $font-inter;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.75;
     color: $gray-blue;
+    transition: color 0.3s ease;
+
+    &:focus-within{
+        color: $shade-blue;
+    }
   }
 
-  &__field-wrap{
+  &__field-wrap {
     margin-top: 8px;
     border: 1px solid $shade-blue;
     border-radius: 4px;
     padding: 8px 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      border-color: darken($shade-blue, 10%);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    &:focus-within {
+      border-color: $shade-blue;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+
+
+    }
   }
 
-  &__field{
+  &__field {
+    width: 100%;
+    border: none;
+    outline: none;
 
+    &:hover {
+      background-color: $light-gray;
+    }
+
+    &:focus {
+      background-color: $white;
+    }
+
+    &:active {
+      background-color: $active-gray;
+    }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px white inset;
+      box-shadow: 0 0 0 1000px white inset;
+      -webkit-text-fill-color: #000;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    &:-webkit-autofill::first-line {
+      font-family: inherit;
+      color: inherit;
+    }
   }
 }

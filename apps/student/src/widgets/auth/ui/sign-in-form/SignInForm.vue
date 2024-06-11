@@ -26,7 +26,13 @@
         />
       </div>
 
-      <div class="form-content__additional"></div>
+      <div class="form-content__additional">
+        <BaseCheckbox
+          name="remember-checkbox"
+          label="Запам'ятати мене"
+          v-model="rememberCheckbox"
+        />
+      </div>
 
       <BaseButton
         class="form-content__submit-btn"
@@ -43,7 +49,13 @@ import { ref } from 'vue'
 import { useApi } from '@/shared/api'
 import * as yup from 'yup'
 import { AuthControllerApi } from '@/shared/api'
-import { FormInput, BaseButton, useAppForm } from '@spacelablms/components'
+import {
+  FormInput,
+  BaseButton,
+  BaseCheckbox,
+  useAppForm,
+  useCookiesStorage,
+} from '@spacelablms/components'
 
 const schema = yup.object({
   username: yup.string(),
@@ -64,9 +76,11 @@ const { defineField, handleSubmit } = useAppForm<SignInForm>({
 
 const [username] = defineField('username')
 const [password] = defineField('password')
+const [rememberCheckbox] = defineField('rememberCheckbox', {
+  value: false,
+})
 
 const onSubmit = handleSubmit(async () => {
-  console.log('handleSubmit called')
   isLoading.value = true
   try {
     const { data } = await authApi.login({
@@ -75,7 +89,9 @@ const onSubmit = handleSubmit(async () => {
         password: password.value,
       },
     })
-    console.log('Login successful:', data)
+    useCookiesStorage('student-access-token').setItem(data.accessToken)
+    useCookiesStorage('student-refresh-token').setItem(data.refreshToken)
+    useCookiesStorage('student-remember').setItem(data.refreshToken)
   } catch (error) {
     console.error('Login failed:', error)
   } finally {
@@ -84,9 +100,9 @@ const onSubmit = handleSubmit(async () => {
 })
 
 const isLoading = ref(false)
-const isPasswordType = ref(false)
+const isPasswordType = ref(true)
 </script>
 
 <style scoped lang="scss">
-@import './SignInForm';
+@import 'SignInForm';
 </style>
