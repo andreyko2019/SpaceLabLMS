@@ -32,7 +32,7 @@ interface IBaseCheckbox {
   name?: string
   isDisabled?: boolean
   error?: string
-  modelValue: any[]
+
 }
 
  // defineModel<string>()

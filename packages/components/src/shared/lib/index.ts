@@ -1,3 +1,5 @@
 export * from './request-accumulator'
 export * from './item-storage'
 export * from './use/base/useToggle'
+export * from './use/base/useResize'
+export * from './use/base/useGetCookie'

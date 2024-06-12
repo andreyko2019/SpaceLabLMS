@@ -1,13 +1,13 @@
 <template>
   <aside class="sidebar" :class="{ 'sidebar_act': isToggle || props.isOpen }">
     <div class="sidebar__content">
-      <div class="sidebar__logo" v-if="!isMobile">
+      <div class="sidebar__logo">
         <router-link to="/" class="sidebar__logo-link">
           {{ isToggle ? 'S' : 'SpaceLabLMS' }}
         </router-link>
       </div>
 
-      <hr class="sidebar__line" v-if="!isMobile" />
+      <hr class="sidebar__line" />
 
       <ul class="sidebar__list">
         <li
@@ -17,7 +17,7 @@
         >
           <router-link :to="item.href" class="sidebar__list-link">
             <div class="sidebar__list-icon">
-<!--              <BaseIcon :icon="item.icon" />-->
+              <!--              <BaseIcon :icon="item.icon" />-->
             </div>
 
             <span class="sidebar__list-text" v-show="!isToggle">
@@ -27,15 +27,15 @@
         </li>
       </ul>
 
-      <div class="sidebar__arrow" @click="toggleSideBar" v-if="!isMobile">
-<!--        <BaseIcon icon="arrow-left" />-->
+      <div class="sidebar__arrow" @click="toggleSideBar">
+        <!--        <BaseIcon icon="arrow-left" />-->
       </div>
     </div>
   </aside>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, Ref, ref } from 'vue'
+import { Ref, ref } from 'vue'
 // import { BaseIcon } from '@/shared'
 import { useToggle } from '@/shared'
 
@@ -57,23 +57,11 @@ const props = defineProps({
 })
 
 const isToggle: Ref<boolean> = ref(false)
-const isMobile = ref(window.innerWidth <= 767)
+// const isMobile = useResize(767)
 
 const toggleSideBar = () => {
   useToggle(isToggle)
 }
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth <= 767
-}
-
-onMounted(() => {
-  window.addEventListener('resize', handleResize)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', handleResize)
-})
 </script>
 
 <style lang="scss">

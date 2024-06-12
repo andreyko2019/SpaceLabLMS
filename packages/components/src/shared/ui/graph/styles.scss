@@ -1,0 +1,14 @@
+.graph{
+  &__month{
+    max-width: 300px;
+    width: 100%;
+  }
+
+  &__canvas{
+    width: auto !important;
+    height: 500px !important;
+    margin: 0 auto;
+  }
+
+}
+

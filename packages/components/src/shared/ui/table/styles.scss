@@ -1,0 +1,162 @@
+@import "@/shared/assets/scss";
+
+.table {
+  width: 100%;
+  border-spacing: 0;
+
+  thead {
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+
+    @include media-breakpoint-up(sm){
+      position: relative;
+      clip: auto;
+      height: auto;
+      width: auto;
+      overflow: auto;
+    }
+
+    th {
+      background-color: rgba(38,137,13,1);
+      border: 1px solid rgba(134,188,37,1);
+      font-weight: normal;
+      text-align: center;
+      color: white;
+    }
+  }
+
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+    padding: 0;
+    text-align: left;
+    white-space: normal;
+  }
+
+  tr {
+    @include media-breakpoint-up(sm){
+      display: table-row;
+    }
+  }
+
+  th,
+  td {
+    padding: 8px;
+    vertical-align: middle;
+
+    @include media-breakpoint-up(xs) {
+      padding: 12px 8px;
+    }
+
+    @include media-breakpoint-up(sm) {
+      display: table-cell;
+      padding: 8px;
+    }
+
+    @include media-breakpoint-up(md){
+      padding: 12px 8px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding: 12px;
+    }
+  }
+
+
+
+  tbody {
+    @include media-breakpoint-up(sm){
+      display: table-row-group;
+    }
+
+    tr {
+      margin-bottom: 16px;
+
+      @include media-breakpoint-up(sm) {
+        display: table-row;
+        border-width: 1px;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      &:nth-of-type(even) {
+        @include media-breakpoint-up(sm){
+          background-color: rgba(0,0,0,.12);
+        }
+      }
+    }
+
+    th[scope="row"] {
+      background-color: rgba(38,137,13,1);
+      color: white;
+      display: none;
+
+
+      @include media-breakpoint-up(xs) {
+        border-left: 1px solid rgba(134,188,37,1);
+        border-bottom: 1px solid rgba(134,188,37,1);
+      }
+
+      &:last-child{
+        border-right: 1px solid rgba(134,188,37,1);
+      }
+
+      @include media-breakpoint-up(sm) {
+        background-color: transparent;
+        color: rgba(0,0,0.87);
+        text-align: left;
+      }
+
+      @include media-breakpoint-down(sm){
+        display: block;
+      }
+    }
+
+    td {
+      text-align: right;
+
+      @include media-breakpoint-up(sm) {
+        border-left: 1px solid rgba(134,188,37,1);
+        border-bottom: 1px solid rgba(134,188,37,1);
+        text-align: center;
+      }
+
+      &:last-of-type {
+        @include media-breakpoint-up(sm){
+          border-right: 1px solid rgba(134,188,37,1);
+        }
+      }
+    }
+
+    td[data-type=currency] {
+      text-align: right;
+    }
+
+    td[data-title]:before {
+      content: attr(data-title);
+      float: left;
+      font-size: 13px;
+      color: rgba(0,0,0,.54);
+
+      @include media-breakpoint-up(xs){
+        font-size: 14px;
+      }
+
+      @include media-breakpoint-up(sm) {
+
+        content: none;
+      }
+    }
+  }
+}
+
+

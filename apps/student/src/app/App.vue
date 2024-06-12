@@ -1,7 +1,7 @@
 <template>
   <MainLayout v-if="isDefaultLayout">
     <template #header>
-      <TheHeader @toggle-sidebar="handleToggleSidebar" />
+      <TheHeader @toggle-sidebar="handleToggleSidebar" @theme="switchTheme" />
     </template>
 
     <template #sidebar>
@@ -37,6 +37,7 @@ const route = useRoute()
 
 const isDefaultLayout = computed(() => route.meta.layout === 'DefaultLayout')
 const sidebar = ref(false)
+const isTheme = ref(false)
 interface ISideBar {
   icon: string
   href: string
@@ -68,5 +69,9 @@ const sideBarStudent: ISideBar[] = [
 
 const handleToggleSidebar = () => {
   sidebar.value = !sidebar.value
+}
+
+const switchTheme = () => {
+  isTheme.value = !isTheme.value
 }
 </script>

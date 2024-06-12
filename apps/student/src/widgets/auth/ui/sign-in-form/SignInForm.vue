@@ -27,11 +27,11 @@
       </div>
 
       <div class="form-content__additional">
-        <BaseCheckbox
-          name="remember-checkbox"
-          label="Запам'ятати мене"
-          v-model="rememberCheckbox"
-        />
+<!--        <BaseCheckbox-->
+<!--          name="remember-checkbox"-->
+<!--          label="Запам'ятати мене"-->
+<!--          v-model="rememberCheckbox"-->
+<!--        />-->
       </div>
 
       <BaseButton
@@ -52,7 +52,7 @@ import { AuthControllerApi } from '@/shared/api'
 import {
   FormInput,
   BaseButton,
-  BaseCheckbox,
+  // BaseCheckbox,
   useAppForm,
   useCookiesStorage,
 } from "@spacelablms/components"
@@ -76,9 +76,9 @@ const { defineField, handleSubmit } = useAppForm<SignInForm>({
 
 const [username] = defineField('username')
 const [password] = defineField('password')
-const [rememberCheckbox] = defineField('rememberCheckbox', {
-  value: false,
-})
+// const [rememberCheckbox] = defineField('rememberCheckbox', {
+//   value: false,
+// })
 
 const onSubmit = handleSubmit(async () => {
   isLoading.value = true
