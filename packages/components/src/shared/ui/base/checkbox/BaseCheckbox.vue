@@ -4,9 +4,8 @@
       type="checkbox"
       class="base-checkbox__input"
       :id="name"
-      :checked="modelValue"
       :disabled="isDisabled"
-      @change="onChange"
+
     />
 
     <span class="base-checkbox__icon-wrap">
@@ -39,14 +38,15 @@ interface IBaseCheckbox {
 
 const props = withDefaults(defineProps<IBaseCheckbox>(), {})
 
+
 const classes = computed(() => ({
   'disabled events-none': props.isDisabled,
   error: props.error,
 }))
 
-function onChange() {
-  emit('update:modelValue', !props.modelValue)
-}
+// function onChange() {
+//   emit('update:modelValue', !props.modelValue)
+// }
 </script>
 
 <style lang="scss">

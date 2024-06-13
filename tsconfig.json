@@ -38,5 +38,9 @@
     {
       "path": "apps/student"
     }
+  ],
+
+  "types": [
+    "vue-sweetalert2"
   ]
 }

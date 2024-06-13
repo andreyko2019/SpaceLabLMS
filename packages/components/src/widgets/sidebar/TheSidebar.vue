@@ -57,11 +57,7 @@ const props = defineProps({
 })
 
 const isToggle: Ref<boolean> = ref(false)
-// const isMobile = useResize(767)
-
-const toggleSideBar = () => {
-  useToggle(isToggle)
-}
+const toggleSideBar = useToggle(isToggle)
 </script>
 
 <style lang="scss">

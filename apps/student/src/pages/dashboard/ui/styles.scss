@@ -1,0 +1,55 @@
+.dashboard{
+
+  &__edit{
+   margin: 0 auto;
+
+    &-row{
+      display: flex;
+    }
+
+    &-photo{
+      max-width: 200px;
+      width: 100%;
+      height: 162px;
+      margin-bottom: 16px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    &-delete{
+      background: #3A57E8;
+      height: 35px;
+      padding: 0 8px;
+      border-radius: 4px;
+      color: #ffffff;
+    }
+
+    &-fullname{
+      max-width: 300px;
+      width: 100%;
+      margin-left: 40px;
+    }
+
+    &-column{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 56px;
+      grid-row-gap: 16px;
+    }
+  }
+
+
+  &__save{
+   display:flex;
+    justify-content: flex-end;
+
+    &-btn{
+    background: #3A57E8;
+    height: 35px;
+    padding: 0 16px;
+    border-radius: 4px;
+    color: #ffffff;
+    margin: 16px 0 0;
+    }
+  }
+}

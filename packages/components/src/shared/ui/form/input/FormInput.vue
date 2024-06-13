@@ -16,6 +16,7 @@
         :disabled="isDisabled"
         autocomplete="off"
         v-model="inputValue"
+        :accept="accept"
       />
     </div>
     <small v-if="error" class="form-input__error">{{ error }}</small>
@@ -33,6 +34,7 @@ interface FormInput {
   required?: boolean
   type?: TInputType
   error?: string
+  accept?: string
 }
 
 const inputValue = defineModel<string | number>()

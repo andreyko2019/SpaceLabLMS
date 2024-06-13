@@ -78,8 +78,6 @@ const data = ref({
 })
 
 const chartRef = ref(null as HTMLCanvasElement | null)
-let chart: Chart | null = null
-
 const config: IConfig = {
   type: 'bar',
   data: data.value,
@@ -99,7 +97,7 @@ function initGraph() {
   if (chartRef.value) {
     const ctx = chartRef.value.getContext('2d')
     if (ctx) {
-      chart = new Chart(ctx, config)
+      new Chart(ctx, config)
     }
   }
 }

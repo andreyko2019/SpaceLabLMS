@@ -70,7 +70,6 @@ const sideBarStudent: ISideBar[] = [
 const handleToggleSidebar = () => {
   sidebar.value = !sidebar.value
 }
-
 const switchTheme = () => {
   isTheme.value = !isTheme.value
 }
