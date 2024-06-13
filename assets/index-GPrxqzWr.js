@@ -1,1 +1,0 @@
-import{_ as t,a as o,C as a,h as r,D as s,o as n}from"./index-ziS-h3-H.js";const c={};function _(d,l){const e=s("router-view");return n(),o("div",null,[a("Student tasks page "),r(e)])}const u=t(c,[["render",_]]);export{u as default};

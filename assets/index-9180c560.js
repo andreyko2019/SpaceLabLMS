@@ -1,0 +1,1 @@
+import{d as e,c as s,a as t,b as a,u as c,o,v as _}from"./index-f2c66781.js";const n={class:"statistics"},i={class:"container"},u=e({__name:"StatisticsPage",setup(r){return(d,l)=>(o(),s("section",n,[t("div",i,[a(c(_))])]))}});export{u as default};

@@ -1,1 +1,0 @@
-import{d as n,a as s,e as o,F as a,A as c,o as r}from"./index-ziS-h3-H.js";const u=o("div",null,"Not found page",-1),_=o("div",null,"go to home",-1),i=n({__name:"NotFound",setup(l){const e=c(),t=()=>{e.push({path:"/"})};return(d,m)=>(r(),s(a,null,[u,_,o("button",{onClick:t},"Home")],64))}});export{i as default};
