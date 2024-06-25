@@ -13,14 +13,14 @@
 
           <div class="header__logo">
             <router-link to="/" class="header__logo-link">
-              SpaceLabLMS
+              <BaseImage :srcset="logo.webp" :src="logo.img" alt="logo" />
             </router-link>
           </div>
         </div>
 
         <div class="header__user" v-if="!isMobile">
           <div class="header__user-avatar">
-            <router-link to="/dashboard">
+            <router-link to="/dashboard" v-if="userAvatar">
               <BaseImage :src="userAvatar" alt="avatar" />
             </router-link>
           </div>
@@ -30,12 +30,7 @@
             <p class="header__user-name" v-if="userRole">{{ userRole }}</p>
           </div>
 
-          <div class="header__user-switch">
-            <label class="header__user-label">
-              <input class="header__user-inp" type="checkbox" id="slider" />
-              <span class="header__user-slider round"></span>
-            </label>
-          </div>
+          <BaseSwitch @theme="xx" />
         </div>
 
         <div class="header__user" v-if="isMobile">
@@ -43,7 +38,7 @@
           <!--            <BaseIcon icon="arrow-down" />-->
           <!--          </div>-->
 
-          <div class="header__user-avatar">
+          <div class="header__user-avatar" v-if="userAvatar">
             <BaseImage :src="userAvatar" alt="avatar" @click="openInfoUser" />
           </div>
 
@@ -52,10 +47,7 @@
             :class="{ 'header__user-mob_act': isOpenInfoUser }"
           >
             <div class="header__user-switch">
-              <label class="header__user-label">
-                <input class="header__user-inp" type="checkbox" id="slider" />
-                <span class="header__user-slider round"></span>
-              </label>
+              <BaseSwitch @theme="xx" />
 
               <button class="header__user-logout">Вийти</button>
             </div>
@@ -77,8 +69,8 @@
             <hr class="header__user-line" />
 
             <div class="header__user-column">
-              <p class="header__user-name">{{ userName }}</p>
-              <p class="header__user-name" v-if="userRole">{{ userRole }}</p>
+              <!--              <p class="header__user-name">{{ userName }}</p>-->
+              <!--              <p class="header__user-name" v-if="userRole">{{ userRole }}</p>-->
             </div>
           </div>
         </div>
@@ -91,60 +83,59 @@
 import {
   useToggle,
   useResize,
-  userAvatar,
-  userName,
-  userRole,
-  getUserData,
   BaseImage,
+  useFetchData,
+  BaseSwitch,
 } from '@/shared'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { PersonalAreaControllerApi } from '@spacelablms/student/src/shared/api'
 
 const isOpenSidebar = ref(false)
 const isOpenInfoUser = ref(false)
 const isMobile = ref(window.innerWidth <= 767)
-const emits = defineEmits(['toggle-sidebar', 'theme'])
+const userData = ref()
+const userName = ref<string | null>(null)
+const userAvatar = ref<string | null>(null)
+const userRole = ref<string | null>(null)
+const emits = defineEmits(['toggle-sidebar', 'test'])
 
-// const themeApi = useApi(PersonalAreaControllerApi)
-
-// async function changeTheme(theme: boolean) {
-//   try {
-//     const authToken =  useGetCookie('student-access-token')
-//
-//     const config = {
-//       headers: {
-//         Authorization: `Bearer ${authToken}`,
-//       },
-//     }
-//
-//
-//     const response = await themeApi.changeTheme({ theme } , config)
-//
-//     console.log(response);
-//   } catch (error) {
-//     console.error('Error getting user data:', error)
-//   }
-// }
+const openInfoUser = useToggle(isOpenInfoUser)
 const toggleSidebar = useToggle(isOpenSidebar)
 const toggleMobileSideBar = () => {
   toggleSidebar()
   emits('toggle-sidebar')
 }
 
-const openInfoUser = useToggle(isOpenInfoUser)
-
-// const switchTheme = () => {
-//   // changeTheme(true)
-//   emits('theme')
-//   isTheme.value = !isTheme.value
-//   console.log();
-// }
+const xx = () => {
+  emits('test')
+}
 
 const handleResize = () => {
   isMobile.value = window.innerWidth <= 767
 }
+async function getInfoStudent() {
+  try {
+    userData.value = await useFetchData(
+      PersonalAreaControllerApi,
+      'getPersonalData'
+    )
+
+    if (userData.value.data) {
+      userName.value = userData.value.data.contact.name
+      userAvatar.value = userData.value.data.image
+      userRole.value = userData.value.data.currentSituation
+    }
+  } catch (error) {
+    console.error('data', error)
+  }
+}
 
 useResize(handleResize)
-getUserData()
+
+onMounted(async () => {
+  await getInfoStudent()
+})
+
 interface INamePage {
   href: string
   name: string
@@ -176,8 +167,13 @@ const namePage: Array<INamePage> = [
     name: 'Особистий Кабінет',
   },
 ]
+
+const logo = {
+  webp: new URL('../../shared/assets/img/logo.webp', import.meta.url),
+  img: new URL('../../shared/assets/img/logo.png', import.meta.url),
+}
 </script>
 
 <style lang="scss">
-@import 'styles';
+@import 'TheHeader';
 </style>

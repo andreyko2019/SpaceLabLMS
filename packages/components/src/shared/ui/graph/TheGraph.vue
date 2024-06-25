@@ -14,6 +14,8 @@ interface IConfig {
     }[]
   }
   options: {
+    responsive: boolean
+    maintainAspectRatio: boolean
     scales: {
       x: {
         stacked: boolean
@@ -77,11 +79,15 @@ const data = ref({
   ],
 })
 
+// todo типізація
 const chartRef = ref(null as HTMLCanvasElement | null)
 const config: IConfig = {
   type: 'bar',
   data: data.value,
   options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
     scales: {
       x: {
         stacked: true,

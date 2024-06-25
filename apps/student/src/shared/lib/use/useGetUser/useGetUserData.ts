@@ -17,8 +17,7 @@ const personalApi = useApi(PersonalAreaControllerApi)
 
 async function getUserData() {
   try {
-    const authToken =
-      'student@gmail.com'
+    const authToken = 'student@gmail.com'
 
     const config = {
       headers: {

@@ -296,6 +296,789 @@ export class AuthControllerApi extends BaseAPI {
 
 
 /**
+ * EnumControllerApi - axios parameter creator
+ * @export
+ */
+export const EnumControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Get all course statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listCourseStatuses: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/courseStatuses`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all current situations
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listCurrentSituations: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/currentSituations`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all English levels
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listEnglishLevels: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/englishLevels`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all lesson statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listLessonStatuses: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/lessonStatuses`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all task levels
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listLevels: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/taskLevels`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all literature types
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listLiteratureTypes: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/literatureTypes`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all manager statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listManagerStatuses: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/managerStatuses`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listPages: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/pages`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all preparation levels
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listPreparationLevels: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/preparationLevels`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all student statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listStudentStatuses: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/studentStatuses`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all task for student statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listTaskForStudentStatuses: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/taskForStudentStatuses`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all task statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listTaskStatuses: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/enum/taskStatuses`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * EnumControllerApi - functional programming interface
+ * @export
+ */
+export const EnumControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = EnumControllerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Get all course statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listCourseStatuses(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listCourseStatuses(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listCourseStatuses']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all current situations
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listCurrentSituations(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listCurrentSituations(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listCurrentSituations']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all English levels
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listEnglishLevels(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listEnglishLevels(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listEnglishLevels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all lesson statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listLessonStatuses(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listLessonStatuses(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listLessonStatuses']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all task levels
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listLevels(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listLevels(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listLevels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all literature types
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listLiteratureTypes(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listLiteratureTypes(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listLiteratureTypes']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all manager statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listManagerStatuses(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listManagerStatuses(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listManagerStatuses']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listPages(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listPages(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listPages']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all preparation levels
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listPreparationLevels(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listPreparationLevels(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listPreparationLevels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all student statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listStudentStatuses(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listStudentStatuses(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listStudentStatuses']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all task for student statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listTaskForStudentStatuses(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listTaskForStudentStatuses(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listTaskForStudentStatuses']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get all task statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listTaskStatuses(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listTaskStatuses(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnumControllerApi.listTaskStatuses']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * EnumControllerApi - factory interface
+ * @export
+ */
+export const EnumControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = EnumControllerApiFp(configuration)
+    return {
+        /**
+         * Get all course statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listCourseStatuses(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listCourseStatuses(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all current situations
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listCurrentSituations(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listCurrentSituations(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all English levels
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listEnglishLevels(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listEnglishLevels(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all lesson statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listLessonStatuses(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listLessonStatuses(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all task levels
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listLevels(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listLevels(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all literature types
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listLiteratureTypes(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listLiteratureTypes(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all manager statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listManagerStatuses(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listManagerStatuses(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listPages(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listPages(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all preparation levels
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listPreparationLevels(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listPreparationLevels(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all student statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listStudentStatuses(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listStudentStatuses(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all task for student statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listTaskForStudentStatuses(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listTaskForStudentStatuses(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get all task statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listTaskStatuses(options?: RawAxiosRequestConfig): AxiosPromise<Array<string>> {
+            return localVarFp.listTaskStatuses(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * EnumControllerApi - object-oriented interface
+ * @export
+ * @class EnumControllerApi
+ * @extends {BaseAPI}
+ */
+export class EnumControllerApi extends BaseAPI {
+    /**
+     * Get all course statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listCourseStatuses(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listCourseStatuses(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all current situations
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listCurrentSituations(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listCurrentSituations(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all English levels
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listEnglishLevels(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listEnglishLevels(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all lesson statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listLessonStatuses(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listLessonStatuses(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all task levels
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listLevels(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listLevels(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all literature types
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listLiteratureTypes(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listLiteratureTypes(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all manager statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listManagerStatuses(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listManagerStatuses(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listPages(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listPages(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all preparation levels
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listPreparationLevels(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listPreparationLevels(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all student statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listStudentStatuses(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listStudentStatuses(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all task for student statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listTaskForStudentStatuses(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listTaskForStudentStatuses(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get all task statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnumControllerApi
+     */
+    public listTaskStatuses(options?: RawAxiosRequestConfig) {
+        return EnumControllerApiFp(this.configuration).listTaskStatuses(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
  * LessonControllerApi - axios parameter creator
  * @export
  */

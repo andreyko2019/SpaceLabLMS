@@ -13,7 +13,8 @@ export default defineConfig(({ mode }) => {
     envDir,
 
     server: {
-      host: env.VITE_STUDENT_HOST,
+      open: true,
+
       port: Number(env.VITE_STUDENT_PORT) || 3000,
     },
 
@@ -35,4 +36,4 @@ export default defineConfig(({ mode }) => {
       },
     },
   }
-});
+})

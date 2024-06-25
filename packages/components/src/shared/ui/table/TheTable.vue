@@ -10,6 +10,8 @@ interface IStudentTable {
     name?: string
     type?: string
     keywords?: string
+    level?: string
+    description?: string
   }[]
 }
 
@@ -41,7 +43,13 @@ defineProps<IStudentTable>()
         >
           <span v-if="key !== 'link'">{{ value }}</span>
 
-          <a v-if="key === 'link'" :href="value" target="_blank">{{ value }}</a>
+          <a
+            class="table__link"
+            v-if="key === 'link'"
+            :href="value"
+            target="_blank"
+            >Посилання</a
+          >
         </td>
       </tr>
     </tbody>
@@ -49,5 +57,5 @@ defineProps<IStudentTable>()
 </template>
 
 <style lang="scss">
-@import 'styles';
+@import 'TheTable';
 </style>
