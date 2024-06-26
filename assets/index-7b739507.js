@@ -1,1 +1,0 @@
-import{_ as t,c as s,k as o,b as a,l as n,o as c}from"./index-f2c66781.js";const _={},r={class:"container"};function d(i,l){const e=n("router-view");return c(),s("div",r,[o("Student tasks page "),a(e)])}const u=t(_,[["render",d]]);export{u as default};
