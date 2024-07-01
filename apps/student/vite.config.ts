@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
 
     server: {
       open: true,
-
+      host: '0.0.0.0',
       port: Number(env.VITE_STUDENT_PORT) || 3000,
     },
 

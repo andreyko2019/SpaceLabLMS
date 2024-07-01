@@ -2,6 +2,7 @@
 @import "mixins";
 [data-theme="light"] {
   @include theme(
+                  $light-header-background,
                   $light-background-color,
                   $light-primary-text-color,
                   $light-secondary-text-color,
@@ -9,12 +10,13 @@
                   $light-button-background-color,
                   $light-button-text-color,
                   $light-border-color,
-                  $light-box-shadow-color
+                  //$light-box-shadow-color
   );
 }
 
 [data-theme="dark"] {
   @include theme(
+                  $dark-header-background,
                   $dark-background-color,
                   $dark-primary-text-color,
                   $dark-secondary-text-color,
@@ -22,7 +24,7 @@
                   $dark-button-background-color,
                   $dark-button-text-color,
                   $dark-border-color,
-                  $dark-box-shadow-color
+                  //$dark-box-shadow-color
   );
 }
 .container {

@@ -1,7 +1,15 @@
 .dashboard {
+  max-width: 1000px;
+  width: 100%;
+  margin: 48px auto 0;
   &__info {
     &-row {
       display: flex;
+    }
+
+    &-column {
+      display: flex;
+      flex-direction: column;
     }
 
     &-photo {
@@ -85,6 +93,14 @@
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 56px;
     grid-row-gap: 16px;
+  }
+
+  &__save-btn{
+margin: auto 0 15px;
+    height: 35px;
+    border-radius: 4px;
+    background: var(--btn-bg);
+    color: var(--btn-text);
   }
 
   .skeleton__text {

@@ -17,7 +17,7 @@ const dropDown = ref<HTMLElement | null>(null)
 const selectedOption = ref<string | null>(null)
 const isDropDownVisible = ref<boolean>(false)
 
-const mappedSelectionOption = computed<string>(() => {
+const mappedSelectionOption = computed(() => {
   return selectedOption.value || props.val
 })
 
@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
         class="dropdown__arrow"
         :class="{ dropdown__arrow_act: isDropDownVisible }"
       >
-<!--        <BaseIcon icon="arrow-down" />-->
+        <!--        <BaseIcon icon="arrow-down" />-->
       </div>
     </div>
     <transition name="slide-fade">

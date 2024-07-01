@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { BaseSkeleton } from '@/shared'
 interface IStudentTable {
   th: string[]
   td: {
@@ -41,15 +42,14 @@ defineProps<IStudentTable>()
           :key="index"
           :data-title="th[index]"
         >
-          <span v-if="key !== 'link'">{{ value }}</span>
+          <span v-if="key !== 'link'">
+            {{ value }}
+          </span>
+          <BaseSkeleton modify="table" v-if="!value" />
 
-          <a
-            class="table__link"
-            v-if="key === 'link'"
-            :href="value"
-            target="_blank"
-            >Посилання</a
-          >
+          <div class="table__row" v-if="key === 'link' && value">
+            <a class="table__link" :href="value" target="_blank">Посилання</a>
+          </div>
         </td>
       </tr>
     </tbody>

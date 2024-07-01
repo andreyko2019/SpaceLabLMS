@@ -59,7 +59,8 @@ $breakpoints: (
   transform: translate(-50%, -50%);
 }
 
-@mixin theme($background-color, $primary-text-color, $secondary-text-color, $link-color, $button-background-color, $button-text-color, $border-color, $box-shadow-color) {
+@mixin theme($header-background, $background-color, $primary-text-color, $secondary-text-color, $link-color, $button-background-color, $button-text-color, $border-color, ) {
+  --header: #{$header-background};
   --bg: #{$background-color};
   --primary-text: #{$primary-text-color};
   --secondary-text: #{$secondary-text-color};
@@ -67,7 +68,7 @@ $breakpoints: (
   --btn-bg: #{$button-background-color};
   --btn-text: #{$button-text-color};
   --border: #{$border-color};
-  --shadow: #{$box-shadow-color};
+
 
   background: var(--bg);
   color: var(--primary-text);

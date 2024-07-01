@@ -1,191 +1,95 @@
-@import "../../shared/assets/scss";
+@import '../../shared/assets/scss';
 
-.header{
+.header {
   grid-area: header;
   width: 100%;
-  max-height: 80px;
+  height: 80px;
   padding: 20px;
   box-shadow: 0 10px 30px 0 var(--shadow);
+  background: var(--header);
 
-  @include media-breakpoint-down(sm){
-   padding: 10px 0;
+  @include media-breakpoint-down(sm) {
+    padding: 10px 0;
     position: fixed;
     background: var(--bg);
   }
 
-
-  &__content{
+  &__content {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
-    @include media-breakpoint-down(sm){
-      justify-content: space-between;
-    }
   }
 
-  &__item{
-    display: flex;
-    align-items: center;
-  }
-
-  &__icon{
-    z-index: 60;
-    position: relative;
-    width: 27px;
-    height: 32px;
-    cursor: pointer;
-
-    span,
-    &::before,
-    &::after {
-      right: 0;
-      position: absolute;
-      height: 10%;
-      width: 100%;
-      transition: all 0.3s ease 0s;
-      background-color: var(--btn-text);
-    }
-
-    &::before,
-    &::after {
-      content: '';
-      height: 2px;
-    }
-
-    &::before {
-      top: 8px;
-    }
-
-    &::after {
-      bottom: 8px;
-      height: 2px;
-    }
-
-    span {
-      height: 2px;
-      top: 50%;
-      transform: scale(1) translate(0px, -50%);
-    }
-    &_act span {
-      transform: rotate(45deg) scale(0) translate(0px, -50%);
-    }
-
-    &_act::before {
-      top: 50%;
-      transform: rotate(-45deg) translate(0px, -50%);
-    }
-
-    &_act::after {
-      bottom: 50%;
-      transform: rotate(45deg) translate(0px, 50%);
-    }
-
-  }
-
-  &__logo{
-    display: flex;
-    align-items: center;
-    margin-left: 16px;
-      width: 40px;
-      height: 40px;
-  }
-
-  &__user{
+  &__user {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
 
-    &-arrow{
-      width: 18px;
-      height: 18px;
-      margin-left: 16px;
+    &-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
 
-      .base-icon{
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-
-    &-avatar{
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          overflow: hidden;
-
-      @include media-breakpoint-down(sm){
+      @include media-breakpoint-down(sm) {
         position: relative;
         z-index: 40;
       }
 
-      img{
+      img {
         width: 100%;
         height: 100%;
       }
     }
 
-    &-mob{
+    &-column {
+      margin: 0 16px;
       display: flex;
       align-items: center;
-      margin: 0 16px;
 
-    @include media-breakpoint-down(sm){
-      position: fixed;
-      top: -100%;
-      right: 0;
-      background: var(--bg);
-      margin: 0 ;
-      padding: 50px 0 8px;
-      flex-direction: column-reverse;
-      width: 245px;
-      transition: top  0.3s ease;
-      box-shadow: 0 10px 30px 0 var(--shadow);
-
-      &_act{
-        top: 0;
+      @include media-breakpoint-down(xs) {
+        position: fixed;
+        top: -100%;
+        right: 0;
+        width: 240px;
+        background: var(--bg);
+        margin: 0;
+        box-shadow: 0 10px 30px 0 var(--shadow);
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 8px 0;
+        transition: top 0.5s ease;
       }
 
+      &_active {
+        top: 80px;
+      }
     }
+
+    &-row {
+      &:first-child {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        padding: 8px 0;
+        margin: 0 16px;
+      }
     }
 
-
-
-
-
-    &-line{
+    &-line {
       width: 100%;
       height: 1px;
-      background: $gray;
-      margin: 8px 0;
+      background: var(--border);
+      margin: 0 0 8px;
     }
-
-    &-column{
-      margin: 0 16px;
-
-      @include media-breakpoint-down(sm){
-
-      }
-    }
-
 
     &-name,
-    &-link,
-    &-logout{
-      color: $gray;
-    }
+    &-link {
+      color: var(--primary-text);
 
-    &-item{
-      padding-bottom: 8px;
-
-      &:last-child{
-        padding-bottom: 0;
+      @include media-breakpoint-down(xs) {
+        margin-bottom: 8px;
       }
     }
   }
-
-
-
-
-
 }

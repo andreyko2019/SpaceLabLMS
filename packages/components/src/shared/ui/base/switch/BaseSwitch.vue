@@ -1,23 +1,23 @@
 <script setup lang="ts">
-const emit = defineEmits(['update:value', 'theme'])
-
-const updateVal = (e: Event) => {
-  const target = e.target
-  if (target instanceof HTMLInputElement) {
-    emit('update:value', target.value)
-  }
+interface IProps {
+  val: boolean
 }
 
-const toggleTheme = () => {
+const props = defineProps<IProps>()
+const emit = defineEmits(['theme'])
+
+const changeTheme = () => {
   emit('theme')
 }
 </script>
 
 <template>
-  <label class="switch">
-    <input class="switch__inp" type="checkbox" id="slider" @input="updateVal" />
-    <span class="switch__slider round" @click="toggleTheme"></span>
-  </label>
+  <div class="switch" @click="changeTheme()">
+    <div
+      class="switch__theme"
+      :class="{ 'switch__theme_active': props.val }"
+    ></div>
+  </div>
 </template>
 
 <style lang="scss">

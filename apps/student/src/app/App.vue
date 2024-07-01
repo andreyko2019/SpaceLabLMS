@@ -1,16 +1,12 @@
 <template>
-  <div class="wrapper" :data-theme="getIsTheme ? 'dark' : 'light'">
-    <MainLayout>
+  <div class="wrapper" :data-theme="isTheme.theme ? 'dark' : 'light'">
+    <MainLayout v-if="isDefaultLayout">
       <template #header>
-        <TheHeader @toggle-sidebar="handleToggleSidebar" @test="xx" />
+        <TheHeader />
       </template>
 
       <template #sidebar>
-        <TheSidebar
-          :data="sideBarStudent"
-          :is-open="sidebar"
-          @close="handleToggleSidebar"
-        />
+        <TheSidebar :data="sideBarStudent" />
       </template>
 
       <template #footer>
@@ -18,86 +14,40 @@
       </template>
     </MainLayout>
 
-    <!--    <EmptyLayout v-else></EmptyLayout>-->
+    <EmptyLayout v-else></EmptyLayout>
     <SvgManager />
   </div>
 </template>
-
 <script setup lang="ts">
 import {
+  IConfig,
   SvgManager,
   TheFooter,
   TheHeader,
   TheSidebar,
-  // useFetchData,
+  useCreateConfig,
+  useGetCookie,
 } from '@spacelablms/components'
-import { MainLayout } from '@/shared/ui/layouts'
-import { onMounted, provide, ref } from 'vue'
+import { EmptyLayout, MainLayout } from '@/shared/ui/layouts'
+import { computed, onMounted, provide, Ref, ref } from 'vue'
 import { AppRoutes, EAppProviders } from './providers'
 import { AppPages } from './providers/router'
-// import { useRoute } from 'vue-router'
-// import { PersonalAreaControllerApi } from '@/shared/api'
+import { useRoute } from 'vue-router'
+import {
+  PersonalAreaControllerApi,
+  PersonalAreaControllerApiChangeThemeRequest,
+  useApi,
+} from '@/shared/api'
 
 provide(EAppProviders.AppRoutes, AppRoutes)
 provide(EAppProviders.AppPages, AppPages)
 
-// const route = useRoute()
-// v-if="isDefaultLayout"
-// const isDefaultLayout = computed(() => route.meta.layout === 'DefaultLayout')
-const sidebar = ref(false)
-// const isTheme = ref(false)
-// const getThemeData = ref()
-const getIsTheme = ref(false)
-// const test = ref(true)
-
-interface ISideBar {
-  icon: string
-  href: string
-  name: string
-}
-
-const handleToggleSidebar = () => {
-  sidebar.value = !sidebar.value
-}
-
-const xx = () => {
-  console.log(123)
-}
-
-// async function switchTheme() {
-//   try {
-//     const newTheme = !isTheme.value
-//     await useFetchData(PersonalAreaControllerApi, 'changeTheme', {
-//       theme: newTheme,
-//     })
-//     isTheme.value = newTheme
-//     console.log(isTheme.value)
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
-
-// async function getTheme() {
-//   try {
-//     getThemeData.value = await useFetchData(
-//       PersonalAreaControllerApi,
-//       'getTheme'
-//     )
-//
-//     if (getThemeData.value.data) {
-//       getIsTheme.value = getThemeData.value.data
-//       console.log(getIsTheme.value)
-//     }
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
-
-onMounted(async () => {
-  // await getTheme()
+const route = useRoute()
+const isTheme: Ref<PersonalAreaControllerApiChangeThemeRequest> = ref({
+  theme: true,
 })
 
-const sideBarStudent: ISideBar[] = [
+const sideBarStudent = [
   {
     icon: 'statistic',
     href: 'statistics',
@@ -119,4 +69,17 @@ const sideBarStudent: ISideBar[] = [
     name: 'Література',
   },
 ]
+const authToken = useGetCookie('student-access-token')
+const isDefaultLayout = computed(() => route.meta.layout === 'DefaultLayout')
+async function getTheme(config: IConfig) {
+  const apiTheme = useApi(PersonalAreaControllerApi)
+
+  const dataTheme = await apiTheme.getTheme(config)
+  if (dataTheme.data) isTheme.value.theme = dataTheme.data
+}
+
+onMounted(async () => {
+  const config = useCreateConfig(authToken)
+  await getTheme(config)
+})
 </script>

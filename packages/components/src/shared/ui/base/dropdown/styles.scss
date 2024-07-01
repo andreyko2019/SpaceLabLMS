@@ -25,7 +25,7 @@
     border-radius: 4px;
 
     &_act {
-      background: #16263d;
+      background: var(--bg);
       border: 1px solid #1472ff;
     }
   }
@@ -63,7 +63,7 @@
     overflow: auto;
     position: absolute;
     top: 100%;
-    background: $white;
+    background: var(--bg);
     z-index: 30;
     margin-top: 4px;
     left: 0;
@@ -86,6 +86,8 @@
 
     &:hover {
       background: $white;
+      color: var(--bg);
+
     }
 
     &:last-of-type {
@@ -96,11 +98,11 @@
 }
 
 .slide-fade-enter-active {
-  transition: all 0.3s ease-out;
+  transition:  0.3s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  transition:  0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,

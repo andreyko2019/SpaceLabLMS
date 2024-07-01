@@ -1,9 +1,20 @@
 {
-  "statusWork": {
-    "studying": "Studying",
-    "working": "Working",
-    "s&w": "Studies and Working",
-    "unemployed": "Unemployed"
+  "STATUS_WORK": {
+    "STUDYING": "Studying",
+    "WORKING": "Working",
+    "STUDIES_AND_WORKING": "Studies and Working",
+    "UNEMPLOYED": "Unemployed"
+  },
+  "STATUS": {
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "RECRUITING": "Recruiting"
+  },
+
+  "LESSONS_STATUS":{
+    "ACTIVE": "Active",
+    "BLOCKED": "Blocked",
+    "EXPELLED": "Expelled"
   }
 }
 

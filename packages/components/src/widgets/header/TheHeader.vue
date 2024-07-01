@@ -2,75 +2,59 @@
   <header class="header">
     <div class="container">
       <div class="header__content">
-        <div class="header__item" v-if="isMobile">
-          <div
-            class="header__icon"
-            :class="{ 'header__icon_act': isOpenSidebar }"
-            @click="toggleMobileSideBar"
-          >
-            <span></span>
-          </div>
-
-          <div class="header__logo">
-            <router-link to="/" class="header__logo-link">
-              <BaseImage :srcset="logo.webp" :src="logo.img" alt="logo" />
-            </router-link>
-          </div>
-        </div>
-
-        <div class="header__user" v-if="!isMobile">
+        <div class="header__user">
           <div class="header__user-avatar">
-            <router-link to="/dashboard" v-if="userAvatar">
-              <BaseImage :src="userAvatar" alt="avatar" />
-            </router-link>
-          </div>
+            <template v-if="!isMobile">
+              <router-link to="/dashboard">
+                <BaseImage :src="user.userImage" alt="avatar" />
+              </router-link>
+            </template>
 
-          <div class="header__user-column">
-            <p class="header__user-name">{{ userName }}</p>
-            <p class="header__user-name" v-if="userRole">{{ userRole }}</p>
-          </div>
-
-          <BaseSwitch @theme="xx" />
-        </div>
-
-        <div class="header__user" v-if="isMobile">
-          <!--          <div class="header__user-arrow" v-if="isMobile">-->
-          <!--            <BaseIcon icon="arrow-down" />-->
-          <!--          </div>-->
-
-          <div class="header__user-avatar" v-if="userAvatar">
-            <BaseImage :src="userAvatar" alt="avatar" @click="openInfoUser" />
+            <template v-if="isMobile">
+              <BaseImage
+                @click="handleToggle"
+                :src="user.userImage"
+                alt="avatar"
+              />
+            </template>
           </div>
 
           <div
-            class="header__user-mob"
-            :class="{ 'header__user-mob_act': isOpenInfoUser }"
+            class="header__user-column"
+            :class="{ 'header__user-column_active': isToggle }"
           >
-            <div class="header__user-switch">
-              <BaseSwitch @theme="xx" />
+            <div class="header__user-row">
+              <BaseSwitch @theme="changeTheme" :val="false" />
 
-              <button class="header__user-logout">Вийти</button>
+              <BaseButton
+                v-if="isMobile"
+                class="header__user-btn"
+                type="button"
+                text="Вийти"
+              />
             </div>
 
-            <hr class="header__user-line" />
+            <hr class="header__user-line" v-if="isMobile" />
 
-            <ul class="header__user-list">
-              <li
-                class="header__user-item"
-                v-for="(link, index) in namePage"
+            <template v-if="isMobile">
+              <router-link
+                class="header__user-link"
+                v-for="(page, index) in namePage"
                 :key="index"
+                :to="page.href"
+                @click="handleToggle"
               >
-                <router-link class="header__user-link" :to="link.href">{{
-                  link.name
-                }}</router-link>
-              </li>
-            </ul>
+                {{ page.name }}
+              </router-link>
+            </template>
 
-            <hr class="header__user-line" />
+            <hr class="header__user-line" v-if="isMobile" />
 
-            <div class="header__user-column">
-              <!--              <p class="header__user-name">{{ userName }}</p>-->
-              <!--              <p class="header__user-name" v-if="userRole">{{ userRole }}</p>-->
+            <div class="header__user-row">
+              <p class="header__user-name">{{ user.userName }}</p>
+              <p class="header__user-name" v-if="user.userStatus">
+                {{ user.userStatus }}
+              </p>
             </div>
           </div>
         </div>
@@ -81,79 +65,42 @@
 
 <script setup lang="ts">
 import {
-  useToggle,
-  useResize,
   BaseImage,
-  useFetchData,
   BaseSwitch,
+  IConfig,
+  useGetCookie,
+  useCreateConfig,
+  useResize,
+  BaseButton,
+  useToggle,
+  // useThemeStore,
 } from '@/shared'
-import { onMounted, ref } from 'vue'
-import { PersonalAreaControllerApi } from '@spacelablms/student/src/shared/api'
-
-const isOpenSidebar = ref(false)
-const isOpenInfoUser = ref(false)
-const isMobile = ref(window.innerWidth <= 767)
-const userData = ref()
-const userName = ref<string | null>(null)
-const userAvatar = ref<string | null>(null)
-const userRole = ref<string | null>(null)
-const emits = defineEmits(['toggle-sidebar', 'test'])
-
-const openInfoUser = useToggle(isOpenInfoUser)
-const toggleSidebar = useToggle(isOpenSidebar)
-const toggleMobileSideBar = () => {
-  toggleSidebar()
-  emits('toggle-sidebar')
-}
-
-const xx = () => {
-  emits('test')
-}
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth <= 767
-}
-async function getInfoStudent() {
-  try {
-    userData.value = await useFetchData(
-      PersonalAreaControllerApi,
-      'getPersonalData'
-    )
-
-    if (userData.value.data) {
-      userName.value = userData.value.data.contact.name
-      userAvatar.value = userData.value.data.image
-      userRole.value = userData.value.data.currentSituation
-    }
-  } catch (error) {
-    console.error('data', error)
-  }
-}
-
-useResize(handleResize)
-
-onMounted(async () => {
-  await getInfoStudent()
-})
+import {
+  PersonalAreaControllerApi,
+  useApi,
+} from '@spacelablms/student/src/shared/api'
+import { onMounted, reactive, ref } from 'vue'
+import { AxiosResponse } from 'axios'
 
 interface INamePage {
   href: string
   name: string
 }
+interface IUser {
+  userName: string | null
+  userStatus: string | null
+  userImage: string | null
+}
 
+const user: IUser = reactive({
+  userName: null,
+  userStatus: null,
+  userImage: null,
+})
+
+const isMobile = ref(window.innerWidth <= 575)
+const isToggle = ref(false)
 const namePage: Array<INamePage> = [
-  {
-    href: 'dashboard',
-    name: 'Особистий Кабінет',
-  },
-  {
-    href: 'dashboard',
-    name: 'Особистий Кабінет',
-  },
-  {
-    href: 'dashboard',
-    name: 'Особистий Кабінет',
-  },
   {
     href: 'dashboard',
     name: 'Особистий Кабінет',
@@ -168,10 +115,55 @@ const namePage: Array<INamePage> = [
   },
 ]
 
-const logo = {
-  webp: new URL('../../shared/assets/img/logo.webp', import.meta.url),
-  img: new URL('../../shared/assets/img/logo.png', import.meta.url),
+const handleToggle = useToggle(isToggle)
+const authToken = useGetCookie('student-access-token')
+// const themeStore = useThemeStore()
+
+const handleResize = () => {
+  isMobile.value = window.innerWidth <= 575
 }
+
+async function getHeaderData(config: IConfig) {
+  const api = useApi(PersonalAreaControllerApi)
+
+  const data: AxiosResponse = await api.getPersonalData(config)
+
+  if (data.data) {
+    user.userName = data.data.contact.name
+    user.userStatus = data.data.status
+    user.userImage = data.data.image
+  }
+}
+
+// async function putTheme(config: IConfig) {
+//   const api = useApi(PersonalAreaControllerApi)
+
+// await api.changeTheme({ theme: !themeStore.theme }, config)
+// }
+
+// async function getTheme(config: IConfig) {
+//   const api = useApi(PersonalAreaControllerApi)
+//
+//   const dataTheme = await api.getTheme(config)
+
+// }
+
+async function changeTheme() {
+  // const config = useCreateConfig(authToken)
+  // themeStore.toggleTheme()
+  // await putTheme(config)
+}
+
+async function fetchHeaderAndTheme() {
+  const config = useCreateConfig(authToken)
+  await getHeaderData(config)
+  // await getTheme(config)
+}
+
+useResize(handleResize)
+onMounted(async () => {
+  await fetchHeaderAndTheme()
+})
 </script>
 
 <style lang="scss">

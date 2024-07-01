@@ -19,27 +19,31 @@ $gray:#8A92A6;
 $shadow: rgba(17, 38, 146, 0.05);
 
 // new color
-$light-background-color: #FFFFFF;
-$light-primary-text-color: #000000;
-$light-secondary-text-color: #555555;
+$light-header-background:#FFFFFF ;
+$light-background-color: #E9ECEF ;
+$light-primary-text-color: #6c757d;
+$light-secondary-text-color: #232D42;
 $light-link-color: #1E90FF;
-$light-button-background-color: #F0F0F0;
-$light-button-text-color: #000000;
-$light-border-color: #DDDDDD;
+$light-button-background-color: #3A57E8;
+$light-button-text-color: #FFFFFF;
+$light-border-color: #e9ecef;
 $light-box-shadow-color: rgba(0, 0, 0, 0.1);
 $light-color-icon: rgba(0, 0, 0, 0.1);
+$light-odd-color: #FFFFFF;
+$light-even-color: #FBFCFC;
 
 
-$dark-background-color: #121212;
-$dark-primary-text-color: #E0E0E0;
-$dark-secondary-text-color: #A0A0A0;
+$dark-header-background: #222738;
+$dark-background-color: #151824;
+$dark-primary-text-color: #6c757d;
+$dark-secondary-text-color: #D3D3D3;
 $dark-link-color: #1E90FF;
-$dark-button-background-color: #333333;
+$dark-button-background-color: #3A57E8;
 $dark-button-text-color: #FFFFFF;
-$dark-border-color: #444444;
+$dark-border-color: #343948;
 $dark-box-shadow-color: rgba(255, 255, 255, 0.1);
-
-
+$dark-odd-color: #222738;
+$dark-even-color: #252B3B;
 
 
 

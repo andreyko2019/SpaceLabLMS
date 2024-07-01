@@ -1,13 +1,13 @@
 <template>
   <section class="statistics">
     <div class="container">
-      <TheGraph />
+      <!--      <TheGraph />-->
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { TheGraph } from '@spacelablms/components'
+// import { TheGraph } from '@spacelablms/components'
 </script>
 
 <style lang="scss">

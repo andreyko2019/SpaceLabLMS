@@ -8,14 +8,14 @@
       </div>
 
       <div class="tasks__table">
-        <!--        <TheTable :th="tasksTh" :td="" />-->
+        <TheTable :th="tasksTh" :td="taskTd" />
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-// import { TheTable, useFetchData } from '@spacelablms/components'
+import { TheTable } from '@spacelablms/components'
 // import { onMounted, ref } from 'vue'
 // import { LessonControllerApi } from '@/shared/api'
 //
@@ -60,7 +60,15 @@
 //   await getTasks()
 // })
 
-// const tasksTh = ['Назва', 'Рівень', 'Статус ', 'Ціль завдання']
+const tasksTh = ['Назва', 'Рівень', 'Статус ', 'Ціль завдання']
+const taskTd = [
+  {
+    title: '',
+    type: '',
+    status: '',
+    name: '',
+  },
+]
 </script>
 
 <style lang="scss">
