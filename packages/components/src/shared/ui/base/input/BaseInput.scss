@@ -5,53 +5,45 @@
   display: flex;
   flex-direction: column;
   height: 85px;
+
   &__label {
     font-family: $font-inter;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.75;
-    color: $gray-blue;
+    color: var(--primary-text);
     transition: color 0.3s ease;
-
-    &:focus-within{
-      color: $shade-blue;
-    }
   }
 
-  &__inp{
+  &__inp {
     margin-top: 8px;
-    border: 1px solid $shade-blue;
+    border: 1px solid var(--border);
     border-radius: 4px;
     padding: 8px 16px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
+    background: var(--header);
+    color: var(--primary-text);
   }
 
-  &__error{
+  &__error {
     color: $red;
   }
 
-
-
-
-
-
-
-
-//  border: 1px solid #eee;
-//  border-radius: 5px;
-//  background: #444;
-//  padding: 0 5px;
-//  width: 100%;
-//  color: #eee;
-//
-//  &:focus{
-//    outline: none;
-//  }
-//}
-//
-//.input {
-//  &__error-text {
-//    color: red;
-//  }
+  //  border: 1px solid #eee;
+  //  border-radius: 5px;
+  //  background: #444;
+  //  padding: 0 5px;
+  //  width: 100%;
+  //  color: #eee;
+  //
+  //  &:focus{
+  //    outline: none;
+  //  }
+  //}
+  //
+  //.input {
+  //  &__error-text {
+  //    color: red;
+  //  }
 }

@@ -67,20 +67,16 @@
 import {
   BaseImage,
   BaseSwitch,
-  IConfig,
-  useGetCookie,
-  useCreateConfig,
+  // IConfig,
+  // useGetCookie,
+  // useCreateConfig,
   useResize,
   BaseButton,
   useToggle,
-  // useThemeStore,
 } from '@/shared'
-import {
-  PersonalAreaControllerApi,
-  useApi,
-} from '@spacelablms/student/src/shared/api'
+
 import { onMounted, reactive, ref } from 'vue'
-import { AxiosResponse } from 'axios'
+// import { AxiosResponse } from 'axios'
 
 interface INamePage {
   href: string
@@ -116,36 +112,39 @@ const namePage: Array<INamePage> = [
 ]
 
 const handleToggle = useToggle(isToggle)
-const authToken = useGetCookie('student-access-token')
-// const themeStore = useThemeStore()
+// const authToken = useGetCookie('student-access-token')
+// const themeStore = useCounterStore()
+// setTimeout(() => {
+//   const themeStore = stateVideo()
+//   console.log(themeStore)
+// }, 1000)
 
 const handleResize = () => {
   isMobile.value = window.innerWidth <= 575
 }
 
-async function getHeaderData(config: IConfig) {
-  const api = useApi(PersonalAreaControllerApi)
-
-  const data: AxiosResponse = await api.getPersonalData(config)
-
-  if (data.data) {
-    user.userName = data.data.contact.name
-    user.userStatus = data.data.status
-    user.userImage = data.data.image
-  }
-}
+// async function getHeaderData(config: IConfig) {
+//   const api = useApi(PersonalAreaControllerApi)
+//
+//   const data: AxiosResponse = await api.getPersonalData(config)
+//
+//   if (data.data) {
+//     user.userName = data.data.contact.name
+//     user.userStatus = data.data.status
+//     user.userImage = data.data.image
+//   }
+// }
 
 // async function putTheme(config: IConfig) {
 //   const api = useApi(PersonalAreaControllerApi)
-
-// await api.changeTheme({ theme: !themeStore.theme }, config)
+//
+//   await api.changeTheme({ theme: !themeStore.isTheme }, config)
 // }
 
 // async function getTheme(config: IConfig) {
 //   const api = useApi(PersonalAreaControllerApi)
 //
 //   const dataTheme = await api.getTheme(config)
-
 // }
 
 async function changeTheme() {
@@ -155,8 +154,8 @@ async function changeTheme() {
 }
 
 async function fetchHeaderAndTheme() {
-  const config = useCreateConfig(authToken)
-  await getHeaderData(config)
+  // const config = useCreateConfig(authToken)
+  // await getHeaderData(config)
   // await getTheme(config)
 }
 

@@ -75,5 +75,5 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss">
-@import 'styles';
+@import 'BaseDropdown';
 </style>

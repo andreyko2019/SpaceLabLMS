@@ -13,8 +13,6 @@
 <script setup lang="ts">
 import { TheTable } from '@spacelablms/components'
 import { onMounted } from 'vue'
-// import { LessonControllerApi } from '@/shared/api'
-//
 
 const literatureTh = ['Назва', 'Тип', 'Ключові слова', 'Посилання']
 const literatureTd = [
@@ -68,7 +66,13 @@ const literatureTd = [
   },
 ]
 
-onMounted(async () => {})
+async function getLiteratureData() {}
+
+async function fetchDataLiterature() {
+  await getLiteratureData()
+}
+
+onMounted(fetchDataLiterature)
 </script>
 
 <style lang="scss">

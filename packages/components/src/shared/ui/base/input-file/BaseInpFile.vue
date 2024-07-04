@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { FormInput } from '@/shared'
-
+// todo переробка
 interface IFile {
   label: string
   name: string

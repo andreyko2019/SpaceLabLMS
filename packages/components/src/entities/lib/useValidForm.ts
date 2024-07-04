@@ -5,6 +5,7 @@ import { DetailedErrorMessageItem } from '@spacelablms/student/src/shared/api/er
 
 export function useValidForm() {
   const serverErrorMessages = ref<string[]>([])
+  console.log('serverErrorMessages', serverErrorMessages)
 
   const schema = schemaForm()
   const form = useAppForm<SchemaFormType>({
@@ -14,9 +15,12 @@ export function useValidForm() {
 
   const { values, setFieldValue, resetForm } = form
 
-  async function setValuesFromObject(data: Partial<SchemaFormType>) {
+  async function setValuesFromObject(data: object) {
     resetForm()
+
     await nextTick()
+    await nextTick()
+
     Object.entries(data).forEach(([key, value]) => {
       setFieldValue(key as keyof SchemaFormType, value)
     })

@@ -7,61 +7,59 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 1.75;
-    color: $gray-blue;
+    color: var(--primary-text);
     transition: color 0.3s ease;
 
-    &:focus-within{
-        color: $shade-blue;
-    }
   }
 
   &__field-wrap {
     margin-top: 8px;
-    border: 1px solid $shade-blue;
+    border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 8px 16px;
+    //padding: 8px 16px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
-    &:hover {
-      border-color: darken($shade-blue, 10%);
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-
-    &:focus-within {
-      border-color: $shade-blue;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-
-
-    }
+    //&:hover {
+    //  border-color: darken($shade-blue, 10%);
+    //  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    //}
+    //
+    //&:focus-within {
+    //  border-color: $shade-blue;
+    //  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    //
+    //
+    //}
   }
 
   &__field {
     width: 100%;
-    border: none;
-    outline: none;
+    padding: 8px 16px;
+    background: var(--header);
+    color: var(--primary-text);
 
-    &:hover {
-      background-color: $light-gray;
-    }
-
-    &:focus {
-      background-color: $white;
-    }
-
-    &:active {
-      background-color: $active-gray;
-    }
-
-    &:-webkit-autofill {
-      -webkit-box-shadow: 0 0 0 1000px white inset;
-      box-shadow: 0 0 0 1000px white inset;
-      -webkit-text-fill-color: #000;
-      transition: background-color 5000s ease-in-out 0s;
-    }
-
-    &:-webkit-autofill::first-line {
-      font-family: inherit;
-      color: inherit;
-    }
+    //&:hover {
+    //  background-color: $light-gray;
+    //}
+    //
+    //&:focus {
+    //  background-color: $white;
+    //}
+    //
+    //&:active {
+    //  background-color: $active-gray;
+    //}
+    //
+    //&:-webkit-autofill {
+    //  -webkit-box-shadow: 0 0 0 1000px white inset;
+    //  box-shadow: 0 0 0 1000px white inset;
+    //  -webkit-text-fill-color: #000;
+    //  transition: background-color 5000s ease-in-out 0s;
+    //}
+    //
+    //&:-webkit-autofill::first-line {
+    //  font-family: inherit;
+    //  color: inherit;
+    //}
   }
 }

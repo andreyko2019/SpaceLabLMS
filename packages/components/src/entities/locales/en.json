@@ -10,11 +10,15 @@
     "INACTIVE": "Inactive",
     "RECRUITING": "Recruiting"
   },
-
-  "LESSONS_STATUS":{
+  "LESSONS_STATUS": {
     "ACTIVE": "Active",
     "BLOCKED": "Blocked",
     "EXPELLED": "Expelled"
+  },
+  "VALIDATION": {
+    "THE_REQUIRED_FIELD": "The required field"
+  },
+  "MIN": {
+    "MIN_LENGTH": "This field must contain at least 3 characters"
   }
 }
-

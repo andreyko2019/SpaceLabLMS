@@ -10,9 +10,9 @@ import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 
 import { createI18n, useI18n } from 'vue-i18n'
-import { lauguages, defaultLocal } from '@/locales'
+import { language, defaultLocal } from '@spacelablms/components'
 
-const messages = Object.assign(lauguages)
+const messages = Object.assign(language)
 const localStorageLang = localStorage.getItem('lang')
 const i18n = createI18n({
   legacy: false,

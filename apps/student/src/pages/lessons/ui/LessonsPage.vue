@@ -17,7 +17,6 @@
 <script setup lang="ts">
 import { TheTable } from '@spacelablms/components'
 import { onMounted } from 'vue'
-// import { useCreateConfig, useGetCookie } from "@spacelablms/components/src";
 
 const lessonsTh: string[] = [
   'Дата заняття',
@@ -88,20 +87,16 @@ const lessonsFinishedTd = [
   },
 ]
 
-// const authToken = useGetCookie('student-access-token')
+async function getActiveLessons() {}
 
-async function getActiveLessons() {
-  // const config = useCreateConfig(authToken)
-}
+async function getFinishedLessons() {}
 
-async function getFinishedLessons() {
-  // const config = useCreateConfig(authToken)
-}
-
-onMounted(async () => {
+async function fetchDataLessons() {
   await getActiveLessons()
   await getFinishedLessons()
-})
+}
+
+onMounted(fetchDataLessons)
 </script>
 
 <style lang="scss">

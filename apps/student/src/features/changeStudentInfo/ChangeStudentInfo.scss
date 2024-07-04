@@ -1,0 +1,41 @@
+.change-info {
+  &__column {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 56px;
+    grid-row-gap: 16px;
+  }
+
+  &__education {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .input {
+      margin: 0 0 0 8px;
+
+      &:first-child {
+        margin: 0;
+      }
+    }
+  }
+
+  &__btn {
+    border-radius: 4px;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    width: 34px;
+    height: 34px;
+    margin: auto 0 15px 8px;
+  }
+
+  &__btn-save {
+    display: block;
+    width: 100px;
+    height: 34px;
+    border-radius: 4px;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    margin: 16px 0 0 auto;
+  }
+}
