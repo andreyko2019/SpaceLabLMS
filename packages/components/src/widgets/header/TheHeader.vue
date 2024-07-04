@@ -112,57 +112,12 @@ const namePage: Array<INamePage> = [
 ]
 
 const handleToggle = useToggle(isToggle)
-// const authToken = useGetCookie('student-access-token')
-// const themeStore = useCounterStore()
-// setTimeout(() => {
-//   const themeStore = stateVideo()
-//   console.log(themeStore)
-// }, 1000)
 
 const handleResize = () => {
   isMobile.value = window.innerWidth <= 575
 }
 
-// async function getHeaderData(config: IConfig) {
-//   const api = useApi(PersonalAreaControllerApi)
-//
-//   const data: AxiosResponse = await api.getPersonalData(config)
-//
-//   if (data.data) {
-//     user.userName = data.data.contact.name
-//     user.userStatus = data.data.status
-//     user.userImage = data.data.image
-//   }
-// }
-
-// async function putTheme(config: IConfig) {
-//   const api = useApi(PersonalAreaControllerApi)
-//
-//   await api.changeTheme({ theme: !themeStore.isTheme }, config)
-// }
-
-// async function getTheme(config: IConfig) {
-//   const api = useApi(PersonalAreaControllerApi)
-//
-//   const dataTheme = await api.getTheme(config)
-// }
-
-async function changeTheme() {
-  // const config = useCreateConfig(authToken)
-  // themeStore.toggleTheme()
-  // await putTheme(config)
-}
-
-async function fetchHeaderAndTheme() {
-  // const config = useCreateConfig(authToken)
-  // await getHeaderData(config)
-  // await getTheme(config)
-}
-
 useResize(handleResize)
-onMounted(async () => {
-  await fetchHeaderAndTheme()
-})
 </script>
 
 <style lang="scss">
