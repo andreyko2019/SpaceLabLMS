@@ -5,7 +5,7 @@ export const authGuard = (
   _from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
-  const isAuthenticated = true
+  const isAuthenticated = false
 
   if (
     to.path === '/not-found' ||

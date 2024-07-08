@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface IProps {
-  srcset?: string
-  src: string
+  srcset?: string | null
+  src: string | null
   alt: string
 }
 

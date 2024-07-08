@@ -16,7 +16,10 @@
     "EXPELLED": "Expelled"
   },
   "VALIDATION": {
-    "THE_REQUIRED_FIELD": "The required field"
+    "THE_REQUIRED_FIELD": "The required field",
+    "EMAIL":"Please enter a valid email address.",
+    "PASSWORD": "Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one underscore but no other special character, no space and it must be 8-16 characters long."
+
   },
   "MIN": {
     "MIN_LENGTH": "This field must contain at least 3 characters"

@@ -5,7 +5,6 @@ import checker from 'vite-plugin-checker'
 import dtsPlugin from 'vite-plugin-dts'
 import copy from 'rollup-plugin-copy'
 
-
 export default defineConfig({
   plugins: [
     vue({

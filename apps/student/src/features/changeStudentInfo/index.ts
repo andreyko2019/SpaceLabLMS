@@ -1,1 +1,1 @@
-export { default as changeStudentInfo } from './ChangeStudentInfo.vue'
+export { default as ChangeStudentInfo } from './ChangeStudentInfo.vue'

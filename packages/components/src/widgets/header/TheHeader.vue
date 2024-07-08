@@ -65,18 +65,19 @@
 
 <script setup lang="ts">
 import {
-  BaseImage,
   BaseSwitch,
-  // IConfig,
-  // useGetCookie,
-  // useCreateConfig,
+  BaseImage,
   useResize,
   BaseButton,
   useToggle,
 } from '@/shared'
-
+// BaseSwitch,
 import { onMounted, reactive, ref } from 'vue'
-// import { AxiosResponse } from 'axios'
+// import {
+//   PersonalAreaControllerApi,
+//   useApi,
+// } from '@spacelablms/student/src/shared/api'
+// import { isTheme } from '@spacelablms/student/src/entities/theme'
 
 interface INamePage {
   href: string
@@ -112,12 +113,33 @@ const namePage: Array<INamePage> = [
 ]
 
 const handleToggle = useToggle(isToggle)
-
 const handleResize = () => {
   isMobile.value = window.innerWidth <= 575
 }
 
+const changeTheme = () => {}
+
+// interface MyObject {
+//   name: string
+//   lastName: string
+//   middleName: string
+//   telegram: string
+//   telephone: string
+//   email: string
+//   work: string
+//   image: string
+// }
+
+// async function testing() {
+//   const api = useApi(PersonalAreaControllerApi)
+//   const { data } = await api.getPersonalData()
+//
+//   console.log(data.name)
+// }
+// await testing()
 useResize(handleResize)
+
+onMounted(async () => {})
 </script>
 
 <style lang="scss">

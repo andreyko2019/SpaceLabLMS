@@ -13,11 +13,11 @@ import { createI18n, useI18n } from 'vue-i18n'
 import { language, defaultLocal } from '@spacelablms/components'
 
 const messages = Object.assign(language)
-const localStorageLang = localStorage.getItem('lang')
+// const localStorageLang = localStorage.getItem('lang')
 const i18n = createI18n({
   legacy: false,
-  locale: localStorageLang || defaultLocal,
-  fallbackLocale: 'en',
+  locale: defaultLocal,
+  fallbackLocale: 'ua',
   messages,
 })
 const pinia = createPinia()
@@ -29,8 +29,8 @@ const app = createApp(App, {
   },
 })
 
+app.use(i18n)
 app.use(pinia)
 app.use(router)
 app.use(VueSweetalert2)
-app.use(i18n)
 app.mount('#app')

@@ -4,7 +4,7 @@
 .input {
   display: flex;
   flex-direction: column;
-  height: 85px;
+  //height: 85px;
 
   &__label {
     font-family: $font-inter;
@@ -27,6 +27,11 @@
   }
 
   &__error {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    margin: 6px 0 0 ;
     color: $red;
   }
 

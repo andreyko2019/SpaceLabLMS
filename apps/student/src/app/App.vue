@@ -20,32 +20,25 @@
 </template>
 <script setup lang="ts">
 import {
-  IConfig,
   SvgManager,
   TheFooter,
   TheHeader,
   TheSidebar,
-  useCreateConfig,
-  useGetCookie,
 } from '@spacelablms/components'
 import { EmptyLayout, MainLayout } from '@/shared/ui/layouts'
-import { computed, onMounted, provide, Ref, ref } from 'vue'
+import { computed, onMounted, provide } from 'vue'
 import { AppRoutes, EAppProviders } from './providers'
 import { AppPages } from './providers/router'
 import { useRoute } from 'vue-router'
-import {
-  PersonalAreaControllerApi,
-  PersonalAreaControllerApiChangeThemeRequest,
-  useApi,
-} from '@/shared/api'
+import { isTheme } from '@/entities/theme/model/isTheme'
+import { getStudentTheme } from '@/entities/theme'
+
+//
 
 provide(EAppProviders.AppRoutes, AppRoutes)
 provide(EAppProviders.AppPages, AppPages)
 
 const route = useRoute()
-const isTheme: Ref<PersonalAreaControllerApiChangeThemeRequest> = ref({
-  theme: true,
-})
 
 const sideBarStudent = [
   {
@@ -69,17 +62,8 @@ const sideBarStudent = [
     name: 'Література',
   },
 ]
-const authToken = useGetCookie('student-access-token')
+
 const isDefaultLayout = computed(() => route.meta.layout === 'DefaultLayout')
-async function getTheme(config: IConfig) {
-  const apiTheme = useApi(PersonalAreaControllerApi)
 
-  const dataTheme = await apiTheme.getTheme(config)
-  if (dataTheme.data) isTheme.value.theme = dataTheme.data
-}
-
-onMounted(async () => {
-  const config = useCreateConfig(authToken)
-  await getTheme(config)
-})
+onMounted(getStudentTheme)
 </script>

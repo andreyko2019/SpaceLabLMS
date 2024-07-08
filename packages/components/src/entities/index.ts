@@ -1,3 +1,3 @@
 export * from './lib/schemaForm'
 export * from './lib/useValidForm'
-export * from './locales/index'
+export * from './plagin/i18n'

@@ -1,13 +1,13 @@
-import { SchemaFormType, schemaForm } from '@/entities/'
+import { SchemaFormType } from '@/entities/'
 import { nextTick, ref } from 'vue'
 import { useAppForm } from '@/index'
 import { DetailedErrorMessageItem } from '@spacelablms/student/src/shared/api/error'
 
-export function useValidForm() {
+export function useValidForm(test: any) {
   const serverErrorMessages = ref<string[]>([])
   console.log('serverErrorMessages', serverErrorMessages)
 
-  const schema = schemaForm()
+  const schema = test
   const form = useAppForm<SchemaFormType>({
     validationSchema: schema,
     initialValues: schema.getDefault(),
