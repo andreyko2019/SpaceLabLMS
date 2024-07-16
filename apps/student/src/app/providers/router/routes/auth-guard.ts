@@ -1,20 +1,23 @@
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
+import { useAuthStore } from '@/features'
 
-export const authGuard = (
+export const authGuard = async (
   to: RouteLocationNormalized,
   _from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
-  const isAuthenticated = false
+  const authStore = useAuthStore()
+
+  authStore.checkAuth()
 
   if (
     to.path === '/not-found' ||
-    (to.path === '/sign-in' && !isAuthenticated)
+    (to.path === '/sign-in' && !authStore.isAuthenticated)
   ) {
     next()
-  } else if (!isAuthenticated) {
+  } else if (!authStore.isAuthenticated && to.path !== '/sign-in') {
     next({ path: '/sign-in' })
-  } else if (to.path === '/sign-in' && isAuthenticated) {
+  } else if (authStore.isAuthenticated && to.path === '/sign-in') {
     next({ path: '/' })
   } else {
     next()

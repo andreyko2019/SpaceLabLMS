@@ -7,15 +7,13 @@
         <router-link to="">Карточка завдання</router-link>
       </div>
 
-      <div class="tasks__table">
-        <TheTable :th="tasksTh" :td="taskTd" />
-      </div>
+      <div class="tasks__table"></div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { TheTable } from '@spacelablms/components'
+// import { TheTable } from '@spacelablms/components'
 // import { onMounted, ref } from 'vue'
 // import { LessonControllerApi } from '@/shared/api'
 //
@@ -37,7 +35,7 @@ import { TheTable } from '@spacelablms/components'
 //
 //     if (getDasksData.value.data) {
 //       const tasksData = getDasksData.value.data.content[0]
-//       const tasks = tasksData.course.tasks
+//       const tasks = tasksData.courses.tasks
 //
 //       tasks.forEach((item) => {
 //         const td = {
@@ -60,15 +58,15 @@ import { TheTable } from '@spacelablms/components'
 //   await getTasks()
 // })
 
-const tasksTh = ['Назва', 'Рівень', 'Статус ', 'Ціль завдання']
-const taskTd = [
-  {
-    title: '',
-    type: '',
-    status: '',
-    name: '',
-  },
-]
+// const tasksTh = ['Назва', 'Рівень', 'Статус ', 'Ціль завдання']
+// const taskTd = [
+//   {
+//     title: '',
+//     type: '',
+//     status: '',
+//     name: '',
+//   },
+// ]
 </script>
 
 <style lang="scss">

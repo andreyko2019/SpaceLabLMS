@@ -1,1 +1,1 @@
-export * from './SignInForm'
+export { default as AdminLogin } from './AdminLogin.vue'

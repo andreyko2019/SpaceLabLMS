@@ -1,0 +1,5027 @@
+{
+  "openapi": "3.0.1",
+  "info": { "title": "Spacelab Learning App For Managers", "version": "0.0.1" },
+  "servers": [
+    { "url": "http://slj.demodev.cc:4403/SpaceLab_learning/admin/" },
+    { "url": "https://slj.demodev.cc/SpaceLab_learning/admin/" }
+  ],
+  "security": [{ "bearerAuth": [] }],
+  "tags": [
+    { "name": "Contact controller", "description": "Contact API" },
+    {
+      "name": "EnumController",
+      "description": "Operations pertaining to enumeration types"
+    },
+    { "name": "Literature controller", "description": "Literature API" },
+    { "name": "Role controller", "description": "Role API" },
+    { "name": "Lesson controller", "description": "Lesson API" },
+    { "name": "Auth controller", "description": "Auth API" },
+    { "name": "Statistic controller", "description": "Statistic API" },
+    { "name": "Student controller", "description": "Student API" },
+    { "name": "Task controller", "description": "Task API" },
+    { "name": "Course controller", "description": "Course API" },
+    { "name": "Manager controller", "description": "Manager API" },
+    {
+      "name": "Application for data user controller",
+      "description": "Application for data user API"
+    }
+  ],
+  "paths": {
+    "/api/v1/student/task/update": {
+      "put": {
+        "tags": ["Student controller"],
+        "summary": "The request for update current task.",
+        "operationId": "updateCurrentTask",
+        "requestBody": {
+          "description": "Dto for update current student's task",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/StudentTasksDto" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/student/task/change": {
+      "put": {
+        "tags": ["Student controller"],
+        "summary": "The request for change current task.",
+        "operationId": "changeCurrentTask",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "query",
+            "description": "id for the new current task for the student",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          },
+          {
+            "name": "studentId",
+            "in": "query",
+            "description": "student's id",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/changeTheme": {
+      "put": {
+        "tags": ["Manager controller"],
+        "summary": "The request for updating theme",
+        "operationId": "changeTheme",
+        "parameters": [
+          {
+            "name": "theme",
+            "in": "query",
+            "description": "If value is false theme is light, if value is true theme is dark",
+            "required": true,
+            "schema": { "type": "boolean" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/changePageSize": {
+      "put": {
+        "tags": ["Manager controller"],
+        "summary": "The request for updating page size",
+        "operationId": "changePageSize",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The number of pages that will be displayed for the authorized user",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/lesson/endLesson": {
+      "put": {
+        "tags": ["Lesson controller"],
+        "summary": "The request for end lesson.",
+        "operationId": "endLesson",
+        "requestBody": {
+          "description": "The result of the lesson",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LessonDtoEnd" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/lesson/edit": {
+      "put": {
+        "tags": ["Lesson controller"],
+        "summary": "The request for end lesson.",
+        "operationId": "editLesson",
+        "requestBody": {
+          "description": "The result of the lesson",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LessonDtoEnd" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/contact/changeDisplayById": {
+      "put": {
+        "tags": ["Contact controller"],
+        "summary": "The request for changing contact's display by id.",
+        "operationId": "changeDisplayById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the contact is being updated",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          },
+          {
+            "name": "display",
+            "in": "query",
+            "description": "Contact's display will change to this value",
+            "required": true,
+            "schema": { "type": "boolean" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/task/add": {
+      "post": {
+        "tags": ["Task controller"],
+        "summary": "The request for add some task.",
+        "operationId": "add",
+        "requestBody": {
+          "description": "Dto for add task's data.",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/TaskDtoForAdd" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/student/add": {
+      "post": {
+        "tags": ["Student controller"],
+        "summary": "The request for add some student.",
+        "operationId": "add_1",
+        "requestBody": {
+          "description": "Dto for add student's data.",
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/StudentDtoForAdd" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/role/add": {
+      "post": {
+        "tags": ["Role controller"],
+        "summary": "The request for add role.",
+        "operationId": "add_2",
+        "requestBody": {
+          "description": "RoleDto for the add object page.",
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/RoleDtoAdd" }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/edit": {
+      "post": {
+        "tags": ["Manager controller"],
+        "summary": "The request for update manager.",
+        "operationId": "edit",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id by which the object will be updated",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "description": "Dto for update Manager's data.",
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/ManagerDtoForAdd" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/add": {
+      "post": {
+        "tags": ["Manager controller"],
+        "summary": "The request for add  manager.",
+        "operationId": "add_3",
+        "requestBody": {
+          "description": "Dto for add Manager's data.",
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/ManagerDtoForAdd" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/literature/add": {
+      "post": {
+        "tags": ["Literature controller"],
+        "summary": "The request for add literature.",
+        "operationId": "add_4",
+        "requestBody": {
+          "description": "LiteratureDtoForAdd for the add object page.",
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/LiteratureDtoForAdd" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/lesson/add": {
+      "post": {
+        "tags": ["Lesson controller"],
+        "summary": "The request for add lesson.",
+        "operationId": "add_5",
+        "requestBody": {
+          "description": "LessonDtoAdd for the add object page. ",
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/LessonDtoAdd" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/course/add": {
+      "post": {
+        "tags": ["Course controller"],
+        "summary": "The request for add some course.",
+        "operationId": "add_6",
+        "requestBody": {
+          "description": "Dto for add course's data.",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CourseDtoForAdd" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/contact/add": {
+      "post": {
+        "tags": ["Contact controller"],
+        "summary": "The request for add contact.",
+        "operationId": "add_7",
+        "requestBody": {
+          "description": "Dto for adding contact's data.",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ContactDto" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/refresh": {
+      "post": {
+        "tags": ["Auth controller"],
+        "summary": "Update the access token",
+        "operationId": "refresh",
+        "parameters": [
+          {
+            "name": "refreshToken",
+            "in": "header",
+            "description": "Refresh token",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": ["Auth controller"],
+        "summary": "Authorization user",
+        "operationId": "login",
+        "requestBody": {
+          "description": "Data for authorization",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/JwtRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/application-for-edit/sendStatus": {
+      "post": {
+        "tags": ["Application for data user controller"],
+        "operationId": "sendStatus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ApplicationStatusDto" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/task/edit": {
+      "patch": {
+        "tags": ["Task controller"],
+        "summary": "The request for update some task.",
+        "operationId": "edit_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id by which the object will be updated",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "description": "Dto for update task's data.",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/TaskDtoForAdd" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/student/edit": {
+      "patch": {
+        "tags": ["Student controller"],
+        "summary": "The request for update some student.",
+        "operationId": "edit_2",
+        "parameters": [
+          {
+            "name": "newPassword",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id by which the object will be updated",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "description": "Dto for update student's data.",
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/StudentDtoForAdd" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/role/edit": {
+      "patch": {
+        "tags": ["Role controller"],
+        "summary": "The request for edit role.",
+        "operationId": "edit_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the role is being edited",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "description": "RoleDto for the add object page.",
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/RoleDtoAdd" }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/literature/edit": {
+      "patch": {
+        "tags": ["Literature controller"],
+        "summary": "The request for edit literature.",
+        "operationId": "edit_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the literature is being edited",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "description": "literatureDtoForAdd for the edit object page.",
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/LiteratureDtoForAdd" }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/course/edit": {
+      "patch": {
+        "tags": ["Course controller"],
+        "summary": "The request for update some course.",
+        "operationId": "edit_5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id by which the object will be updated",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "description": "Dto for edit course's data.",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CourseDtoForAdd" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/contact/edit": {
+      "patch": {
+        "tags": ["Contact controller"],
+        "summary": "The request for update contact.",
+        "operationId": "edit_6",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id by which the object will be updated",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "description": "Dto for updating contact's data.",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ContactDto" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task/page": {
+      "get": {
+        "tags": ["Task controller"],
+        "summary": "The request for generate page by task id",
+        "operationId": "generatePage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Task's Id by which the page is being generated",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task/getByIdForView": {
+      "get": {
+        "tags": ["Task controller"],
+        "summary": "The request for getting task by id for information card",
+        "operationId": "getByIdForView",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the task is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/TaskDtoForCard" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/TaskDtoForCard" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/TaskDtoForCard" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/TaskDtoForCard" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/TaskDtoForCard" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task/getByIdForEdit": {
+      "get": {
+        "tags": ["Task controller"],
+        "summary": "The request for getting task by id for edit page",
+        "operationId": "getByIdForEdit",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the task is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/TaskDtoForAdd" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/TaskDtoForAdd" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/TaskDtoForAdd" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/TaskDtoForAdd" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/TaskDtoForAdd" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task/getAll": {
+      "get": {
+        "tags": ["Task controller"],
+        "summary": "The request for getting all tasks.",
+        "operationId": "getAll",
+        "parameters": [
+          {
+            "name": "taskDtoForFilter",
+            "in": "query",
+            "description": "DTO for filter date. This DTO also has date for pagination",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/TaskDtoForFilter" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageTaskDtoForView" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageTaskDtoForView" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageTaskDtoForView" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageTaskDtoForView" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageTaskDtoForView" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/student/task/getAll": {
+      "get": {
+        "tags": ["Student controller"],
+        "summary": "The request for getting all student's tasks by student id.",
+        "operationId": "getAllStudentTasks",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "query",
+            "description": "ID by which the student's tasks are being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StudentTasksDto" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StudentTasksDto" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StudentTasksDto" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StudentTasksDto" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StudentTasksDto" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/student/getByIdForView": {
+      "get": {
+        "tags": ["Student controller"],
+        "summary": "The request for getting student by id for information card",
+        "operationId": "getByIdForView_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the student is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentDtoForCard" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentDtoForCard" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentDtoForCard" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentDtoForCard" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentDtoForCard" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/student/getByIdForEdit": {
+      "get": {
+        "tags": ["Student controller"],
+        "summary": "The request for getting student by id for edit page",
+        "operationId": "getByIdForEdit_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the student is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentDtoForAdd" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentDtoForAdd" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentDtoForAdd" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentDtoForAdd" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentDtoForAdd" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/student/getAll": {
+      "get": {
+        "tags": ["Student controller"],
+        "summary": "The request for getting all students.",
+        "operationId": "getAll_1",
+        "parameters": [
+          {
+            "name": "studentDtoForFilter",
+            "in": "query",
+            "description": "DTO for filter date. This DTO also has date for pagination",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/StudentDtoForFilter" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageStudentDtoForView"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageStudentDtoForView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageStudentDtoForView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageStudentDtoForView"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageStudentDtoForView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/statistic/getAverageGradeByDate": {
+      "get": {
+        "tags": ["Statistic controller"],
+        "summary": "The request for getting all average grade by date.",
+        "operationId": "getAverageGradeByDate",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "query",
+            "description": "Course id is not necessary. If course is null the request will returned all data",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/statistic/getAllWidgets": {
+      "get": {
+        "tags": ["Statistic controller"],
+        "summary": "The request for getting all widgets for statistic page.",
+        "operationId": "getAllWidgets",
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/statistic/getAllTopStudents": {
+      "get": {
+        "tags": ["Statistic controller"],
+        "summary": "The request for getting all top student by course, or getting all top students if course is null.",
+        "operationId": "getAllTopStudent",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "query",
+            "description": "Course's id by which the students is searched",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64" }
+          },
+          {
+            "name": "arg1",
+            "in": "query",
+            "description": "Page for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "arg2",
+            "in": "query",
+            "description": "Page size for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageStudentDtoForStatistic"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageStudentDtoForStatistic"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageStudentDtoForStatistic"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageStudentDtoForStatistic"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageStudentDtoForStatistic"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/role/getById": {
+      "get": {
+        "tags": ["Role controller"],
+        "summary": "The request for get role by id.",
+        "operationId": "getById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the role is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Role" } }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/role/getAll": {
+      "get": {
+        "tags": ["Role controller"],
+        "summary": "The request for getting all roles.",
+        "operationId": "getAll_2",
+        "parameters": [
+          {
+            "name": "roleDtoFilter",
+            "in": "query",
+            "description": "DTO for filter date. This DTO also has date for pagination",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/RoleDtoFilter" }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageRoleDtoView" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/getTheme": {
+      "get": {
+        "tags": ["Manager controller"],
+        "summary": "The request for getting theme",
+        "operationId": "getTheme",
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": { "*/*": { "schema": { "type": "boolean" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "boolean" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "boolean" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "boolean" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "boolean" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/getPageSize": {
+      "get": {
+        "tags": ["Manager controller"],
+        "summary": "The request for getting page size",
+        "operationId": "getPageSize",
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/getByIdForView": {
+      "get": {
+        "tags": ["Manager controller"],
+        "summary": "The request for getting manager by id for information card",
+        "operationId": "getByIdForView_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the manager is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ManagerDtoForCard" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ManagerDtoForCard" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ManagerDtoForCard" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ManagerDtoForCard" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ManagerDtoForCard" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/getByIdForEdit": {
+      "get": {
+        "tags": ["Manager controller"],
+        "summary": "The request for getting manager by id for edit page",
+        "operationId": "getByIdForEdit_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the manager is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ManagerDtoForAdd" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ManagerDtoForAdd" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ManagerDtoForAdd" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ManagerDtoForAdd" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ManagerDtoForAdd" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/getAll": {
+      "get": {
+        "tags": ["Manager controller"],
+        "summary": "The request for getting all manager.",
+        "operationId": "getAll_3",
+        "parameters": [
+          {
+            "name": "managerDtoForFilter",
+            "in": "query",
+            "description": "DTO for filter date. This DTO also has date for pagination",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/ManagerDtoForFilter" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageManagerDtoForView"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageManagerDtoForView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageManagerDtoForView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageManagerDtoForView"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageManagerDtoForView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/getAll/byRole": {
+      "get": {
+        "tags": ["Manager controller"],
+        "summary": "The request for getting all manager by role id.(ADMIN_ID = 1, MENTOR_ID = 2, MANAGER_ID = 3, SENIOR_MANAGER_ID = 4)",
+        "operationId": "getAllByRoleId",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "query",
+            "description": "Role id by which the manager is being deleted",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageManagerDtoForView"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageManagerDtoForView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageManagerDtoForView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageManagerDtoForView"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageManagerDtoForView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/literature/getById": {
+      "get": {
+        "tags": ["Literature controller"],
+        "summary": "The request for get literature by id.",
+        "operationId": "getById_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the literature is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Literature" } }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/literature/getAll": {
+      "get": {
+        "tags": ["Literature controller"],
+        "summary": "The request for getting all literature.",
+        "operationId": "getAll_4",
+        "parameters": [
+          {
+            "name": "literatureDtoForFilter",
+            "in": "query",
+            "description": "DTO for filter date. This DTO also has date for pagination",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/LiteratureDtoForFilter" }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageLiteratureDtoForView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/lesson/getById": {
+      "get": {
+        "tags": ["Lesson controller"],
+        "summary": "The request for get lesson by id.",
+        "operationId": "getById_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the lesson is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Lesson" } }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/lesson/getAll": {
+      "get": {
+        "tags": ["Lesson controller"],
+        "summary": "The request for getting all lesson.",
+        "operationId": "getAll_5",
+        "parameters": [
+          {
+            "name": "lessonDtoForFilter",
+            "in": "query",
+            "description": "DTO for filter date. This DTO also has date for pagination",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/LessonDtoForFilter" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/taskStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all task statuses",
+        "operationId": "listTaskStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["ACTIVE", "NOT_ACTIVE", "BEING_EDITED"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/taskLevels": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all task levels",
+        "operationId": "listLevels",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["EASY", "MIDDLE", "HARD"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/taskForStudentStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all task for student statuses",
+        "operationId": "listTaskForStudentStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["IN_PROGRESS", "TESTING", "DONE"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/studentStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all student statuses",
+        "operationId": "listStudentStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["ACTIVE", "BLOCKED", "EXPELLED"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/preparationLevels": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all preparation levels",
+        "operationId": "listPreparationLevels",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["NO_SKILLS", "BAD_SKILLS", "GOOD_SKILLS", "READY"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/pages": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all pages",
+        "operationId": "listPages",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "STATISTIC",
+                      "TASK",
+                      "STUDENT",
+                      "COURSE",
+                      "LESSON",
+                      "LITERATURE",
+                      "ROLE",
+                      "TEST",
+                      "CONTACT"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/managerStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all manager statuses",
+        "operationId": "listManagerStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string", "enum": ["ACTIVE", "BLOCKED"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/literatureTypes": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all literature types",
+        "operationId": "listLiteratureTypes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string", "enum": ["BOOK", "LINK"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/lessonStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all lesson statuses",
+        "operationId": "listLessonStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string", "enum": ["ACTIVE", "FINISHED"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/englishLevels": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all English levels",
+        "operationId": "listEnglishLevels",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/currentSituations": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all current situations",
+        "operationId": "listCurrentSituations",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "STUDYING",
+                      "WORKING",
+                      "STUDIES_AND_WORKING",
+                      "UNEMPLOYED"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/courseStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all course statuses",
+        "operationId": "listCourseStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["ACTIVE", "INACTIVE", "RECRUITING"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/course/getByIdForView": {
+      "get": {
+        "tags": ["Course controller"],
+        "summary": "The request for getting course by id for information card",
+        "operationId": "getByIdForView_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the course is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDtoForViewAndCard"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDtoForViewAndCard"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDtoForViewAndCard"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDtoForViewAndCard"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDtoForViewAndCard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/course/getByIdForEdit": {
+      "get": {
+        "tags": ["Course controller"],
+        "summary": "The request for getting course by id for edit page",
+        "operationId": "getByIdForEdit_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the course is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/CourseDtoForEdit" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/CourseDtoForEdit" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/CourseDtoForEdit" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/CourseDtoForEdit" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/CourseDtoForEdit" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/course/getAll": {
+      "get": {
+        "tags": ["Course controller"],
+        "summary": "The request for getting all courses.",
+        "operationId": "getAll_6",
+        "parameters": [
+          {
+            "name": "courseDtoFotFilter",
+            "in": "query",
+            "description": "DTO for filter date. This DTO also has date for pagination",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/CourseDtoFotFilter" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageCourseDtoForViewAndCard"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageCourseDtoForViewAndCard"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageCourseDtoForViewAndCard"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageCourseDtoForViewAndCard"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageCourseDtoForViewAndCard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/contact/getById": {
+      "get": {
+        "tags": ["Contact controller"],
+        "summary": "The request for getting contact by id.",
+        "operationId": "getById_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the contact is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/ContactDto" } }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/ContactDto" } }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/ContactDto" } }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/ContactDto" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/ContactDto" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/contact/getAll": {
+      "get": {
+        "tags": ["Contact controller"],
+        "summary": "The request for getting all contacts.",
+        "operationId": "getAll_7",
+        "parameters": [
+          {
+            "name": "contactDtoForFilter",
+            "in": "query",
+            "description": "Dto for filtering data.",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/ContactDtoForFilter" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageContactDto" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageContactDto" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageContactDto" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageContactDto" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageContactDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/application-for-edit/getById": {
+      "get": {
+        "tags": ["Application for data user controller"],
+        "summary": "The request for getting manager by id for information card",
+        "operationId": "getByIdApplicationForEdit",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the manager is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationChangeDataUser"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationChangeDataUser"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationChangeDataUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationChangeDataUser"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationChangeDataUser"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/application-for-edit/getAll": {
+      "get": {
+        "tags": ["Application for data user controller"],
+        "operationId": "getByIdApplicationForEdit_1",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageApplicationChangeDataUser"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task/deleteById": {
+      "delete": {
+        "tags": ["Task controller"],
+        "summary": "The request for delete task by id",
+        "operationId": "deleteById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the task is being deleted",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/student/deleteById": {
+      "delete": {
+        "tags": ["Student controller"],
+        "summary": "The request for delete some student by id",
+        "operationId": "deleteById_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the student is being deleted",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/role/deleteById": {
+      "delete": {
+        "tags": ["Role controller"],
+        "summary": "The request for delete role",
+        "operationId": "deleteById_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the role is being deleted",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/manager/deleteById": {
+      "delete": {
+        "tags": ["Manager controller"],
+        "summary": "The request delete manager",
+        "operationId": "deleteById_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the manager is being deleted",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/literature/deleteById": {
+      "delete": {
+        "tags": ["Literature controller"],
+        "summary": "The request for delete literature",
+        "operationId": "deleteById_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the literature is being deleted",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "application/json": {} }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "application/json": {} }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "application/json": {} }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/api/v1/lesson/deleteById": {
+      "delete": {
+        "tags": ["Lesson controller"],
+        "summary": "The request delete lesson, you can delete only lesson with status active.",
+        "operationId": "deleteById_5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the lesson is being deleted",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/course/deleteById": {
+      "delete": {
+        "tags": ["Course controller"],
+        "summary": "The request for delete manager",
+        "operationId": "deleteById_6",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the course is being deleted",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StudentTasksDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "comment": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["IN_PROGRESS", "TESTING", "DONE"]
+          },
+          "finishDate": { "type": "string", "format": "date" }
+        },
+        "description": "Dto for the page where all student's tasks are displayed"
+      },
+      "LessonDtoEnd": {
+        "required": ["id", "reviews"],
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "reviews": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ReviewDto" }
+          }
+        }
+      },
+      "ReviewDto": {
+        "required": ["comment", "grade", "hours", "isPresent", "studentId"],
+        "type": "object",
+        "properties": {
+          "isPresent": { "type": "boolean" },
+          "reason": { "maxLength": 500, "minLength": 0, "type": "string" },
+          "hours": { "type": "integer", "format": "int32" },
+          "grade": { "type": "integer", "format": "int32" },
+          "comment": { "maxLength": 500, "minLength": 0, "type": "string" },
+          "studentId": { "type": "integer", "format": "int64" }
+        }
+      },
+      "TaskDtoForAdd": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "SQL"
+          },
+          "courseId": { "type": "integer", "format": "int64", "default": 1 },
+          "level": {
+            "type": "string",
+            "default": "MIDDLE",
+            "enum": ["EASY", "MIDDLE", "HARD"]
+          },
+          "aim": {
+            "maxLength": 300,
+            "minLength": 0,
+            "type": "string",
+            "default": "Вивчити декларативну МП"
+          },
+          "description": {
+            "maxLength": 1000,
+            "minLength": 0,
+            "type": "string",
+            "default": "SQL - декларативна мова програмування для взаємодії користувача з базами даних"
+          },
+          "subTasks": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TaskDtoForAdd" }
+          }
+        },
+        "description": "TaskDto for the add object page"
+      },
+      "StudentDtoForAdd": {
+        "required": ["email"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "example": "Kennedy"
+          },
+          "middleName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "example": "Fitzgerald"
+          },
+          "isVideoReview": { "type": "boolean", "default": false },
+          "telegram": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "@qwertyuiop"
+          },
+          "telephone": {
+            "pattern": "^$|^\\+380(31|32|33|34|35|36|37|38|39|41|42|43|44|45|46|47|48|49|50|59|61|63|66|67|68|73|89|91|92|93|94|95|96|97|98|99)\\d{7}$",
+            "type": "string",
+            "default": "+380686323456"
+          },
+          "email": {
+            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+            "type": "string",
+            "default": "+20denisDDD@gmail.com"
+          },
+          "image": { "type": "string", "format": "binary" },
+          "oldImageName": { "type": "string" },
+          "birthday": { "type": "string", "format": "date" },
+          "totalMark": {
+            "maximum": 100,
+            "type": "integer",
+            "format": "int32",
+            "default": 45
+          },
+          "education": { "type": "array", "items": { "type": "string" } },
+          "currentSituation": {
+            "type": "string",
+            "default": "STUDYING",
+            "enum": ["STUDYING", "WORKING", "STUDIES_AND_WORKING", "UNEMPLOYED"]
+          },
+          "levelOfPreparation": {
+            "type": "string",
+            "default": "READY",
+            "enum": ["NO_SKILLS", "BAD_SKILLS", "GOOD_SKILLS", "READY"]
+          },
+          "englishLevel": {
+            "type": "string",
+            "default": "C2",
+            "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+          },
+          "status": {
+            "type": "string",
+            "default": "ACTIVE",
+            "enum": ["ACTIVE", "BLOCKED", "EXPELLED"]
+          },
+          "courseId": { "type": "integer", "format": "int64", "default": 1 },
+          "work": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "Avada Media"
+          },
+          "display": { "type": "boolean", "default": true }
+        },
+        "description": "StudentDto for the add object page"
+      },
+      "RoleDtoAdd": {
+        "required": ["name", "nameEng", "nameUkr"],
+        "type": "object",
+        "properties": {
+          "name": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "nameEng": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "nameUkr": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "STATISTIC",
+                "TASK",
+                "STUDENT",
+                "COURSE",
+                "LESSON",
+                "LITERATURE",
+                "ROLE",
+                "TEST",
+                "CONTACT"
+              ]
+            }
+          }
+        },
+        "description": "RoleDtoAdd for add role"
+      },
+      "ManagerDtoForAdd": {
+        "required": [
+          "email",
+          "lastName",
+          "middleName",
+          "name",
+          "roleId",
+          "status",
+          "telegram",
+          "telephone"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "string"
+          },
+          "lastName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "Kennedy"
+          },
+          "middleName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "Fitzgerald"
+          },
+          "password": {
+            "maxLength": 100,
+            "minLength": 8,
+            "type": "string",
+            "default": "Password"
+          },
+          "telegram": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "@qwertyuiop"
+          },
+          "telephone": {
+            "pattern": "^\\+380(31|32|33|34|35|36|37|38|39|41|42|43|44|45|46|47|48|49|50|59|61|63|66|67|68|73|89|91|92|93|94|95|96|97|98|99)\\d{7}$",
+            "type": "string",
+            "default": "+380686323456"
+          },
+          "email": {
+            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+            "type": "string",
+            "default": "+20denisDDD@gmail.com"
+          },
+          "image": { "type": "string", "format": "binary" },
+          "courseId": {
+            "type": "array",
+            "items": { "type": "integer", "format": "int64", "default": 1 },
+            "default":[1]
+          },
+          "roleId": { "type": "integer", "format": "int64", "default": 2 },
+          "status": {
+            "type": "string",
+            "default": "ACTIVE",
+            "enum": ["ACTIVE", "BLOCKED"]
+          },
+          "display": { "type": "boolean", "default": true }
+        },
+        "description": "ManagerDto for the add object page"
+      },
+      "LiteratureDtoForAdd": {
+        "required": [
+          "course",
+          "keyWords",
+          "linkForDownload",
+          "name",
+          "typeLiterature"
+        ],
+        "type": "object",
+        "properties": {
+          "name": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "linkForDownload": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "typeLiterature": { "type": "string", "enum": ["BOOK", "LINK"] },
+          "keyWords": {
+            "maxItems": 50,
+            "minItems": 1,
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "course": { "type": "integer", "format": "int64" }
+        },
+        "description": "LiteratureDtoForAdd for add literature"
+      },
+      "LessonDtoAdd": {
+        "required": ["link"],
+        "type": "object",
+        "properties": {
+          "courseId": { "type": "integer", "format": "int64" },
+          "link": { "maxLength": 100, "minLength": 0, "type": "string" }
+        },
+        "description": "LessonDtoAdd for add Lesson"
+      },
+      "CourseDtoForAdd": {
+        "required": ["managerId", "mentorId", "status"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "C++"
+          },
+          "status": {
+            "type": "string",
+            "default": "ACTIVE",
+            "enum": ["ACTIVE", "INACTIVE", "RECRUITING"]
+          },
+          "mentorId": { "type": "integer", "format": "int64", "default": 2 },
+          "managerId": { "type": "integer", "format": "int64", "default": 5 }
+        },
+        "description": "CourseDto for the add object page"
+      },
+      "ContactDto": {
+        "required": [
+          "display",
+          "email",
+          "lastName",
+          "middleName",
+          "name",
+          "telegram",
+          "telephone"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "Ivan"
+          },
+          "lastName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "qwerty"
+          },
+          "middleName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "ytrewq"
+          },
+          "telegram": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "@qer"
+          },
+          "telephone": {
+            "pattern": "^\\+380(31|32|33|34|35|36|37|38|39|41|42|43|44|45|46|47|48|49|50|59|61|63|66|67|68|73|89|91|92|93|94|95|96|97|98|99)\\d{7}$",
+            "type": "string",
+            "default": "+380686323456"
+          },
+          "email": {
+            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+            "type": "string",
+            "default": "+20denisDDD@gmail.com"
+          },
+          "display": { "type": "boolean", "default": true }
+        }
+      },
+      "JwtResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": { "type": "string" },
+          "refreshToken": { "type": "string" }
+        }
+      },
+      "JwtRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "email",
+            "example": "admin@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "password",
+            "example": "admin"
+          }
+        }
+      },
+      "ApplicationStatusDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "status": { "type": "boolean" }
+        }
+      },
+      "TaskDtoForCard": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "course": { "type": "string" },
+          "level": { "type": "string", "enum": ["EASY", "MIDDLE", "HARD"] },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "NOT_ACTIVE", "BEING_EDITED"]
+          },
+          "aim": { "type": "string" },
+          "description": { "type": "string" },
+          "tasks": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        },
+        "description": "TaskDto for the page where some student is displayed"
+      },
+      "TaskDtoForFilter": {
+        "required": ["page", "pageSize"],
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "format": "int32", "default": 0 },
+          "pageSize": { "type": "integer", "format": "int32", "default": 0 },
+          "name": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "courseId": { "type": "integer", "format": "int64" },
+          "level": { "type": "string", "enum": ["EASY", "MIDDLE", "HARD"] },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "NOT_ACTIVE", "BEING_EDITED"]
+          }
+        },
+        "description": "TaskDto to filter data"
+      },
+      "PageTaskDtoForView": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TaskDtoForView" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "offset": { "type": "integer", "format": "int64" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageNumber": { "type": "integer", "format": "int32" },
+          "pageSize": { "type": "integer", "format": "int32" },
+          "paged": { "type": "boolean" },
+          "unpaged": { "type": "boolean" }
+        }
+      },
+      "SortObject": {
+        "type": "object",
+        "properties": {
+          "empty": { "type": "boolean" },
+          "sorted": { "type": "boolean" },
+          "unsorted": { "type": "boolean" }
+        }
+      },
+      "TaskDtoForView": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "course": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "level": { "type": "string", "enum": ["EASY", "MIDDLE", "HARD"] },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "NOT_ACTIVE", "BEING_EDITED"]
+          }
+        },
+        "description": "TaskDto for the page where all tasks are displayed"
+      },
+      "StudentDtoForCard": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "lastName": { "type": "string" },
+          "middleName": { "type": "string" },
+          "telegram": { "type": "string" },
+          "telephone": { "type": "string" },
+          "email": { "type": "string" },
+          "image": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "BLOCKED", "EXPELLED"]
+          },
+          "course": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "birthday": { "type": "string", "format": "date" },
+          "levelOfPreparation": {
+            "type": "string",
+            "enum": ["NO_SKILLS", "BAD_SKILLS", "GOOD_SKILLS", "READY"]
+          },
+          "education": { "type": "array", "items": { "type": "string" } },
+          "currentSituation": {
+            "type": "string",
+            "enum": ["STUDYING", "WORKING", "STUDIES_AND_WORKING", "UNEMPLOYED"]
+          },
+          "englishLevel": {
+            "type": "string",
+            "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+          }
+        },
+        "description": "StudentDto for the page where some student is displayed"
+      },
+      "StudentDtoForFilter": {
+        "required": ["page", "pageSize"],
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "format": "int32", "default": 0 },
+          "pageSize": { "type": "integer", "format": "int32", "default": 0 },
+          "fullName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "John Fitzgerald Kennedy"
+          },
+          "courseId": { "type": "integer", "format": "int64", "default": 1 },
+          "fromDate": { "type": "string", "format": "date" },
+          "toDate": { "type": "string", "format": "date" },
+          "levelOfPreparation": {
+            "type": "string",
+            "enum": ["NO_SKILLS", "BAD_SKILLS", "GOOD_SKILLS", "READY"]
+          },
+          "taskId": { "type": "integer", "format": "int64", "default": 1 },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "BLOCKED", "EXPELLED"]
+          }
+        },
+        "description": "StudentDto to filter data"
+      },
+      "PageStudentDtoForView": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/StudentDtoForView" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "StudentDtoForView": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "fullName": { "type": "string" },
+          "course": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "dateOfJoining": { "type": "string", "format": "date" },
+          "levelOfPreparation": {
+            "type": "string",
+            "enum": ["NO_SKILLS", "BAD_SKILLS", "GOOD_SKILLS", "READY"]
+          },
+          "task": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "BLOCKED", "EXPELLED"]
+          }
+        },
+        "description": "StudentDto for the page where all students are displayed"
+      },
+      "PageStudentDtoForStatistic": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/StudentDtoForStatistic" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "StudentDtoForStatistic": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "fullName": { "type": "string" },
+          "telephone": { "type": "string" },
+          "telegram": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "BLOCKED", "EXPELLED"]
+          },
+          "totalMark": { "type": "integer", "format": "int32" }
+        },
+        "description": "StudentDto to statistic Page"
+      },
+      "ApplicationChangeDataUser": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "lastName": { "type": "string" },
+          "middleName": { "type": "string" },
+          "telegram": { "type": "string" },
+          "telephone": { "type": "string" },
+          "email": { "type": "string" },
+          "birthday": { "type": "string", "format": "date" },
+          "work": { "type": "string" },
+          "education": { "type": "array", "items": { "type": "string" } },
+          "englishLevel": {
+            "type": "string",
+            "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+          },
+          "currentSituation": {
+            "type": "string",
+            "enum": ["STUDYING", "WORKING", "STUDIES_AND_WORKING", "UNEMPLOYED"]
+          },
+          "student": { "$ref": "#/components/schemas/Student" },
+          "edit_time": { "type": "string", "format": "date-time" },
+          "statusApplicationChangeDataUser": {
+            "type": "string",
+            "enum": ["ACCEPTED", "REJECTED", "DENIED", "CANCELED"]
+          }
+        }
+      },
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "lastName": { "type": "string" },
+          "middleName": { "type": "string" },
+          "telegram": { "type": "string" },
+          "telephone": { "type": "string" },
+          "email": { "type": "string" },
+          "isStudent": { "type": "boolean" },
+          "display": { "type": "boolean" }
+        }
+      },
+      "Course": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE", "RECRUITING"]
+          },
+          "literature": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Literature" }
+          },
+          "tasks": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Task" }
+          },
+          "students": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Student" }
+          },
+          "manager": { "$ref": "#/components/schemas/Manager" },
+          "mentor": { "$ref": "#/components/schemas/Manager" }
+        }
+      },
+      "Literature": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "linkForDownload": { "type": "string" },
+          "typeLiterature": { "type": "string", "enum": ["BOOK", "LINK"] },
+          "keyWords": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "Manager": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "image": { "type": "string" },
+          "email": { "type": "string" },
+          "pageSize": { "type": "integer", "format": "int32" },
+          "themeIsDark": { "type": "boolean" },
+          "contact": { "$ref": "#/components/schemas/Contact" },
+          "status": { "type": "string", "enum": ["ACTIVE", "BLOCKED"] },
+          "coursesByManager": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Course" }
+          },
+          "coursesByMentor": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Course" }
+          },
+          "courses": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Course" }
+          },
+          "role": { "$ref": "#/components/schemas/Role" }
+        }
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "nameEng": { "type": "string" },
+          "nameUkr": { "type": "string" },
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "STATISTIC",
+                "TASK",
+                "STUDENT",
+                "COURSE",
+                "LESSON",
+                "LITERATURE",
+                "ROLE",
+                "TEST",
+                "CONTACT"
+              ]
+            }
+          },
+          "managers": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Manager" }
+          }
+        }
+      },
+      "Student": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "image": { "type": "string" },
+          "email": { "type": "string" },
+          "pageSize": { "type": "integer", "format": "int32" },
+          "themeIsDark": { "type": "boolean" },
+          "contact": { "$ref": "#/components/schemas/Contact" },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "BLOCKED", "EXPELLED"]
+          },
+          "levelOfPreparation": {
+            "type": "string",
+            "enum": ["NO_SKILLS", "BAD_SKILLS", "GOOD_SKILLS", "READY"]
+          },
+          "isVideoReview": { "type": "boolean" },
+          "birthday": { "type": "string", "format": "date" },
+          "work": { "type": "string" },
+          "education": { "type": "array", "items": { "type": "string" } },
+          "englishLevel": {
+            "type": "string",
+            "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+          },
+          "currentSituation": {
+            "type": "string",
+            "enum": ["STUDYING", "WORKING", "STUDIES_AND_WORKING", "UNEMPLOYED"]
+          },
+          "totalMark": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          },
+          "dateOfJoining": { "type": "string", "format": "date" },
+          "tasks": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/StudentTask" }
+          },
+          "course": { "$ref": "#/components/schemas/Course" },
+          "studentMementos": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/StudentMemento" }
+          },
+          "applicationChangeDataUser": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationChangeDataUser"
+            }
+          }
+        }
+      },
+      "StudentMemento": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "lastName": { "type": "string" },
+          "middleName": { "type": "string" },
+          "telegram": { "type": "string" },
+          "telephone": { "type": "string" },
+          "email": { "type": "string" },
+          "image": { "type": "string" },
+          "birthday": { "type": "string", "format": "date" },
+          "work": { "type": "string" },
+          "education": { "type": "array", "items": { "type": "string" } },
+          "englishLevel": {
+            "type": "string",
+            "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+          },
+          "currentSituation": {
+            "type": "string",
+            "enum": ["STUDYING", "WORKING", "STUDIES_AND_WORKING", "UNEMPLOYED"]
+          },
+          "student": { "$ref": "#/components/schemas/Student" },
+          "edit_time": { "type": "string", "format": "date-time" }
+        }
+      },
+      "StudentTask": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "task": { "$ref": "#/components/schemas/Task" },
+          "status": {
+            "type": "string",
+            "enum": ["IN_PROGRESS", "TESTING", "DONE"]
+          },
+          "comment": { "type": "string" },
+          "finishDate": { "type": "string", "format": "date" }
+        }
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "aim": { "type": "string" },
+          "description": { "type": "string" },
+          "level": { "type": "string", "enum": ["EASY", "MIDDLE", "HARD"] },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "NOT_ACTIVE", "BEING_EDITED"]
+          },
+          "course": { "$ref": "#/components/schemas/Course" },
+          "subTasks": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Task" }
+          }
+        }
+      },
+      "RoleDtoFilter": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "format": "int32", "default": 0 },
+          "pageSize": { "type": "integer", "format": "int32", "default": 2 },
+          "managers": {
+            "type": "array",
+            "items": { "type": "integer", "format": "int64" }
+          },
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "STATISTIC",
+                "TASK",
+                "STUDENT",
+                "COURSE",
+                "LESSON",
+                "LITERATURE",
+                "ROLE",
+                "TEST",
+                "CONTACT"
+              ]
+            }
+          },
+          "name": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "nameEng": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "nameUkr": { "maxLength": 100, "minLength": 0, "type": "string" }
+        },
+        "description": "RoleDtoFilter for the Role page where all Roles are displayed"
+      },
+      "PageRoleDtoView": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/RoleDtoView" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "RoleDtoView": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "nameEng": { "type": "string" },
+          "nameUkr": { "type": "string" },
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "STATISTIC",
+                "TASK",
+                "STUDENT",
+                "COURSE",
+                "LESSON",
+                "LITERATURE",
+                "ROLE",
+                "TEST",
+                "CONTACT"
+              ]
+            }
+          },
+          "managers": { "type": "array", "items": { "type": "string" } }
+        },
+        "description": "RoleDtoView for search object page"
+      },
+      "ManagerDtoForCard": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "lastName": { "type": "string" },
+          "middleName": { "type": "string" },
+          "telegram": { "type": "string" },
+          "telephone": { "type": "string" },
+          "email": { "type": "string" },
+          "image": { "type": "string" },
+          "status": { "type": "string", "enum": ["ACTIVE", "BLOCKED"] },
+          "role": { "$ref": "#/components/schemas/Role" },
+          "courses": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        },
+        "description": "ManagerDto for the page where some manager is displayed"
+      },
+      "ManagerDtoForFilter": {
+        "required": ["page", "pageSize"],
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "format": "int32", "default": 0 },
+          "pageSize": { "type": "integer", "format": "int32", "default": 2 },
+          "fullName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "default": "John Fitzgerald Kennedy"
+          },
+          "courseId": { "type": "integer", "format": "int64", "default": 1 },
+          "roleId": { "type": "integer", "format": "int64", "default": 1 },
+          "statusManager": {
+            "type": "string",
+            "default": "ACTIVE",
+            "enum": ["ACTIVE", "BLOCKED"]
+          }
+        },
+        "description": "ManagerDto to filter data"
+      },
+      "ManagerDtoForView": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "fullName": { "type": "string" },
+          "courses": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "role": { "type": "string" },
+          "status": { "type": "string", "enum": ["ACTIVE", "BLOCKED"] }
+        },
+        "description": "ManagerDto for the page where all managers are displayed"
+      },
+      "PageManagerDtoForView": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ManagerDtoForView" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "LiteratureDtoForFilter": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "format": "int32", "default": 0 },
+          "pageSize": { "type": "integer", "format": "int32", "default": 2 },
+          "name": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "typeLiterature": { "type": "string", "enum": ["BOOK", "LINK"] },
+          "courseId": { "type": "integer", "format": "int64" },
+          "keyword": { "maxLength": 100, "minLength": 0, "type": "string" }
+        }
+      },
+      "LiteratureDtoForView": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "linkForDownload": { "type": "string" },
+          "typeLiterature": { "type": "string", "enum": ["BOOK", "LINK"] },
+          "course": { "type": "string" },
+          "keyWords": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "PageLiteratureDtoForView": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/LiteratureDtoForView" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "Lesson": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "date": { "type": "string", "format": "date-time" },
+          "status": { "type": "string", "enum": ["ACTIVE", "FINISHED"] },
+          "link": { "type": "string" },
+          "durationLesson": { "$ref": "#/components/schemas/LocalTime" },
+          "course": { "$ref": "#/components/schemas/Course" },
+          "enableEdit": { "type": "boolean" },
+          "timeLastEdit": { "type": "string", "format": "date-time" },
+          "reviews": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Review" }
+          }
+        }
+      },
+      "LocalTime": {
+        "type": "object",
+        "properties": {
+          "hour": { "type": "integer", "format": "int32" },
+          "minute": { "type": "integer", "format": "int32" },
+          "second": { "type": "integer", "format": "int32" },
+          "nano": { "type": "integer", "format": "int32" }
+        }
+      },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "isPresent": { "type": "boolean" },
+          "reason": { "type": "string" },
+          "hours": { "type": "integer", "format": "int32" },
+          "grade": { "type": "integer", "format": "int32" },
+          "comment": { "type": "string" },
+          "student": { "$ref": "#/components/schemas/Student" }
+        }
+      },
+      "LessonDtoForFilter": {
+        "required": ["page", "pageSize"],
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "format": "int32", "default": 0 },
+          "pageSize": { "type": "integer", "format": "int32", "default": 2 },
+          "startLesson": { "type": "string", "format": "date" },
+          "endLesson": { "type": "string", "format": "date" },
+          "quantityStudents": { "type": "integer", "format": "int32" },
+          "courseId": { "type": "integer", "format": "int32" },
+          "mentorId": { "type": "integer", "format": "int32" },
+          "statusLesson": { "type": "string", "enum": ["ACTIVE", "FINISHED"] }
+        }
+      },
+      "CourseDtoForViewAndCard": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "numberOfStudents": { "type": "integer", "format": "int32" },
+          "numberOfTasks": { "type": "integer", "format": "int32" },
+          "mentor": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "manager": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE", "RECRUITING"]
+          }
+        },
+        "description": "CourseDto for the page where all courses are displayed or where some course is displayed"
+      },
+      "CourseDtoForEdit": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE", "RECRUITING"]
+          },
+          "mentor": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "manager": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        },
+        "description": "CourseDto for the add object page"
+      },
+      "CourseDtoFotFilter": {
+        "required": ["page", "pageSize"],
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "format": "int32", "default": 0 },
+          "pageSize": { "type": "integer", "format": "int32", "default": 0 },
+          "name": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "numberOfStudents": {
+            "maximum": 50,
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfTasks": {
+            "maximum": 100,
+            "type": "integer",
+            "format": "int32"
+          },
+          "mentorId": { "type": "integer", "format": "int64" },
+          "managerId": { "type": "integer", "format": "int64" },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE", "RECRUITING"]
+          }
+        },
+        "description": "CourseDto to filter data"
+      },
+      "PageCourseDtoForViewAndCard": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CourseDtoForViewAndCard" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "ContactDtoForFilter": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "format": "int32" },
+          "pageSize": { "type": "integer", "format": "int32" },
+          "fullname": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "telegram": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "telephone": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "email": { "maxLength": 100, "minLength": 0, "type": "string" }
+        }
+      },
+      "PageContactDto": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ContactDto" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "PageApplicationChangeDataUser": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationChangeDataUser"
+            }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

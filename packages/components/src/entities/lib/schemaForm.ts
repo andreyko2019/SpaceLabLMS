@@ -1,7 +1,5 @@
 import { InferType, object, string, date } from 'yup'
 
-export type SchemaFormType = InferType<ReturnType<typeof schemaForm>>
-
 export function schemaForm() {
   return object({
     lastname: string().required().min(3).max(50),
@@ -12,3 +10,5 @@ export function schemaForm() {
     years: date().required(),
   })
 }
+
+export type SchemaFormType = InferType<ReturnType<typeof schemaForm>>

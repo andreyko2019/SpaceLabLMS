@@ -4,6 +4,8 @@ import { routes } from './routes'
 export { pages as AppPages } from './pages'
 
 export const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
-    routes
+  history: createWebHistory(
+    import.meta.env.VITE_ADMIN_BASE_URL as string | undefined
+  ),
+  routes,
 })

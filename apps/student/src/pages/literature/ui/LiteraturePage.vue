@@ -12,61 +12,33 @@
 
 <script setup lang="ts">
 import { TheTable } from '@spacelablms/components'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import {
+  LiteratureControllerApi,
+  LiteratureDtoForView,
+  useApi,
+} from '@/shared/api'
 
 const literatureTh = ['Назва', 'Тип', 'Ключові слова', 'Посилання']
-const literatureTd = [
-  {
-    title: '',
-    type: '',
-    keywords: '',
-    link: '',
-  },
-  {
-    title: '',
-    type: '',
-    keywords: '',
-    link: '',
-  },
-  {
-    title: '',
-    type: '',
-    keywords: '',
-    link: '',
-  },
-  {
-    title: '',
-    type: '',
-    keywords: '',
-    link: '',
-  },
-  {
-    title: '',
-    type: '',
-    keywords: '',
-    link: '',
-  },
-  {
-    title: '',
-    type: '',
-    keywords: '',
-    link: '',
-  },
-  {
-    title: '',
-    type: '',
-    keywords: '',
-    link: '',
-  },
-  {
-    title: '',
-    type: '',
-    keywords: '',
-    link: '',
-  },
-]
+const literatureTd = ref<LiteratureDtoForView[]>([])
 
-async function getLiteratureData() {}
+async function getLiteratureData() {
+  const api = useApi(LiteratureControllerApi)
+  const literatureData = await api.getAll1({ page: 0, size: 10 })
+
+  if (literatureData.data) {
+    literatureData.data.content?.forEach((item) => {
+      const wordArr = item.keyWords?.map((item) => item)
+
+      literatureTd.value.push({
+        name: item.name,
+        typeLiterature: item.typeLiterature,
+        keyWords: wordArr,
+        linkForDownload: item.linkForDownload,
+      })
+    })
+  }
+}
 
 async function fetchDataLiterature() {
   await getLiteratureData()

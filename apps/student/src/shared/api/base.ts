@@ -6,7 +6,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios'
 
-// import { useGetCookie } from '@spacelablms/components'
+import { useGetCookie } from '@spacelablms/components'
 
 export type ApiConstructor<T> = new (
   ...args: ConstructorParameters<typeof BaseAPI>
@@ -22,12 +22,11 @@ export interface ApiOptions {
 export interface BlobResponse extends AxiosResponse {
   data: Blob | object | void
 }
-// const token = useGetCookie('student-access-token')
-// console.log(token)
+const token = useGetCookie('student-access-token')
+
 const conf = new Configuration({
   basePath: BASE_PATH,
-  accessToken:
-    'eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE3MjA0MjA5MDUsImV4cCI6MTcyMDQ1NjkwNX0.f6xz2IQIuS5TCfkMtEdP8gVujsWkxInJzTesqglm__IxAjScku0nwBpFhoJyoSpH',
+  accessToken: token,
 })
 
 export function useApi<T extends BaseAPI>(apiConstructor: ApiConstructor<T>) {

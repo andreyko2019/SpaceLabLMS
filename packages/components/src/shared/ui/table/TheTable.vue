@@ -3,16 +3,8 @@ import { BaseSkeleton } from '@/shared'
 interface IStudentTable {
   th: string[]
   td: {
-    title: string
-    time?: string
-    mentor?: string
-    status?: string
-    link?: string
-    name?: string
-    type?: string
-    keywords?: string
-    level?: string
-    description?: string
+    main: string | undefined
+    [key: string]: string | undefined | string[]
   }[]
 }
 
@@ -36,7 +28,7 @@ defineProps<IStudentTable>()
 
     <tbody>
       <tr v-for="(tr, trInd) in td" :key="trInd">
-        <th scope="row">{{ tr.title }}</th>
+        <th scope="row">{{ tr.main }}</th>
         <td
           v-for="([key, value], index) in Object.entries(tr)"
           :key="index"
@@ -48,7 +40,7 @@ defineProps<IStudentTable>()
           <BaseSkeleton modify="table" v-if="!value" />
 
           <div class="table__row" v-if="key === 'link' && value">
-            <a class="table__link" :href="value" target="_blank">Посилання</a>
+            <!--            <a class="table__link" :href="value" target="_blank">Посилання</a>-->
           </div>
         </td>
       </tr>

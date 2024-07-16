@@ -1,5 +1,5 @@
 import { PersonalAreaControllerApi, useApi } from '@/shared/api'
-import { isTheme } from '../model/isTheme'
+import { isTheme } from '@/entities'
 
 export async function getStudentTheme() {
   const apiTheme = useApi(PersonalAreaControllerApi)

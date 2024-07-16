@@ -2,7 +2,12 @@
   <div class="wrapper" :data-theme="isTheme.theme ? 'dark' : 'light'">
     <MainLayout v-if="isDefaultLayout">
       <template #header>
-        <TheHeader />
+        <TheHeader
+          :user="userInfo"
+          :theme="isTheme.theme"
+          :pages="namePage"
+          :switch-theme="tests"
+        />
       </template>
 
       <template #sidebar>
@@ -31,7 +36,8 @@ import { AppRoutes, EAppProviders } from './providers'
 import { AppPages } from './providers/router'
 import { useRoute } from 'vue-router'
 import { isTheme } from '@/entities/theme/model/isTheme'
-import { getStudentTheme } from '@/entities/theme'
+// import { getStudentTheme } from '@/entities/theme'
+import { namePage, tests, userInfo, getUserInfo } from '@/entities'
 
 //
 
@@ -64,6 +70,5 @@ const sideBarStudent = [
 ]
 
 const isDefaultLayout = computed(() => route.meta.layout === 'DefaultLayout')
-
-onMounted(getStudentTheme)
+onMounted(getUserInfo)
 </script>

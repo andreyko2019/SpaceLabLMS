@@ -1,1 +1,1528 @@
-{"openapi":"3.0.1","info":{"title":"Spacelab Learning App For Students","version":"0.0.1"},"servers":[{"url":"https://slj.demodev.cc/SpaceLab_learning/students/"}],"security":[{"bearerAuth":[]}],"tags":[{"name":"EnumController","description":"Operations pertaining to enumeration types"},{"name":"Literature controller","description":"Literature API"},{"name":"Lesson controller","description":"Lesson API"},{"name":"Auth controller","description":"Auth API"},{"name":"Personal area controller","description":"Personal area API"},{"name":"Statistic controller","description":"Statistic API"},{"name":"Task controller","description":"Task API"}],"paths":{"/api/v1/personalArea/changeTheme":{"put":{"tags":["Personal area controller"],"summary":"The request for updating theme","operationId":"changeTheme","parameters":[{"name":"theme","in":"query","description":"If value is false theme is light, if value is true theme is dark","required":true,"schema":{"type":"boolean"}}],"responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"string"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"string"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"string"}}}}}}},"/api/v1/personalArea/changePageSize":{"put":{"tags":["Personal area controller"],"summary":"The request for updating page size","operationId":"changePageSize","parameters":[{"name":"pageSize","in":"query","description":"The number of pages that will be displayed for the authorized user","required":true,"schema":{"type":"integer","format":"int32"}}],"responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"string"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"string"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"string"}}}}}}},"/api/v1/present/send":{"post":{"tags":["present-controller-impl"],"operationId":"sendMessageToQueue","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/MessageStudentClick"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"string"}}}}}}},"/api/v1/auth/refresh":{"post":{"tags":["Auth controller"],"summary":"Update the access token","operationId":"refresh","parameters":[{"name":"refreshToken","in":"header","description":"Refresh token","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"authorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/JwtResponse"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"$ref":"#/components/schemas/JwtResponse"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"$ref":"#/components/schemas/JwtResponse"}}}}}}},"/api/v1/auth/login":{"post":{"tags":["Auth controller"],"summary":"Authorization user","operationId":"login","requestBody":{"description":"Data for authorization","content":{"application/json":{"schema":{"$ref":"#/components/schemas/JwtRequest"}}},"required":true},"responses":{"200":{"description":"authorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/JwtResponse"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"$ref":"#/components/schemas/JwtResponse"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"$ref":"#/components/schemas/JwtResponse"}}}}},"security":[]}},"/api/v1/personalArea/editPersonalData":{"patch":{"tags":["Personal area controller"],"summary":"The request for edit personal data.","operationId":"editPersonalData","requestBody":{"description":"PersonalData for the change personal data.","content":{"multipart/form-data":{"schema":{"$ref":"#/components/schemas/PersonalData"}}}},"responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"object"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}},"/api/v1/tasks/getById":{"get":{"tags":["Task controller"],"summary":"The request for get task.","operationId":"getById","parameters":[{"name":"id","in":"query","description":"ID by which the task is being searched","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"object"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"object"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}},"/api/v1/tasks/getAll":{"get":{"tags":["Task controller"],"summary":"The request for getting tasks.","operationId":"getAll","parameters":[{"name":"page","in":"query","description":"Page for pagination","required":true,"schema":{"type":"integer","format":"int32"}},{"name":"size","in":"query","description":"Number of elements for pagination","required":true,"schema":{"type":"integer","format":"int32"}}],"responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"object"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"object"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}},"/api/v1/tasks/generatePdf":{"get":{"tags":["Task controller"],"summary":"The request for getting Last Lesson Hours.","operationId":"generatePage","parameters":[{"name":"id","in":"query","description":"ID by which the page is being generated","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"object"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"object"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}},"/api/v1/statistic/getQuantityLessons":{"get":{"tags":["Statistic controller"],"summary":"The request for getting Quantity Lessons.","operationId":"getQuantityLessons","responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"integer","format":"int32"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"integer","format":"int32"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"integer","format":"int32"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"integer","format":"int32"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"integer","format":"int32"}}}}}}},"/api/v1/statistic/getLastLessonHours":{"get":{"tags":["Statistic controller"],"summary":"The request for getting Last Lesson Hours.","operationId":"getLastLessonHours","responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"object"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"object"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}},"/api/v1/statistic/getHours":{"get":{"tags":["Statistic controller"],"summary":"The request for getting hours.","operationId":"integerResponseEntity","responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"object"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"object"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}},"/api/v1/statistic/getFirstActiveTask":{"get":{"tags":["Statistic controller"],"summary":"The request for getting First Active Task.","operationId":"getFirstActiveTask","responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"string"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"string"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"string"}}}}}}},"/api/v1/statistic/getCourseByStudent":{"get":{"tags":["Statistic controller"],"summary":"The request for getting Course By Student.","operationId":"getCourseByStudent","responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"string"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"string"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"string"}}}}}}},"/api/v1/personalArea/getTheme":{"get":{"tags":["Personal area controller"],"summary":"The request for getting theme","operationId":"getTheme","responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"boolean"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"boolean"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"boolean"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"boolean"}}}}}}},"/api/v1/personalArea/getPersonalData":{"get":{"tags":["Personal area controller"],"summary":"The request for getting personal data.","operationId":"getPersonalData","responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"object"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}},"/api/v1/personalArea/getPageSize":{"get":{"tags":["Personal area controller"],"summary":"The request for getting page size","operationId":"getPageSize","responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"integer","format":"int32"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"integer","format":"int32"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"integer","format":"int32"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"integer","format":"int32"}}}}}}},"/api/v1/literature/getAll":{"get":{"tags":["Literature controller"],"summary":"The request for getting Literatures.","operationId":"getAll_1","parameters":[{"name":"size","in":"query","description":"Number of elements for pagination","required":true,"schema":{"type":"integer","format":"int32"}},{"name":"page","in":"query","description":"Page for pagination","required":true,"schema":{"type":"integer","format":"int32"}}],"responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}},"/api/v1/lessons/getAllFinished":{"get":{"tags":["Lesson controller"],"summary":"The request for getting tasks.","operationId":"getAllFinished","parameters":[{"name":"page","in":"query","description":"Page for pagination","required":true,"schema":{"type":"integer","format":"int32"}},{"name":"size","in":"query","description":"Number of elements for pagination","required":true,"schema":{"type":"integer","format":"int32"}}],"responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}},"/api/v1/lessons/getAllActive":{"get":{"tags":["Lesson controller"],"summary":"The request for getting tasks.","operationId":"getAllActive","parameters":[{"name":"page","in":"query","description":"Page for pagination","required":true,"schema":{"type":"integer","format":"int32"}},{"name":"size","in":"query","description":"Number of elements for pagination","required":true,"schema":{"type":"integer","format":"int32"}}],"responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}},"/api/v1/enum/taskStatuses":{"get":{"tags":["EnumController"],"description":"Get all task statuses","operationId":"listTaskStatuses","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["ACTIVE","NOT_ACTIVE","BEING_EDITED"]}}}}}}}},"/api/v1/enum/taskLevels":{"get":{"tags":["EnumController"],"description":"Get all task levels","operationId":"listLevels","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["EASY","MIDDLE","HARD"]}}}}}}}},"/api/v1/enum/taskForStudentStatuses":{"get":{"tags":["EnumController"],"description":"Get all task for student statuses","operationId":"listTaskForStudentStatuses","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["IN_PROGRESS","TESTING","DONE"]}}}}}}}},"/api/v1/enum/studentStatuses":{"get":{"tags":["EnumController"],"description":"Get all student statuses","operationId":"listStudentStatuses","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["ACTIVE","BLOCKED","EXPELLED"]}}}}}}}},"/api/v1/enum/preparationLevels":{"get":{"tags":["EnumController"],"description":"Get all preparation levels","operationId":"listPreparationLevels","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["NO_SKILLS","BAD_SKILLS","GOOD_SKILLS","READY"]}}}}}}}},"/api/v1/enum/pages":{"get":{"tags":["EnumController"],"description":"Get all pages","operationId":"listPages","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["STATISTIC","TASK","STUDENT","COURSE","LESSON","LITERATURE","ROLE","TEST","CONTACT"]}}}}}}}},"/api/v1/enum/managerStatuses":{"get":{"tags":["EnumController"],"description":"Get all manager statuses","operationId":"listManagerStatuses","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["ACTIVE","BLOCKED"]}}}}}}}},"/api/v1/enum/literatureTypes":{"get":{"tags":["EnumController"],"description":"Get all literature types","operationId":"listLiteratureTypes","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["BOOK","LINK"]}}}}}}}},"/api/v1/enum/lessonStatuses":{"get":{"tags":["EnumController"],"description":"Get all lesson statuses","operationId":"listLessonStatuses","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["ACTIVE","FINISHED"]}}}}}}}},"/api/v1/enum/englishLevels":{"get":{"tags":["EnumController"],"description":"Get all English levels","operationId":"listEnglishLevels","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["A1","A2","B1","B2","C1","C2"]}}}}}}}},"/api/v1/enum/currentSituations":{"get":{"tags":["EnumController"],"description":"Get all current situations","operationId":"listCurrentSituations","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["STUDYING","WORKING","STUDIES_AND_WORKING","UNEMPLOYED"]}}}}}}}},"/api/v1/enum/courseStatuses":{"get":{"tags":["EnumController"],"description":"Get all course statuses","operationId":"listCourseStatuses","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"string","enum":["ACTIVE","INACTIVE","RECRUITING"]}}}}}}}},"/api/v1/personalArea/deleteAvatar":{"delete":{"tags":["Personal area controller"],"summary":"The request for delete img and generate avatar with name and lastname.","operationId":"editPersonalData_1","responses":{"200":{"description":"Authorized","content":{"*/*":{"schema":{"type":"object"}}}},"404":{"description":"Resource not found.","content":{"*/*":{"schema":{"type":"object"}}}},"400":{"description":"Invalid input data","content":{"*/*":{"schema":{"type":"object"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"type":"object"}}}}}}}},"components":{"schemas":{"MessageStudentClick":{"type":"object","properties":{"studentId":{"type":"integer","format":"int64"},"lessonId":{"type":"integer","format":"int64"}}},"JwtResponse":{"type":"object","properties":{"accessToken":{"type":"string"},"refreshToken":{"type":"string"}}},"JwtRequest":{"type":"object","properties":{"username":{"type":"string","description":"email","example":"student@gmail.com"},"password":{"type":"string","description":"password","example":"student"}}},"PersonalData":{"required":["birthday","email","lastName","middleName","name","telegram","telephone"],"type":"object","properties":{"name":{"maxLength":100,"minLength":0,"type":"string"},"lastName":{"maxLength":100,"minLength":0,"type":"string"},"middleName":{"maxLength":100,"minLength":0,"type":"string"},"telegram":{"maxLength":100,"minLength":0,"type":"string"},"telephone":{"pattern":"^\\+380(31|32|33|34|35|36|37|38|39|41|42|43|44|45|46|47|48|49|50|59|61|63|66|67|68|73|89|91|92|93|94|95|96|97|98|99)\\d{7}$","type":"string"},"email":{"pattern":"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$","type":"string"},"newFile":{"type":"string","format":"binary"},"oldFile":{"type":"string"},"work":{"type":"string"},"birthday":{"type":"string","format":"date"},"education":{"type":"array","items":{"type":"string"}},"englishLevel":{"type":"string","enum":["A1","A2","B1","B2","C1","C2"]},"currentSituation":{"type":"string","enum":["STUDYING","WORKING","STUDIES_AND_WORKING","UNEMPLOYED"]},"password":{"maxLength":100,"minLength":7,"type":"string"}}}},"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}}}}
+{
+  "openapi": "3.0.1",
+  "info": { "title": "Spacelab Learning App For Students", "version": "0.0.1" },
+  "servers": [{ "url": "https://slj.demodev.cc/SpaceLab_learning/students/" }],
+  "security": [{ "bearerAuth": [] }],
+  "tags": [
+    {
+      "name": "EnumController",
+      "description": "Operations pertaining to enumeration types"
+    },
+    { "name": "Literature controller", "description": "Literature API" },
+    { "name": "Lesson controller", "description": "Lesson API" },
+    { "name": "Auth controller", "description": "Auth API" },
+    { "name": "Personal area controller", "description": "Personal area API" },
+    { "name": "Statistic controller", "description": "Statistic API" },
+    { "name": "Task controller", "description": "Task API" }
+  ],
+  "paths": {
+    "/api/v1/personalArea/changeTheme": {
+      "put": {
+        "tags": ["Personal area controller"],
+        "summary": "The request for updating theme",
+        "operationId": "changeTheme",
+        "parameters": [
+          {
+            "name": "theme",
+            "in": "query",
+            "description": "If value is false theme is light, if value is true theme is dark",
+            "required": true,
+            "schema": { "type": "boolean" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/personalArea/changePageSize": {
+      "put": {
+        "tags": ["Personal area controller"],
+        "summary": "The request for updating page size",
+        "operationId": "changePageSize",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The number of pages that will be displayed for the authorized user",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/present/send": {
+      "post": {
+        "tags": ["present-controller-impl"],
+        "operationId": "sendMessageToQueue",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/MessageStudentClick" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/refresh": {
+      "post": {
+        "tags": ["Auth controller"],
+        "summary": "Update the access token",
+        "operationId": "refresh",
+        "parameters": [
+          {
+            "name": "refreshToken",
+            "in": "header",
+            "description": "Refresh token",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": ["Auth controller"],
+        "summary": "Authorization user",
+        "operationId": "login",
+        "requestBody": {
+          "description": "Data for authorization",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/JwtRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/JwtResponse" }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/personalArea/editPersonalData": {
+      "patch": {
+        "tags": ["Personal area controller"],
+        "summary": "The request for edit personal data.",
+        "operationId": "editPersonalData",
+        "requestBody": {
+          "description": "PersonalData for the change personal data.",
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/PersonalData" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/getById": {
+      "get": {
+        "tags": ["Task controller"],
+        "summary": "The request for get task.",
+        "operationId": "getById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the task is being searched",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentTask" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentTask" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentTask" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentTask" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/StudentTask" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/getAll": {
+      "get": {
+        "tags": ["Task controller"],
+        "summary": "The request for getting tasks.",
+        "operationId": "getAll",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Number of elements for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageStudentTask" }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageStudentTask" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageStudentTask" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageStudentTask" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageStudentTask" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/generatePdf": {
+      "get": {
+        "tags": ["Task controller"],
+        "summary": "The request for getting Last Lesson Hours.",
+        "operationId": "generatePage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID by which the page is being generated",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/statistic/getQuantityLessons": {
+      "get": {
+        "tags": ["Statistic controller"],
+        "summary": "The request for getting Quantity Lessons.",
+        "operationId": "getQuantityLessons",
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/statistic/getLastLessonHours": {
+      "get": {
+        "tags": ["Statistic controller"],
+        "summary": "The request for getting Last Lesson Hours.",
+        "operationId": "getLastLessonHours",
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/statistic/getHours": {
+      "get": {
+        "tags": ["Statistic controller"],
+        "summary": "The request for getting hours.",
+        "operationId": "integerResponseEntity",
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "parallel": { "type": "boolean" } }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "parallel": { "type": "boolean" } }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "parallel": { "type": "boolean" } }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "parallel": { "type": "boolean" } }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "parallel": { "type": "boolean" } }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/statistic/getFirstActiveTask": {
+      "get": {
+        "tags": ["Statistic controller"],
+        "summary": "The request for getting First Active Task.",
+        "operationId": "getFirstActiveTask",
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/statistic/getCourseByStudent": {
+      "get": {
+        "tags": ["Statistic controller"],
+        "summary": "The request for getting Course By Student.",
+        "operationId": "getCourseByStudent",
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/personalArea/getTheme": {
+      "get": {
+        "tags": ["Personal area controller"],
+        "summary": "The request for getting theme",
+        "operationId": "getTheme",
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "boolean" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "boolean" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "boolean" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "boolean" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/personalArea/getPersonalData": {
+      "get": {
+        "tags": ["Personal area controller"],
+        "summary": "The request for getting personal data.",
+        "operationId": "getPersonalData",
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalDataResponseForAdd"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalDataResponseForAdd"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalDataResponseForAdd"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalDataResponseForAdd"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/personalArea/getPageSize": {
+      "get": {
+        "tags": ["Personal area controller"],
+        "summary": "The request for getting page size",
+        "operationId": "getPageSize",
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "type": "integer", "format": "int32" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/literature/getAll": {
+      "get": {
+        "tags": ["Literature controller"],
+        "summary": "The request for getting Literatures.",
+        "operationId": "getAll_1",
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Number of elements for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageLiteratureDtoForView"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageLiteratureDtoForView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/lessons/getAllFinished": {
+      "get": {
+        "tags": ["Lesson controller"],
+        "summary": "The request for getting tasks.",
+        "operationId": "getAllFinished",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Number of elements for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageLessonDtoView" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageLessonDtoView" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageLessonDtoView" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/lessons/getAllActive": {
+      "get": {
+        "tags": ["Lesson controller"],
+        "summary": "The request for getting tasks.",
+        "operationId": "getAllActive",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Number of elements for pagination",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageLessonDtoView" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageLessonDtoView" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageLessonDtoView" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/taskStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all task statuses",
+        "operationId": "listTaskStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["ACTIVE", "NOT_ACTIVE", "BEING_EDITED"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/taskLevels": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all task levels",
+        "operationId": "listLevels",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["EASY", "MIDDLE", "HARD"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/taskForStudentStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all task for student statuses",
+        "operationId": "listTaskForStudentStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["IN_PROGRESS", "TESTING", "DONE"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/studentStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all student statuses",
+        "operationId": "listStudentStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["ACTIVE", "BLOCKED", "EXPELLED"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/preparationLevels": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all preparation levels",
+        "operationId": "listPreparationLevels",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["NO_SKILLS", "BAD_SKILLS", "GOOD_SKILLS", "READY"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/pages": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all pages",
+        "operationId": "listPages",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "STATISTIC",
+                      "TASK",
+                      "STUDENT",
+                      "COURSE",
+                      "LESSON",
+                      "LITERATURE",
+                      "ROLE",
+                      "TEST",
+                      "CONTACT"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/managerStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all manager statuses",
+        "operationId": "listManagerStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string", "enum": ["ACTIVE", "BLOCKED"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/literatureTypes": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all literature types",
+        "operationId": "listLiteratureTypes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string", "enum": ["BOOK", "LINK"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/lessonStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all lesson statuses",
+        "operationId": "listLessonStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string", "enum": ["ACTIVE", "FINISHED"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/englishLevels": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all English levels",
+        "operationId": "listEnglishLevels",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/currentSituations": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all current situations",
+        "operationId": "listCurrentSituations",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "STUDYING",
+                      "WORKING",
+                      "STUDIES_AND_WORKING",
+                      "UNEMPLOYED"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/enum/courseStatuses": {
+      "get": {
+        "tags": ["EnumController"],
+        "description": "Get all course statuses",
+        "operationId": "listCourseStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["ACTIVE", "INACTIVE", "RECRUITING"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/personalArea/deleteAvatar": {
+      "delete": {
+        "tags": ["Personal area controller"],
+        "summary": "The request for delete img and generate avatar with name and lastname.",
+        "operationId": "deleteAvatar",
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MessageStudentClick": {
+        "type": "object",
+        "properties": {
+          "studentId": { "type": "integer", "format": "int64" },
+          "lessonId": { "type": "integer", "format": "int64" }
+        }
+      },
+      "JwtResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": { "type": "string" },
+          "refreshToken": { "type": "string" }
+        }
+      },
+      "JwtRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "email",
+            "example": "student@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "password",
+            "example": "student"
+          }
+        }
+      },
+      "PersonalData": {
+        "required": [
+          "birthday",
+          "email",
+          "lastName",
+          "middleName",
+          "name",
+          "telegram",
+          "telephone"
+        ],
+        "type": "object",
+        "properties": {
+          "name": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "lastName": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "middleName": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "telegram": { "maxLength": 100, "minLength": 0, "type": "string" },
+          "telephone": {
+            "pattern": "^\\+380(31|32|33|34|35|36|37|38|39|41|42|43|44|45|46|47|48|49|50|59|61|63|66|67|68|73|89|91|92|93|94|95|96|97|98|99)\\d{7}$",
+            "type": "string"
+          },
+          "email": {
+            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+            "type": "string"
+          },
+          "newFile": { "type": "string", "format": "binary" },
+          "oldFile": { "type": "string" },
+          "work": { "type": "string" },
+          "birthday": { "type": "string", "format": "date" },
+          "education": { "type": "array", "items": { "type": "string" } },
+          "englishLevel": {
+            "type": "string",
+            "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+          },
+          "currentSituation": {
+            "type": "string",
+            "enum": ["STUDYING", "WORKING", "STUDIES_AND_WORKING", "UNEMPLOYED"]
+          },
+          "password": { "maxLength": 100, "minLength": 7, "type": "string" }
+        }
+      },
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "lastName": { "type": "string" },
+          "middleName": { "type": "string" },
+          "telegram": { "type": "string" },
+          "telephone": { "type": "string" },
+          "email": { "type": "string" },
+          "isStudent": { "type": "boolean" },
+          "display": { "type": "boolean" }
+        }
+      },
+      "Course": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE", "RECRUITING"]
+          },
+          "literature": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Literature" }
+          },
+          "tasks": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Task" }
+          },
+          "students": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Student" }
+          },
+          "manager": { "$ref": "#/components/schemas/Manager" },
+          "mentor": { "$ref": "#/components/schemas/Manager" }
+        }
+      },
+      "Literature": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "linkForDownload": { "type": "string" },
+          "typeLiterature": { "type": "string", "enum": ["BOOK", "LINK"] },
+          "keyWords": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "Manager": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "email": { "type": "string" },
+          "image": { "type": "string" },
+          "pageSize": { "type": "integer", "format": "int32" },
+          "themeIsDark": { "type": "boolean" },
+          "contact": { "$ref": "#/components/schemas/Contact" },
+          "status": { "type": "string", "enum": ["ACTIVE", "BLOCKED"] },
+          "courses": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Course" }
+          }
+        }
+      },
+      "Student": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "email": { "type": "string" },
+          "image": { "type": "string" },
+          "pageSize": { "type": "integer", "format": "int32" },
+          "themeIsDark": { "type": "boolean" },
+          "contact": { "$ref": "#/components/schemas/Contact" },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "BLOCKED", "EXPELLED"]
+          },
+          "levelOfPreparation": {
+            "type": "string",
+            "enum": ["NO_SKILLS", "BAD_SKILLS", "GOOD_SKILLS", "READY"]
+          },
+          "isVideoReview": { "type": "boolean" },
+          "birthday": { "type": "string", "format": "date" },
+          "work": { "type": "string" },
+          "education": { "type": "array", "items": { "type": "string" } },
+          "englishLevel": {
+            "type": "string",
+            "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+          },
+          "currentSituation": {
+            "type": "string",
+            "enum": ["STUDYING", "WORKING", "STUDIES_AND_WORKING", "UNEMPLOYED"]
+          },
+          "totalMark": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          },
+          "dateOfJoining": { "type": "string", "format": "date" },
+          "course": { "$ref": "#/components/schemas/Course" }
+        }
+      },
+      "StudentTask": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "task": { "$ref": "#/components/schemas/Task" },
+          "status": {
+            "type": "string",
+            "enum": ["IN_PROGRESS", "TESTING", "DONE"]
+          },
+          "comment": { "type": "string" }
+        }
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "aim": { "type": "string" },
+          "description": { "type": "string" },
+          "level": { "type": "string", "enum": ["EASY", "MIDDLE", "HARD"] },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "NOT_ACTIVE", "BEING_EDITED"]
+          },
+          "course": { "$ref": "#/components/schemas/Course" },
+          "subTasks": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Task" }
+          }
+        }
+      },
+      "PageStudentTask": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/StudentTask" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "offset": { "type": "integer", "format": "int64" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageNumber": { "type": "integer", "format": "int32" },
+          "pageSize": { "type": "integer", "format": "int32" },
+          "paged": { "type": "boolean" },
+          "unpaged": { "type": "boolean" }
+        }
+      },
+      "SortObject": {
+        "type": "object",
+        "properties": {
+          "empty": { "type": "boolean" },
+          "sorted": { "type": "boolean" },
+          "unsorted": { "type": "boolean" }
+        }
+      },
+      "PersonalDataResponseForAdd": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "lastName": { "type": "string" },
+          "middleName": { "type": "string" },
+          "telegram": { "type": "string" },
+          "telephone": { "type": "string" },
+          "email": { "type": "string" },
+          "work": { "type": "string" },
+          "image": { "type": "string" },
+          "birthday": { "type": "string", "format": "date" },
+          "education": { "type": "array", "items": { "type": "string" } },
+          "englishLevel": {
+            "type": "string",
+            "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+          },
+          "course": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "currentSituation": {
+            "type": "string",
+            "enum": ["STUDYING", "WORKING", "STUDIES_AND_WORKING", "UNEMPLOYED"]
+          }
+        }
+      },
+      "LiteratureDtoForView": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "linkForDownload": { "type": "string" },
+          "typeLiterature": { "type": "string", "enum": ["BOOK", "LINK"] },
+          "course": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "keyWords": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "PageLiteratureDtoForView": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/LiteratureDtoForView" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "CourseDtoView": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE", "RECRUITING"]
+          },
+          "students": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Student" }
+          },
+          "manager": { "$ref": "#/components/schemas/Manager" },
+          "mentor": { "$ref": "#/components/schemas/Manager" }
+        }
+      },
+      "LessonDtoView": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "date": { "type": "string", "format": "date-time" },
+          "status": { "type": "string", "enum": ["ACTIVE", "FINISHED"] },
+          "link": { "type": "string" },
+          "durationLesson": { "$ref": "#/components/schemas/LocalTime" },
+          "course": { "$ref": "#/components/schemas/CourseDtoView" },
+          "mentor": { "$ref": "#/components/schemas/ManagerDtoForView" }
+        },
+        "description": "LessonDtoView for the page where all lessons are displayed"
+      },
+      "LocalTime": {
+        "type": "object",
+        "properties": {
+          "hour": { "type": "integer", "format": "int32" },
+          "minute": { "type": "integer", "format": "int32" },
+          "second": { "type": "integer", "format": "int32" },
+          "nano": { "type": "integer", "format": "int32" }
+        }
+      },
+      "ManagerDtoForView": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "fullName": { "type": "string" },
+          "courses": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "role": { "type": "string" },
+          "status": { "type": "string", "enum": ["ACTIVE", "BLOCKED"] }
+        },
+        "description": "ManagerDto for the page where all managers are displayed"
+      },
+      "PageLessonDtoView": {
+        "type": "object",
+        "properties": {
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "content": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/LessonDtoView" }
+          },
+          "number": { "type": "integer", "format": "int32" },
+          "sort": { "$ref": "#/components/schemas/SortObject" },
+          "pageable": { "$ref": "#/components/schemas/PageableObject" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "empty": { "type": "boolean" }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

@@ -60,15 +60,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { BaseIcon, useResize, useToggle } from '@/shared'
-interface ISidebar {
-  href: string
-  icon: string
-  name: string
-}
 
 const props = defineProps({
   data: {
-    type: Array<ISidebar>,
+    type: Object,
     required: true,
   },
 })

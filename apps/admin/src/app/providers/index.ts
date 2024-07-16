@@ -1,4 +1,4 @@
 export * from './router'
-export * from './AppPages'
-export * from './AppRoutes'
+export * from './app-pages'
+export * from './app-routes'
 export * from './types'
