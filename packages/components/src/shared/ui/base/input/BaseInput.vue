@@ -21,7 +21,7 @@
 import { computed } from 'vue'
 import { useCustomField } from '@/shared'
 
-type InputContent = string | number | null
+type InputContent = string | number | null | object
 type InputType = 'text' | 'number' | 'password' | 'email' | 'tel'
 
 interface IProps {

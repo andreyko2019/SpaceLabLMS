@@ -1,4 +1,4 @@
-import { InferType, object, string } from 'yup'
+import { InferType, object, string, boolean, number } from 'yup'
 import { useI18n } from 'vue-i18n'
 
 const namePattern = /^[a-zA-Zа-яА-Я]([a-zA-Zа-яА-Я]+)*$/
@@ -10,10 +10,16 @@ const emailPattern =
 const phonePattern = /^(\+380)[0-9]{9}$/
 const telegramPattern = /^@[a-zA-Z][a-zA-Z0-9_]{1,31}$/
 
-export function addContactSchema() {
+export function editContactSchema() {
   const { t } = useI18n()
 
   return object({
+    id: number()
+      .required(t('VALIDATION.THE_REQUIRED_FIELD'))
+      .test('id', t('VALIDATION.ID'), (value) => {
+        return Number.isInteger(value)
+      }),
+
     name: string()
       .required(t('VALIDATION.THE_REQUIRED_FIELD'))
       .min(3, t('VALIDATION.MIN'))
@@ -55,9 +61,11 @@ export function addContactSchema() {
       .test('email', t('VALIDATION.EMAIL'), (value) => {
         return emailPattern.test(value)
       }),
+
+    display: boolean().required(t('VALIDATION.THE_REQUIRED_FIELD')),
   })
 }
 
-export type SchemaAddContactType = InferType<
-  ReturnType<typeof addContactSchema>
+export type SchemaEditContactType = InferType<
+  ReturnType<typeof editContactSchema>
 >

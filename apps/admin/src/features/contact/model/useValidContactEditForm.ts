@@ -2,13 +2,13 @@ import { nextTick, ref } from 'vue'
 import { useAppForm } from '@spacelablms/components'
 
 import { DetailedErrorMessageItem } from '@/shared'
-import { addContactSchema, SchemaAddContactType } from '@/features'
+import { editContactSchema, SchemaEditContactType } from '@/features'
 
-export function useValidAddContactForm() {
+export function useValidEditContactForm() {
   const serverErrorMessages = ref<string[]>([])
 
-  const schema = addContactSchema()
-  const form = useAppForm<SchemaAddContactType>({
+  const schema = editContactSchema()
+  const form = useAppForm<SchemaEditContactType>({
     validationSchema: schema,
     initialValues: schema.getDefault(),
   })
@@ -22,13 +22,16 @@ export function useValidAddContactForm() {
     await nextTick()
 
     Object.entries(data).forEach(([key, value]) => {
-      setFieldValue(key as keyof SchemaAddContactType, value)
+      setFieldValue(key as keyof SchemaEditContactType, value)
     })
   }
 
   function errorsForm(errors: DetailedErrorMessageItem[]) {
     errors.forEach(({ field, message }) => {
-      const formField = field.replace(/Id/g, 'fg') as keyof SchemaAddContactType
+      const formField = field.replace(
+        /Id/g,
+        'fg'
+      ) as keyof SchemaEditContactType
       form.setFieldError(formField, message)
     })
   }

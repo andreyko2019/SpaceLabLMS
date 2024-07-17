@@ -25,7 +25,8 @@
     "TELEPHONE": "Phone number must start with country code + 380 followed by exactly 9 digits",
     "TELEGRAM": "The username in Telegram must start with @ and contain from 2 to 32 characters, where the first character after @ must be a letter",
     "MIN": "This field must contain at least 3 characters",
-    "MAX": "This field must be at most 100 characters"
+    "MAX": "This field must be at most 100 characters",
+    "ID": "Id can not contain characters. Only numbers are allowed."
 
   },
 

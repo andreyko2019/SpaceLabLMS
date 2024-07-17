@@ -2,13 +2,16 @@
 import { BaseSkeleton } from '@/shared'
 interface IStudentTable {
   th: string[]
-  td: {
-    main: string | undefined
-    [key: string]: string | undefined | string[]
-  }[]
+  td: Array<{ [key: string]: string | boolean | undefined }>
 }
 
 defineProps<IStudentTable>()
+
+const emit = defineEmits(['action'])
+
+const handle = () => {
+  emit('action')
+}
 </script>
 
 <template>
@@ -34,13 +37,17 @@ defineProps<IStudentTable>()
           :key="index"
           :data-title="th[index]"
         >
-          <span v-if="key !== 'link'">
+          <span v-if="key !== 'link' && key !== 'icon'">
             {{ value }}
           </span>
           <BaseSkeleton modify="table" v-if="!value" />
 
           <div class="table__row" v-if="key === 'link' && value">
             <!--            <a class="table__link" :href="value" target="_blank">Посилання</a>-->
+          </div>
+
+          <div class="table__btn" v-if="key === 'icon'">
+            <button @click="handle">Edit</button>
           </div>
         </td>
       </tr>

@@ -68,7 +68,7 @@ const props = defineProps({
   },
 })
 
-const isMobile = ref(window.innerWidth <= 767)
+const isMobile = ref(window.innerWidth <= 1023)
 const isToggle = ref(localStorage.getItem('aside_wrap') === 'true')
 const isToggleMobile = ref(false)
 
