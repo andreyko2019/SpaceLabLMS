@@ -12,73 +12,41 @@ export class AppRoutes {
     return getRoute(AppPages.signIn, {})
   }
 
-  // static getAdminStatistics() {
-  //   return getRoute(AppPages.adminStatistics, {})
-  // }
-  //
-  // static getAdminRoles() {
-  //   return getRoute(AppPages.adminRoles, {})
-  // }
-  //
-  // static getAdminLiterature() {
-  //   return getRoute(AppPages.adminLiterature, {})
-  // }
-  //
-  // static getAdminDashboard() {
-  //   return getRoute(AppPages.adminDashboard, {})
-  // }
-  //
-  // static getAdminCreate() {
-  //   return getRoute(AppPages.adminCreate, {})
-  // }
-  //
-  // static getAdminContacts() {
-  //   return getRoute(AppPages.adminContacts, {})
-  // }
-  //
-  // static getAdminTasks() {
-  //   return getRoute(AppPages.adminTasks, {})
-  // }
-  //
-  // static getAdminTask(id: number | string) {
-  //   return getRoute(AppPages.adminTask, { id })
-  // }
-  //
-  // static getAdminCreateTask() {
-  //   return getRoute(AppPages.adminCreateTask, {})
-  // }
-  //
-  // static getAdminStudents() {
-  //   return getRoute(AppPages.adminStudents, {})
-  // }
-  //
-  // static getAdminStudent(id: number | string) {
-  //   return getRoute(AppPages.adminStudent, { id })
-  // }
-  //
-  // static getAdminStudentTasks(id: number | string) {
-  //   return getRoute(AppPages.adminStudentTasks, { id })
-  // }
-  //
-  // static getAdminCreateStudent() {
-  //   return getRoute(AppPages.adminCreateStudent, {})
-  // }
-  //
-  // static getAdminLessons() {
-  //   return getRoute(AppPages.adminLessons, {})
-  // }
-  //
-  // static getAdminCreateLesson() {
-  //   return getRoute(AppPages.adminCreateLesson, {})
-  // }
-  //
-  // getAdminCourses() {
-  //   return getRoute(AppPages.adminCourses, {})
-  // }
-  //
-  // getAdminCourse(id: number | string) {
-  //   return getRoute(AppPages.adminCourse, { id })
-  // }
+  static getAdminStatistics() {
+    return getRoute(AppPages.StatisticsPage, {})
+  }
+
+  static getAdminRoles() {
+    return getRoute(AppPages.RolesPage, {})
+  }
+
+  static getAdminLiterature() {
+    return getRoute(AppPages.LiteraturePage, {})
+  }
+
+  static getAdminContacts() {
+    return getRoute(AppPages.ContactsPage, {})
+  }
+
+  static getAdminTasks() {
+    return getRoute(AppPages.TaskPage, {})
+  }
+
+  static getAdminStudents() {
+    return getRoute(AppPages.StudentPage, {})
+  }
+
+  static getAdminLessons() {
+    return getRoute(AppPages.LessonsPage, {})
+  }
+
+  getAdminCourses() {
+    return getRoute(AppPages.CoursesPage, {})
+  }
+
+  getAdminCourseCard(card: string) {
+    return getRoute(AppPages.CoursesCardPage, { card })
+  }
 }
 
 function getRoute<T extends object = {}>(name: string, params: T): IRoute<T> {

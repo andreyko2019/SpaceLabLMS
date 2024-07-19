@@ -1,8 +1,14 @@
 <template>
-  <div>Admin roles page</div>
+  <section class="role">
+    <div class="container">
+      <CreateRoles />
+    </div>
+  </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { CreateRoles } from '@/features'
+</script>
 
 <style lang="scss">
 @import 'RolePage';

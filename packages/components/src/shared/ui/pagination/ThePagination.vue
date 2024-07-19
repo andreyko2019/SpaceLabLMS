@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+
 import { BaseButton, BaseIcon } from '@/shared'
+
 interface IPagination {
   modelValue: number
   count: number

@@ -1,53 +1,55 @@
-<template>
-  <label class="base-checkbox" :for="name" :class="classes">
-    <input
-      type="checkbox"
-      class="base-checkbox__input"
-      :id="name"
-      :disabled="isDisabled"
-
-    />
-
-    <span class="base-checkbox__icon-wrap">
-      <IconChecked class="base-checkbox__icon-checked" />
-    </span>
-
-    <span class="base-checkbox__label">
-      {{ label }}
-    </span>
-
-    <small v-if="error" class="base-checkbox__error">{{ error }}</small>
-  </label>
-</template>
-
 <script setup lang="ts">
-import IconChecked from './icons/IconChecked.vue'
-import { computed } from 'vue'
-
-const emit = defineEmits(['update:modelValue'])
-
-interface IBaseCheckbox {
+interface ICheckbox {
+  name: string
+  id: string
+  value: string
   label: string
-  name?: string
-  isDisabled?: boolean
-  error?: string
-
+  checked: boolean
+  disabled?: boolean
+  group: boolean
+  type: string
 }
 
- // defineModel<string>()
+const emits = defineEmits(['update:checked', 'updateCheckboxGroup'])
+const props = withDefaults(defineProps<ICheckbox>(), {
+  type: 'checkbox',
+})
 
-const props = withDefaults(defineProps<IBaseCheckbox>(), {})
+const handleClick = (event: MouseEvent) => {
+  const target = event.target as HTMLInputElement
 
-
-const classes = computed(() => ({
-  'disabled events-none': props.isDisabled,
-  error: props.error,
-}))
-
-// function onChange() {
-//   emit('update:modelValue', !props.modelValue)
-// }
+  if (props.group) {
+    emits('updateCheckboxGroup', {
+      optionId: props.id,
+      checked: target.checked,
+    })
+  } else {
+    emits('update:checked', target.checked)
+  }
+}
 </script>
+
+<template>
+  <div :class="[{ 'switch-container': type === 'switch' }]">
+    <input
+      :class="[
+        { 'checkbox': type === 'checkbox' },
+        { 'switch': type === 'switch' },
+      ]"
+      type="checkbox"
+      :name="name"
+      :id="id"
+      :value="value"
+      :checked="checked"
+      :disabled="disabled"
+      @input="handleClick($event)"
+    />
+    <label :for="id">{{ label }}</label>
+    <label :for="id" class="switch__label" v-if="type === 'switch'">{{
+      label
+    }}</label>
+  </div>
+</template>
 
 <style lang="scss">
 @import 'BaseCheckbox';

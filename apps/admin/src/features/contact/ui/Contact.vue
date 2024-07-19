@@ -16,7 +16,9 @@ import {
 import { ContactControllerApi, useApi } from '@/shared'
 import Swal from 'sweetalert2'
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const {
   inpData,
   thData,
@@ -32,7 +34,7 @@ const {
 } = contactData()
 
 const addContactForm = useValidAddContactForm()
-const editContactForm = useValidEditContactForm()
+// const editContactForm = useValidEditContactForm()
 const openModalAdd = useToggle(isModalAdd)
 const closeModalAdd = useToggle(isModalAdd)
 const openModalEdit = useToggle(isModalEdit)
@@ -96,17 +98,21 @@ async function getPagination(pageNumber = 0) {
   }
 }
 async function addContactOnSubmit() {
-  const { valid } = await addContactForm.instance.validate()
+  const { valid, errors } = await addContactForm.instance.validate()
 
+  console.log(errors)
   if (!valid) return
 
+  console.log(123)
   await addContact()
   isModalAdd.value = !isModalAdd.value
 }
 async function onPageChange(pageNumber: number) {
   page.value = pageNumber
   await getPagination(pageNumber)
+  router.push({ query: { page: pageNumber.toString() } })
 }
+
 async function searchContact() {
   const api = useApi(ContactControllerApi)
 
@@ -135,7 +141,6 @@ async function searchContact() {
 async function handleInput() {
   await searchContact()
 }
-
 async function editContact() {
   const api = useApi(ContactControllerApi)
 
@@ -165,7 +170,6 @@ async function editContact() {
     console.error(error)
   }
 }
-
 async function editContactOnSubmit() {
   const { valid } = await editContactForm.instance.validate()
 
