@@ -1,1 +1,0 @@
-import{d as e,c as o,a as s,o as _}from"./index-4528f77c.js";const n={class:"lessons"},t=s("div",{class:"container"},[s("h1",{class:"lessons__title"},"Заняття"),s("div",{class:"lessons__active"}),s("div",{class:"lessons__finished"})],-1),a=[t],r=e({__name:"LessonsPage",setup(c){return(i,l)=>(_(),o("section",n,a))}});export{r as default};

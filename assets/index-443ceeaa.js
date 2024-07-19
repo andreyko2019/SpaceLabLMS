@@ -1,1 +1,0 @@
-import{d as t,c as a,a as e,o as s}from"./index-4528f77c.js";const _={class:"literature"},o=e("div",{class:"container"},[e("h1",{class:"literature__title"},"Література"),e("div",{class:"literature__table"})],-1),r=[o],u=t({__name:"LiteraturePage",setup(c){return(n,i)=>(s(),a("section",_,r))}});export{u as default};

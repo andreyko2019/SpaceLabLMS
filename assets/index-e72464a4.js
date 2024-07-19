@@ -1,1 +1,0 @@
-import{d as e,c as s,a as t,b as a,u as c,o,v as n}from"./index-4528f77c.js";const _={class:"statistics"},i={class:"container"},u=e({__name:"StatisticsPage",setup(r){return(d,l)=>(o(),s("section",_,[t("div",i,[a(c(n))])]))}});export{u as default};
