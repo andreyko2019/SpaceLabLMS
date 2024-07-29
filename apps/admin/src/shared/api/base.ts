@@ -1,12 +1,12 @@
 import { BaseAPI, BASE_PATH } from './gen/base'
-import { Configuration } from './gen'
+import { AuthControllerApi, Configuration } from './gen'
 import axios, {
   AxiosInstance,
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios'
 
-import { useGetCookie } from '@spacelablms/components'
+import { useGetCookie, useSetCookie } from '@spacelablms/components'
 
 export type ApiConstructor<T> = new (
   ...args: ConstructorParameters<typeof BaseAPI>
@@ -40,3 +40,26 @@ export function useApi<T extends BaseAPI>(apiConstructor: ApiConstructor<T>) {
 
   return new apiConstructor(conf, BASE_PATH, axiosInstance)
 }
+
+async function refreshAccessToken() {
+  try {
+    const refreshToken = useGetCookie('admin-refresh-token')
+
+    if (refreshToken) {
+      const authApi = useApi(AuthControllerApi)
+      const { data } = await authApi.refresh({ refreshToken })
+
+      console.log(data)
+
+      const newAccessToken = <string>data.accessToken
+      useSetCookie('admin-access-token', newAccessToken)
+      console.log('токен оновлено')
+      return newAccessToken
+    }
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+await refreshAccessToken()

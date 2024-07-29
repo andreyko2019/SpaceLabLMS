@@ -1,8 +1,8 @@
-import { nextTick, ref } from 'vue'
 import { useAppForm } from '@spacelablms/components'
+import { nextTick, ref } from 'vue'
 
-import { DetailedErrorMessageItem } from '@/shared'
-import { authAdminSchema, SchemaAuthType } from '@/features'
+import { type SchemaAuthType, authAdminSchema } from '@/features'
+import type { DetailedErrorMessageItem } from '@/shared'
 
 export function useValidAdminForm() {
   const serverErrorMessages = ref<string[]>([])

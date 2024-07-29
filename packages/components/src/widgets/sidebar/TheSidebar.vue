@@ -58,8 +58,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { BaseIcon, useResize, useToggle } from '@/shared'
+import { ref } from 'vue'
 
 const props = defineProps({
   data: {

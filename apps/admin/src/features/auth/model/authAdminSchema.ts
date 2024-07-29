@@ -1,5 +1,5 @@
-import { InferType, object, string } from 'yup'
 import { useI18n } from 'vue-i18n'
+import { type InferType, object, string } from 'yup'
 
 export type SchemaAuthType = InferType<ReturnType<typeof authAdminSchema>>
 

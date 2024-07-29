@@ -1,1 +1,1 @@
-export { default as CreateRoles } from './CreateRoles.vue'
+export { default as CreateRoles } from "./CreateRoles.vue";

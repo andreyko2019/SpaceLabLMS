@@ -1,11 +1,12 @@
+<script setup lang="ts">
+import { Student } from '@/entities'
+</script>
+
 <template>
-  <div>
-    Admin students page
-    <router-view />
+  <div class="container">
+    <Student />
   </div>
 </template>
-
-<script setup lang="ts"></script>
 
 <style lang="scss">
 @import 'StudentsPage';

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { BaseSkeleton } from '@/shared'
 interface IStudentTable {
   th: string[]
-  td: Array<{ [key: string]: string | boolean | undefined }>
+  td: Array<{ [key: string]: any }>
 }
 
 defineProps<IStudentTable>()
@@ -40,7 +39,8 @@ const handle = () => {
           <span v-if="key !== 'link' && key !== 'icon'">
             {{ value }}
           </span>
-          <BaseSkeleton modify="table" v-if="!value" />
+
+          <Skeletor v-if="!value" />
 
           <div class="table__row" v-if="key === 'link' && value">
             <!--            <a class="table__link" :href="value" target="_blank">Посилання</a>-->

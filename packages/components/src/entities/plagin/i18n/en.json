@@ -17,7 +17,7 @@
   },
   "VALIDATION": {
     "THE_REQUIRED_FIELD": "The required field",
-    "EMAIL":"Please enter a valid email address.",
+    "EMAIL": "Please enter a valid email address.",
     "PASSWORD": "Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one underscore but no other special character, no space and it must be 8-16 characters long.",
     "NAME": "Username must begin with a letter, and can not contain, numbers",
     "LASTNAME": "Last name must begin with a letter and cannot contain numbers.",
@@ -27,9 +27,7 @@
     "MIN": "This field must contain at least 3 characters",
     "MAX": "This field must be at most 100 characters",
     "ID": "Id can not contain characters. Only numbers are allowed."
-
   },
-
 
   "PAGES": {
     "STATISTIC": "Statistic",
@@ -39,6 +37,15 @@
     "LESSON": "Lesson",
     "LITERATURE": "Literature",
     "CONTACT": "Contact",
-    "ROLE": "Role"
+    "ROLE": "Role",
+    "MANAGER": "Manager",
+    "TEST": "Test"
+  },
+
+  "LEVEL_OF_PREPARATION": {
+    "NO_SKILLS": "No skills",
+    "BAD_SKILLS": "Bad skills",
+    "GOOD_SKILLS": "Good skills",
+    "READY": "Ready"
   }
 }

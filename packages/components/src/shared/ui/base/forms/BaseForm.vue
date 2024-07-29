@@ -2,7 +2,6 @@
 defineProps({
   newClass: {
     type: String,
-    default: 'form',
   },
 })
 

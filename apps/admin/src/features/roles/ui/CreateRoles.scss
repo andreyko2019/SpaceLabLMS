@@ -1,0 +1,8 @@
+.create-role {
+  &__checkbox {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+}

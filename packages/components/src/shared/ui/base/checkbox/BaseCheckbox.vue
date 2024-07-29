@@ -13,18 +13,22 @@ interface ICheckbox {
 const emits = defineEmits(['update:checked', 'updateCheckboxGroup'])
 const props = withDefaults(defineProps<ICheckbox>(), {
   type: 'checkbox',
+  name: '',
+  group: false,
 })
 
-const handleClick = (event: MouseEvent) => {
-  const target = event.target as HTMLInputElement
+const handleClick = (event: Event) => {
+  const target = event.target
 
-  if (props.group) {
-    emits('updateCheckboxGroup', {
-      optionId: props.id,
-      checked: target.checked,
-    })
-  } else {
-    emits('update:checked', target.checked)
+  if (target instanceof HTMLInputElement) {
+    if (props.group) {
+      emits('updateCheckboxGroup', {
+        optionId: props.id,
+        checked: target.checked,
+      })
+    } else {
+      emits('update:checked', target.checked)
+    }
   }
 }
 </script>
@@ -45,9 +49,9 @@ const handleClick = (event: MouseEvent) => {
       @input="handleClick($event)"
     />
     <label :for="id">{{ label }}</label>
-    <label :for="id" class="switch__label" v-if="type === 'switch'">{{
-      label
-    }}</label>
+    <label :for="id" class="switch__label" v-if="type === 'switch'">
+      {{ label }}
+    </label>
   </div>
 </template>
 

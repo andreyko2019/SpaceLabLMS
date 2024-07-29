@@ -493,7 +493,7 @@ export type CourseDtoForEditStatusEnum =
   (typeof CourseDtoForEditStatusEnum)[keyof typeof CourseDtoForEditStatusEnum]
 
 /**
- * CourseDto for the page where all courses are displayed or where some courses is displayed
+ * CourseDto for the page where all courses are displayed or where some course is displayed
  * @export
  * @interface CourseDtoForViewAndCard
  */
@@ -4279,8 +4279,8 @@ export const ContactControllerApiAxiosParamCreator = function (
   return {
     /**
      *
-     * @summary The request for add contacts.
-     * @param {ContactDto} contactDto Dto for adding contacts\&#39;s data.
+     * @summary The request for add contact.
+     * @param {ContactDto} contactDto Dto for adding contact\&#39;s data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -4333,8 +4333,8 @@ export const ContactControllerApiAxiosParamCreator = function (
     },
     /**
      *
-     * @summary The request for changing contacts\'s display by id.
-     * @param {number} id ID by which the contacts is being updated
+     * @summary The request for changing contact\'s display by id.
+     * @param {number} id ID by which the contact is being updated
      * @param {boolean} display Contact\&#39;s display will change to this value
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4392,9 +4392,9 @@ export const ContactControllerApiAxiosParamCreator = function (
     },
     /**
      *
-     * @summary The request for update contacts.
+     * @summary The request for update contact.
      * @param {number} id id by which the object will be updated
-     * @param {ContactDto} contactDto Dto for updating contacts\&#39;s data.
+     * @param {ContactDto} contactDto Dto for updating contact\&#39;s data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -4507,8 +4507,8 @@ export const ContactControllerApiAxiosParamCreator = function (
     },
     /**
      *
-     * @summary The request for getting contacts by id.
-     * @param {number} id ID by which the contacts is being searched
+     * @summary The request for getting contact by id.
+     * @param {number} id ID by which the contact is being searched
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -4569,8 +4569,8 @@ export const ContactControllerApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
-     * @summary The request for add contacts.
-     * @param {ContactDto} contactDto Dto for adding contacts\&#39;s data.
+     * @summary The request for add contact.
+     * @param {ContactDto} contactDto Dto for adding contact\&#39;s data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -4602,8 +4602,8 @@ export const ContactControllerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary The request for changing contacts\'s display by id.
-     * @param {number} id ID by which the contacts is being updated
+     * @summary The request for changing contact\'s display by id.
+     * @param {number} id ID by which the contact is being updated
      * @param {boolean} display Contact\&#39;s display will change to this value
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4632,9 +4632,9 @@ export const ContactControllerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary The request for update contacts.
+     * @summary The request for update contact.
      * @param {number} id id by which the object will be updated
-     * @param {ContactDto} contactDto Dto for updating contacts\&#39;s data.
+     * @param {ContactDto} contactDto Dto for updating contact\&#39;s data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -4698,8 +4698,8 @@ export const ContactControllerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary The request for getting contacts by id.
-     * @param {number} id ID by which the contacts is being searched
+     * @summary The request for getting contact by id.
+     * @param {number} id ID by which the contact is being searched
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -4742,7 +4742,7 @@ export const ContactControllerApiFactory = function (
   return {
     /**
      *
-     * @summary The request for add contacts.
+     * @summary The request for add contact.
      * @param {ContactControllerApiAdd7Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4757,7 +4757,7 @@ export const ContactControllerApiFactory = function (
     },
     /**
      *
-     * @summary The request for changing contacts\'s display by id.
+     * @summary The request for changing contact\'s display by id.
      * @param {ContactControllerApiChangeDisplayByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4776,7 +4776,7 @@ export const ContactControllerApiFactory = function (
     },
     /**
      *
-     * @summary The request for update contacts.
+     * @summary The request for update contact.
      * @param {ContactControllerApiEdit6Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4806,7 +4806,7 @@ export const ContactControllerApiFactory = function (
     },
     /**
      *
-     * @summary The request for getting contacts by id.
+     * @summary The request for getting contact by id.
      * @param {ContactControllerApiGetById3Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4829,7 +4829,7 @@ export const ContactControllerApiFactory = function (
  */
 export interface ContactControllerApiAdd7Request {
   /**
-   * Dto for adding contacts\&#39;s data.
+   * Dto for adding contact\&#39;s data.
    * @type {ContactDto}
    * @memberof ContactControllerApiAdd7
    */
@@ -4843,7 +4843,7 @@ export interface ContactControllerApiAdd7Request {
  */
 export interface ContactControllerApiChangeDisplayByIdRequest {
   /**
-   * ID by which the contacts is being updated
+   * ID by which the contact is being updated
    * @type {number}
    * @memberof ContactControllerApiChangeDisplayById
    */
@@ -4871,7 +4871,7 @@ export interface ContactControllerApiEdit6Request {
   readonly id: number
 
   /**
-   * Dto for updating contacts\&#39;s data.
+   * Dto for updating contact\&#39;s data.
    * @type {ContactDto}
    * @memberof ContactControllerApiEdit6
    */
@@ -4899,7 +4899,7 @@ export interface ContactControllerApiGetAll7Request {
  */
 export interface ContactControllerApiGetById3Request {
   /**
-   * ID by which the contacts is being searched
+   * ID by which the contact is being searched
    * @type {number}
    * @memberof ContactControllerApiGetById3
    */
@@ -4915,7 +4915,7 @@ export interface ContactControllerApiGetById3Request {
 export class ContactControllerApi extends BaseAPI {
   /**
    *
-   * @summary The request for add contacts.
+   * @summary The request for add contact.
    * @param {ContactControllerApiAdd7Request} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -4932,7 +4932,7 @@ export class ContactControllerApi extends BaseAPI {
 
   /**
    *
-   * @summary The request for changing contacts\'s display by id.
+   * @summary The request for changing contact\'s display by id.
    * @param {ContactControllerApiChangeDisplayByIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -4953,7 +4953,7 @@ export class ContactControllerApi extends BaseAPI {
 
   /**
    *
-   * @summary The request for update contacts.
+   * @summary The request for update contact.
    * @param {ContactControllerApiEdit6Request} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -4987,7 +4987,7 @@ export class ContactControllerApi extends BaseAPI {
 
   /**
    *
-   * @summary The request for getting contacts by id.
+   * @summary The request for getting contact by id.
    * @param {ContactControllerApiGetById3Request} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -5013,8 +5013,8 @@ export const CourseControllerApiAxiosParamCreator = function (
   return {
     /**
      *
-     * @summary The request for add some courses.
-     * @param {CourseDtoForAdd} courseDtoForAdd Dto for add courses\&#39;s data.
+     * @summary The request for add some course.
+     * @param {CourseDtoForAdd} courseDtoForAdd Dto for add course\&#39;s data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5068,7 +5068,7 @@ export const CourseControllerApiAxiosParamCreator = function (
     /**
      *
      * @summary The request for delete manager
-     * @param {number} id ID by which the courses is being deleted
+     * @param {number} id ID by which the course is being deleted
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5118,9 +5118,9 @@ export const CourseControllerApiAxiosParamCreator = function (
     },
     /**
      *
-     * @summary The request for update some courses.
+     * @summary The request for update some course.
      * @param {number} id id by which the object will be updated
-     * @param {CourseDtoForAdd} courseDtoForAdd Dto for edit courses\&#39;s data.
+     * @param {CourseDtoForAdd} courseDtoForAdd Dto for edit course\&#39;s data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5233,8 +5233,8 @@ export const CourseControllerApiAxiosParamCreator = function (
     },
     /**
      *
-     * @summary The request for getting courses by id for edit page
-     * @param {number} id ID by which the courses is being searched
+     * @summary The request for getting course by id for edit page
+     * @param {number} id ID by which the course is being searched
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5284,8 +5284,8 @@ export const CourseControllerApiAxiosParamCreator = function (
     },
     /**
      *
-     * @summary The request for getting courses by id for information card
-     * @param {number} id ID by which the courses is being searched
+     * @summary The request for getting course by id for information card
+     * @param {number} id ID by which the course is being searched
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5346,8 +5346,8 @@ export const CourseControllerApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
-     * @summary The request for add some courses.
-     * @param {CourseDtoForAdd} courseDtoForAdd Dto for add courses\&#39;s data.
+     * @summary The request for add some course.
+     * @param {CourseDtoForAdd} courseDtoForAdd Dto for add course\&#39;s data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5380,7 +5380,7 @@ export const CourseControllerApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary The request for delete manager
-     * @param {number} id ID by which the courses is being deleted
+     * @param {number} id ID by which the course is being deleted
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5409,9 +5409,9 @@ export const CourseControllerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary The request for update some courses.
+     * @summary The request for update some course.
      * @param {number} id id by which the object will be updated
-     * @param {CourseDtoForAdd} courseDtoForAdd Dto for edit courses\&#39;s data.
+     * @param {CourseDtoForAdd} courseDtoForAdd Dto for edit course\&#39;s data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5478,8 +5478,8 @@ export const CourseControllerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary The request for getting courses by id for edit page
-     * @param {number} id ID by which the courses is being searched
+     * @summary The request for getting course by id for edit page
+     * @param {number} id ID by which the course is being searched
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5511,8 +5511,8 @@ export const CourseControllerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary The request for getting courses by id for information card
-     * @param {number} id ID by which the courses is being searched
+     * @summary The request for getting course by id for information card
+     * @param {number} id ID by which the course is being searched
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5558,7 +5558,7 @@ export const CourseControllerApiFactory = function (
   return {
     /**
      *
-     * @summary The request for add some courses.
+     * @summary The request for add some course.
      * @param {CourseControllerApiAdd6Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5588,7 +5588,7 @@ export const CourseControllerApiFactory = function (
     },
     /**
      *
-     * @summary The request for update some courses.
+     * @summary The request for update some course.
      * @param {CourseControllerApiEdit5Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5618,7 +5618,7 @@ export const CourseControllerApiFactory = function (
     },
     /**
      *
-     * @summary The request for getting courses by id for edit page
+     * @summary The request for getting course by id for edit page
      * @param {CourseControllerApiGetByIdForEdit3Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5633,7 +5633,7 @@ export const CourseControllerApiFactory = function (
     },
     /**
      *
-     * @summary The request for getting courses by id for information card
+     * @summary The request for getting course by id for information card
      * @param {CourseControllerApiGetByIdForView3Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5656,7 +5656,7 @@ export const CourseControllerApiFactory = function (
  */
 export interface CourseControllerApiAdd6Request {
   /**
-   * Dto for add courses\&#39;s data.
+   * Dto for add course\&#39;s data.
    * @type {CourseDtoForAdd}
    * @memberof CourseControllerApiAdd6
    */
@@ -5670,7 +5670,7 @@ export interface CourseControllerApiAdd6Request {
  */
 export interface CourseControllerApiDeleteById6Request {
   /**
-   * ID by which the courses is being deleted
+   * ID by which the course is being deleted
    * @type {number}
    * @memberof CourseControllerApiDeleteById6
    */
@@ -5691,7 +5691,7 @@ export interface CourseControllerApiEdit5Request {
   readonly id: number
 
   /**
-   * Dto for edit courses\&#39;s data.
+   * Dto for edit course\&#39;s data.
    * @type {CourseDtoForAdd}
    * @memberof CourseControllerApiEdit5
    */
@@ -5719,7 +5719,7 @@ export interface CourseControllerApiGetAll6Request {
  */
 export interface CourseControllerApiGetByIdForEdit3Request {
   /**
-   * ID by which the courses is being searched
+   * ID by which the course is being searched
    * @type {number}
    * @memberof CourseControllerApiGetByIdForEdit3
    */
@@ -5733,7 +5733,7 @@ export interface CourseControllerApiGetByIdForEdit3Request {
  */
 export interface CourseControllerApiGetByIdForView3Request {
   /**
-   * ID by which the courses is being searched
+   * ID by which the course is being searched
    * @type {number}
    * @memberof CourseControllerApiGetByIdForView3
    */
@@ -5749,7 +5749,7 @@ export interface CourseControllerApiGetByIdForView3Request {
 export class CourseControllerApi extends BaseAPI {
   /**
    *
-   * @summary The request for add some courses.
+   * @summary The request for add some course.
    * @param {CourseControllerApiAdd6Request} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -5783,7 +5783,7 @@ export class CourseControllerApi extends BaseAPI {
 
   /**
    *
-   * @summary The request for update some courses.
+   * @summary The request for update some course.
    * @param {CourseControllerApiEdit5Request} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -5817,7 +5817,7 @@ export class CourseControllerApi extends BaseAPI {
 
   /**
    *
-   * @summary The request for getting courses by id for edit page
+   * @summary The request for getting course by id for edit page
    * @param {CourseControllerApiGetByIdForEdit3Request} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -5834,7 +5834,7 @@ export class CourseControllerApi extends BaseAPI {
 
   /**
    *
-   * @summary The request for getting courses by id for information card
+   * @summary The request for getting course by id for information card
    * @param {CourseControllerApiGetByIdForView3Request} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -5859,7 +5859,7 @@ export const EnumControllerApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * Get all courses statuses
+     * Get all course statuses
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -6374,7 +6374,7 @@ export const EnumControllerApiFp = function (configuration?: Configuration) {
     EnumControllerApiAxiosParamCreator(configuration)
   return {
     /**
-     * Get all courses statuses
+     * Get all course statuses
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -6690,7 +6690,7 @@ export const EnumControllerApiFactory = function (
   const localVarFp = EnumControllerApiFp(configuration)
   return {
     /**
-     * Get all courses statuses
+     * Get all course statuses
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -6840,7 +6840,7 @@ export const EnumControllerApiFactory = function (
  */
 export class EnumControllerApi extends BaseAPI {
   /**
-   * Get all courses statuses
+   * Get all course statuses
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof EnumControllerApi
@@ -7858,7 +7858,7 @@ export const LiteratureControllerApiAxiosParamCreator = function (
       assertParamExists('add4', 'typeLiterature', typeLiterature)
       // verify required parameter 'keyWords' is not null or undefined
       assertParamExists('add4', 'keyWords', keyWords)
-      // verify required parameter 'courses' is not null or undefined
+      // verify required parameter 'course' is not null or undefined
       assertParamExists('add4', 'course', course)
       const localVarPath = `/api/v1/literature/add`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8004,7 +8004,7 @@ export const LiteratureControllerApiAxiosParamCreator = function (
       assertParamExists('edit4', 'typeLiterature', typeLiterature)
       // verify required parameter 'keyWords' is not null or undefined
       assertParamExists('edit4', 'keyWords', keyWords)
-      // verify required parameter 'courses' is not null or undefined
+      // verify required parameter 'course' is not null or undefined
       assertParamExists('edit4', 'course', course)
       const localVarPath = `/api/v1/literature/edit`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -11538,7 +11538,7 @@ export const StatisticControllerApiAxiosParamCreator = function (
   return {
     /**
      *
-     * @summary The request for getting all top student by courses, or getting all top students if courses is null.
+     * @summary The request for getting all top student by course, or getting all top students if course is null.
      * @param {number} arg1 Page for pagination
      * @param {number} arg2 Page size for pagination
      * @param {number} [courseId] Course\&#39;s id by which the students is searched
@@ -11647,7 +11647,7 @@ export const StatisticControllerApiAxiosParamCreator = function (
     /**
      *
      * @summary The request for getting all average grade by date.
-     * @param {number} [courseId] Course id is not necessary. If courses is null the request will returned all data
+     * @param {number} [courseId] Course id is not necessary. If course is null the request will returned all data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -11708,7 +11708,7 @@ export const StatisticControllerApiFp = function (
   return {
     /**
      *
-     * @summary The request for getting all top student by courses, or getting all top students if courses is null.
+     * @summary The request for getting all top student by course, or getting all top students if course is null.
      * @param {number} arg1 Page for pagination
      * @param {number} arg2 Page size for pagination
      * @param {number} [courseId] Course\&#39;s id by which the students is searched
@@ -11779,7 +11779,7 @@ export const StatisticControllerApiFp = function (
     /**
      *
      * @summary The request for getting all average grade by date.
-     * @param {number} [courseId] Course id is not necessary. If courses is null the request will returned all data
+     * @param {number} [courseId] Course id is not necessary. If course is null the request will returned all data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -11823,7 +11823,7 @@ export const StatisticControllerApiFactory = function (
   return {
     /**
      *
-     * @summary The request for getting all top student by courses, or getting all top students if courses is null.
+     * @summary The request for getting all top student by course, or getting all top students if course is null.
      * @param {StatisticControllerApiGetAllTopStudentRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -11907,7 +11907,7 @@ export interface StatisticControllerApiGetAllTopStudentRequest {
  */
 export interface StatisticControllerApiGetAverageGradeByDateRequest {
   /**
-   * Course id is not necessary. If courses is null the request will returned all data
+   * Course id is not necessary. If course is null the request will returned all data
    * @type {number}
    * @memberof StatisticControllerApiGetAverageGradeByDate
    */
@@ -11923,7 +11923,7 @@ export interface StatisticControllerApiGetAverageGradeByDateRequest {
 export class StatisticControllerApi extends BaseAPI {
   /**
    *
-   * @summary The request for getting all top student by courses, or getting all top students if courses is null.
+   * @summary The request for getting all top student by course, or getting all top students if course is null.
    * @param {StatisticControllerApiGetAllTopStudentRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}

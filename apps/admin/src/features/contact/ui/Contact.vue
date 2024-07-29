@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import {
-  BaseInput,
-  BaseButton,
-  TheModal,
-  BaseForm,
-  ThePagination,
-  TheTable,
-  useToggle,
-} from '@spacelablms/components'
-import {
   contactData,
   useValidAddContactForm,
   useValidEditContactForm,
 } from '@/features'
 import { ContactControllerApi, useApi } from '@/shared'
+import {
+  BaseButton,
+  BaseForm,
+  BaseInput,
+  TheModal,
+  ThePagination,
+  TheTable,
+  useToggle,
+} from '@spacelablms/components'
 import Swal from 'sweetalert2'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -34,12 +34,12 @@ const {
 } = contactData()
 
 const addContactForm = useValidAddContactForm()
-// const editContactForm = useValidEditContactForm()
+const editContactForm = useValidEditContactForm()
 const openModalAdd = useToggle(isModalAdd)
 const closeModalAdd = useToggle(isModalAdd)
 const openModalEdit = useToggle(isModalEdit)
 const closeModalEdit = useToggle(isModalEdit)
-
+const isTest = ref(true)
 async function addContact() {
   const api = useApi(ContactControllerApi)
 
@@ -80,7 +80,7 @@ async function getPagination(pageNumber = 0) {
       },
     })
 
-    if (data.data && data.data.content) {
+    if (data.data.content && data.data) {
       tdData.value = data.data.content.map((item) => ({
         name: `${item.name} ${item.middleName} ${item.lastName}`,
         telephone: item.telephone,
@@ -93,6 +93,7 @@ async function getPagination(pageNumber = 0) {
     }
   } catch (error) {
     console.error(error)
+    isTest.value = false
   } finally {
     isLoading.value = false
   }
@@ -109,7 +110,9 @@ async function addContactOnSubmit() {
 }
 async function onPageChange(pageNumber: number) {
   page.value = pageNumber
+
   await getPagination(pageNumber)
+
   router.push({ query: { page: pageNumber.toString() } })
 }
 
@@ -124,7 +127,7 @@ async function searchContact() {
     },
   })
 
-  if (data.data && data.data.content) {
+  if (data.data?.content) {
     tdData.value = data.data.content.map((item) => ({
       name: `${item.name} ${item.middleName} ${item.lastName}`,
       telephone: item.telephone,

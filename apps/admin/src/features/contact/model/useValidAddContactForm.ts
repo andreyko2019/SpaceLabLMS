@@ -3,7 +3,7 @@ import { useAppForm } from '@spacelablms/components'
 
 import { DetailedErrorMessageItem } from '@/shared'
 import { addContactSchema, SchemaAddContactType } from '@/features'
-
+// todo виправити схему
 export function useValidAddContactForm() {
   const serverErrorMessages = ref<string[]>([])
 

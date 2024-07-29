@@ -38,7 +38,16 @@
     "LESSON": "Урок",
     "LITERATURE": "Література",
     "CONTACT": "Контакт",
-    "ROLE": "Роль"
+    "ROLE": "Роль",
+    "MANAGER": "Менеджер",
+    "TEST": "Тест"
+  },
+
+  "LEVEL_OF_PREPARATION": {
+    "NO_SKILLS": "Немає навичок",
+    "BAD_SKILLS": "Погані навички",
+    "GOOD_SKILLS": "Хороші навички",
+    "READY": "Готовий"
   }
 
 
