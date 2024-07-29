@@ -1,11 +1,11 @@
 <script setup lang="ts">
-interface Props {
-  srcset?: string
-  src: string
+interface IProps {
+  srcset?: any
+  src: any
   alt: string
 }
 
-const props = defineProps<Props>()
+const props = defineProps<IProps>()
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { BaseDropdown } from '@/shared'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, Ref, ref } from 'vue'
 import { Chart, ChartTypeRegistry } from 'chart.js/auto'
 
 interface IConfig {
@@ -14,6 +14,8 @@ interface IConfig {
     }[]
   }
   options: {
+    responsive: boolean
+    maintainAspectRatio: boolean
     scales: {
       x: {
         stacked: boolean
@@ -77,11 +79,15 @@ const data = ref({
   ],
 })
 
-const chartRef = ref(null as HTMLCanvasElement | null)
+const chartRef: Ref<HTMLCanvasElement | null> = ref(null)
+
 const config: IConfig = {
   type: 'bar',
   data: data.value,
   options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
     scales: {
       x: {
         stacked: true,
@@ -102,9 +108,7 @@ function initGraph() {
   }
 }
 
-onMounted(() => {
-  initGraph()
-})
+onMounted(initGraph)
 </script>
 
 <template>

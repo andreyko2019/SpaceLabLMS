@@ -12,73 +12,41 @@
 
 <script setup lang="ts">
 import { TheTable } from '@spacelablms/components'
+import { onMounted, ref } from 'vue'
+import {
+  LiteratureControllerApi,
+  LiteratureDtoForView,
+  useApi,
+} from '@/shared/api'
 
 const literatureTh = ['Назва', 'Тип', 'Ключові слова', 'Посилання']
+const literatureTd = ref<LiteratureDtoForView[]>([])
 
-const literatureTd = [
-  {
-    title: 'The Clean Coder',
-    type: 'Книга',
-    keywords: 'java collection',
-    link: 'https://app.moqups.com/0aewtgqqhsMdvmwc7hBigmvcQlUgLDGl/edit/page/a64e3e8b0',
-  },
-  {
-    title: 'The Clean Coder',
-    type: 'Книга',
-    keywords: 'java collection',
-    link: 'https://app.moqups.com/0aewtgqqhsMdvmwc7hBigmvcQlUgLDGl/edit/page/a64e3e8b0',
-  },
-  {
-    title: 'The Clean Coder',
-    type: 'Книга',
-    keywords: 'java collection',
-    link: 'https://app.moqups.com/0aewtgqqhsMdvmwc7hBigmvcQlUgLDGl/edit/page/a64e3e8b0',
-  },
-  {
-    title: 'The Clean Coder',
-    type: 'Книга',
-    keywords: 'java collection',
-    link: 'https://app.moqups.com/0aewtgqqhsMdvmwc7hBigmvcQlUgLDGl/edit/page/a64e3e8b0',
-  },
-  {
-    title: 'The Clean Coder',
-    type: 'Книга',
-    keywords: 'java collection',
-    link: 'https://app.moqups.com/0aewtgqqhsMdvmwc7hBigmvcQlUgLDGl/edit/page/a64e3e8b0',
-  },
-  {
-    title: 'The Clean Coder',
-    type: 'Книга',
-    keywords: 'java collection',
-    link: 'https://app.moqups.com/0aewtgqqhsMdvmwc7hBigmvcQlUgLDGl/edit/page/a64e3e8b0',
-  },
-  {
-    title: 'The Clean Coder',
-    type: 'Книга',
-    keywords: 'java collection',
-    link: 'https://app.moqups.com/0aewtgqqhsMdvmwc7hBigmvcQlUgLDGl/edit/page/a64e3e8b0',
-  },
-  {
-    title: 'The Clean Coder',
-    type: 'Книга',
-    keywords: 'java collection',
-    link: 'https://app.moqups.com/0aewtgqqhsMdvmwc7hBigmvcQlUgLDGl/edit/page/a64e3e8b0',
-  },
-  {
-    title: 'The Clean Coder',
-    type: 'Книга',
-    keywords: 'java collection',
-    link: 'https://app.moqups.com/0aewtgqqhsMdvmwc7hBigmvcQlUgLDGl/edit/page/a64e3e8b0',
-  },
-  {
-    title: 'The Clean Coder',
-    type: 'Книга',
-    keywords: 'java collection',
-    link: 'https://app.moqups.com/0aewtgqqhsMdvmwc7hBigmvcQlUgLDGl/edit/page/a64e3e8b0',
-  },
-]
+async function getLiteratureData() {
+  const api = useApi(LiteratureControllerApi)
+  const literatureData = await api.getAll1({ page: 0, size: 10 })
+
+  if (literatureData.data) {
+    literatureData.data.content?.forEach((item) => {
+      const wordArr = item.keyWords?.map((item) => item)
+
+      literatureTd.value.push({
+        name: item.name,
+        typeLiterature: item.typeLiterature,
+        keyWords: wordArr,
+        linkForDownload: item.linkForDownload,
+      })
+    })
+  }
+}
+
+async function fetchDataLiterature() {
+  await getLiteratureData()
+}
+
+onMounted(fetchDataLiterature)
 </script>
 
 <style lang="scss">
-@import './styles';
+@import 'LiteraturePage';
 </style>

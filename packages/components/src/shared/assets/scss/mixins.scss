@@ -58,3 +58,22 @@ $breakpoints: (
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin theme($header-background, $skeleton-color, $background-color, $primary-text-color, $secondary-text-color, $link-color, $button-background-color, $button-text-color, $border-color, $box-shadow-color, $odd-color, $even-color) {
+  --header: #{$header-background};
+  --skeleton: #{$skeleton-color};
+  --bg: #{$background-color};
+  --primary-text: #{$primary-text-color};
+  --secondary-text: #{$secondary-text-color};
+  --link: #{$link-color};
+  --btn-bg: #{$button-background-color};
+  --btn-text: #{$button-text-color};
+  --border: #{$border-color};
+  --box-shadow: #{$box-shadow-color};
+  --odd: #{$odd-color};
+  --even: #{$even-color};
+
+  background: var(--bg);
+  color: var(--primary-text);
+  box-shadow: var(--box-shadow);
+}

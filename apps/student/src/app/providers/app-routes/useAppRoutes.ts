@@ -3,11 +3,11 @@ import { EAppProviders } from '@/app/providers/types'
 import { throwInjectError } from '@/shared/lib/utils/errors'
 
 export function useAppRoutes() {
-    const appRoutes = inject(EAppProviders.AppRoutes)
+  const appRoutes = inject(EAppProviders.AppRoutes)
 
-    if (!appRoutes) {
-        throwInjectError('AppRoutes')
-    }
+  if (!appRoutes) {
+    throwInjectError('AppRoutes')
+  }
 
-    return appRoutes
+  return appRoutes
 }

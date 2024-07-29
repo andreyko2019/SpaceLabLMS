@@ -1,16 +1,52 @@
+@import "colors";
 @import "mixins";
+
+[data-theme="light"] {
+  @include theme(
+                  $light-header-background,
+                  $light-skeleton-color,
+                  $light-background-color,
+                  $light-primary-text-color,
+                  $light-secondary-text-color,
+                  $light-link-color,
+                  $light-button-background-color,
+                  $light-button-text-color,
+                  $light-border-color,
+                  $light-box-shadow-color,
+                  $light-odd-color,
+                  $light-even-color
+  );
+}
+
+
+[data-theme="dark"] {
+  @include theme(
+                  $dark-header-background,
+                  $dark-skeleton-color,
+                  $dark-background-color,
+                  $dark-primary-text-color,
+                  $dark-secondary-text-color,
+                  $dark-link-color,
+                  $dark-button-background-color,
+                  $dark-button-text-color,
+                  $dark-border-color,
+                  $dark-box-shadow-color,
+                  $dark-odd-color,
+                  $dark-even-color
+  );
+}
 
 .container {
   margin: 0 auto;
   padding: 0 15px;
 }
 
-#app{
+.wrapper {
   display: grid;
   grid-template:
     "sidebar header"
     "sidebar main"
-    "sidebar footer" auto/ min-content auto ;
+    "sidebar footer" auto / min-content auto;
   min-height: 100vh;
   height: 100%;
 
@@ -20,15 +56,15 @@
   }
 }
 
-main{
-  grid-area: main ;
+main {
+  grid-area: main;
   width: 100%;
 
-  @include media-breakpoint-down(sm){
-    margin: 80px 0 0 ;
+@include media-breakpoint-down(sm){
+    margin: 120px 0 0;
   }
 }
 
-.page{
+.page {
   flex: 100%;
 }

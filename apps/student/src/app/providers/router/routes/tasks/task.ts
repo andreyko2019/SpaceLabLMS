@@ -1,9 +1,9 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-export const routeName: string = 'TaskPage'
+export const routeName = 'TaskPage'
 
 export const route: RouteRecordRaw = {
-    name: routeName,
-    path: ':id',
-    component: () => import('@/pages/task')
+  name: routeName,
+  path: ':id',
+  component: () => import('@/pages/task'),
 }
