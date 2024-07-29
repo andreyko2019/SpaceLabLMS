@@ -27,11 +27,11 @@
       </div>
 
       <div class="form-content__additional">
-<!--        <BaseCheckbox-->
-<!--          name="remember-checkbox"-->
-<!--          label="Запам'ятати мене"-->
-<!--          v-model="rememberCheckbox"-->
-<!--        />-->
+        <!--        <BaseCheckbox-->
+        <!--          name="remember-checkbox"-->
+        <!--          label="Запам'ятати мене"-->
+        <!--          v-model="rememberCheckbox"-->
+        <!--        />-->
       </div>
 
       <BaseButton
@@ -55,7 +55,7 @@ import {
   // BaseCheckbox,
   useAppForm,
   useCookiesStorage,
-} from "@spacelablms/components"
+} from '@spacelablms/components'
 
 const schema = yup.object({
   username: yup.string(),
@@ -90,7 +90,9 @@ const onSubmit = handleSubmit(async () => {
       },
     })
     useCookiesStorage('student-access-token').setItem(<string>data.accessToken)
-    useCookiesStorage('student-refresh-token').setItem(<string>data.refreshToken)
+    useCookiesStorage('student-refresh-token').setItem(
+      <string>data.refreshToken
+    )
     useCookiesStorage('student-remember').setItem(<string>data.refreshToken)
   } catch (error) {
     console.error('Login failed:', error)

@@ -1,0 +1,51 @@
+{
+  "STATUS_WORK": {
+    "STUDYING": "Studying",
+    "WORKING": "Working",
+    "STUDIES_AND_WORKING": "Studies and Working",
+    "UNEMPLOYED": "Unemployed"
+  },
+  "STATUS": {
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "RECRUITING": "Recruiting"
+  },
+  "LESSONS_STATUS": {
+    "ACTIVE": "Active",
+    "BLOCKED": "Blocked",
+    "EXPELLED": "Expelled"
+  },
+  "VALIDATION": {
+    "THE_REQUIRED_FIELD": "The required field",
+    "EMAIL": "Please enter a valid email address.",
+    "PASSWORD": "Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one underscore but no other special character, no space and it must be 8-16 characters long.",
+    "NAME": "Username must begin with a letter, and can not contain, numbers",
+    "LASTNAME": "Last name must begin with a letter and cannot contain numbers.",
+    "MIDDLENAME": "The middle name must begin with a letter and cannot contain numbers.",
+    "TELEPHONE": "Phone number must start with country code + 380 followed by exactly 9 digits",
+    "TELEGRAM": "The username in Telegram must begin with (at) and contain from 2 to 32 characters, where the first character after (at) must be a letter,",
+    "MIN": "This field must contain at least 3 characters",
+    "MAX": "This field must be at most 100 characters",
+    "ID": "Id can not contain characters. Only numbers are allowed."
+  },
+
+  "PAGES": {
+    "STATISTIC": "Statistic",
+    "TASK": "Task",
+    "STUDENT": "Student",
+    "COURSE": "Course",
+    "LESSON": "Lesson",
+    "LITERATURE": "Literature",
+    "CONTACT": "Contact",
+    "ROLE": "Role",
+    "MANAGER": "Manager",
+    "TEST": "Test"
+  },
+
+  "LEVEL_OF_PREPARATION": {
+    "NO_SKILLS": "No skills",
+    "BAD_SKILLS": "Bad skills",
+    "GOOD_SKILLS": "Good skills",
+    "READY": "Ready"
+  }
+}

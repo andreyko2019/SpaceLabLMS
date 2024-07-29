@@ -1,0 +1,197 @@
+@import '@/shared/assets/scss';
+
+.table {
+  width: 100%;
+  border-spacing: 0;
+
+  thead {
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+
+    @include media-breakpoint-up(sm) {
+      position: relative;
+      clip: auto;
+      height: auto;
+      width: auto;
+      overflow: auto;
+    }
+
+    th {
+      background-color: var(--header);
+      font-weight: 400;
+      text-align: center;
+      color: var(--primary-text);
+    }
+  }
+
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+    padding: 0;
+    text-align: left;
+    white-space: normal;
+  }
+
+  tr {
+    @include media-breakpoint-up(sm) {
+      display: table-row;
+    }
+  }
+
+  th,
+  td {
+    padding: 8px;
+    vertical-align: middle;
+
+    @include media-breakpoint-up(xs) {
+      padding: 12px 8px;
+    }
+
+    @include media-breakpoint-up(sm) {
+      display: table-cell;
+      padding: 8px;
+    }
+
+    @include media-breakpoint-up(md) {
+      padding: 12px 8px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding: 12px;
+    }
+  }
+
+  tbody {
+    @include media-breakpoint-up(sm) {
+      display: table-row-group;
+    }
+
+    tr {
+      margin-bottom: 16px;
+
+      @include media-breakpoint-up(sm) {
+        display: table-row;
+        border-width: 1px;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      &:nth-of-type(even) {
+        @include media-breakpoint-up(sm) {
+          background-color: rgba(0, 0, 0, 0.12);
+        }
+      }
+
+      &:nth-child(even) {
+        background-color: var(--even);
+      }
+      &:nth-child(odd) {
+        background-color: var(--odd);
+      }
+    }
+
+    th[scope='row'] {
+      background-color: var(--header);
+      color: var(--primary-text);
+      display: none;
+
+      @include media-breakpoint-up(sm) {
+        background-color: transparent;
+        color: var(--primary-text);
+        text-align: left;
+      }
+
+      @include media-breakpoint-down(sm) {
+        display: block;
+      }
+    }
+
+    td {
+      text-align: right;
+
+      @include media-breakpoint-up(sm) {
+        border-bottom: 1px solid var(--border);
+        text-align: center;
+      }
+
+      @include media-breakpoint-down(sm) {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+
+        &:nth-child(even) {
+          background-color: var(--even);
+        }
+        &:nth-child(odd) {
+          background-color: var(--odd);
+        }
+      }
+
+      &:last-of-type {
+        @include media-breakpoint-up(sm) {
+          //border-right: 1px solid rgba(134,188,37,1);
+        }
+      }
+    }
+
+    td[data-type='currency'] {
+      text-align: right;
+    }
+
+    td[data-title]:before {
+      content: attr(data-title);
+      float: left;
+      font-size: 13px;
+      color: var(--primary-text);
+
+      @include media-breakpoint-up(xs) {
+        font-size: 14px;
+      }
+
+      @include media-breakpoint-up(sm) {
+        content: none;
+      }
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link {
+    margin-right: 16px;
+  }
+
+button{
+  width: 17px;
+  height: 17px;
+
+  svg{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+  .skeleton__table {
+    width: 100%;
+    height: 17px;
+
+    @include media-breakpoint-down(sm) {
+      max-width: 300px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      max-width: 150px;
+    }
+  }
+}

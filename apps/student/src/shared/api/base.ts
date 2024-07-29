@@ -6,6 +6,8 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios'
 
+import { useGetCookie } from '@spacelablms/components'
+
 export type ApiConstructor<T> = new (
   ...args: ConstructorParameters<typeof BaseAPI>
 ) => T
@@ -20,8 +22,12 @@ export interface ApiOptions {
 export interface BlobResponse extends AxiosResponse {
   data: Blob | object | void
 }
+const token = useGetCookie('student-access-token')
 
-const conf = new Configuration({})
+const conf = new Configuration({
+  basePath: BASE_PATH,
+  accessToken: token,
+})
 
 export function useApi<T extends BaseAPI>(apiConstructor: ApiConstructor<T>) {
   const axiosInstance = axios.create()

@@ -1,7 +1,6 @@
 $gray-blue: #8A92A6;
 $shade-blue: #3A57E8;
 $light-gray: #F5F5F5;
-$white: #FFFFFF;
 $active-gray: #E8E8E8;
 
 $white: #464141;
@@ -9,7 +8,7 @@ $white-50: #e9ecef;
 
 $gray-blue: #8A92A6;
 $shade-blue: #3A57E8;
-
+$red: #FF0000FF;
 
 
 $blue:#3a57e8;
@@ -17,4 +16,37 @@ $blue:#3a57e8;
 
 $gray:#8A92A6;
 
-$shadow: rgba(17, 38, 146, 0.05)
+$shadow: rgba(17, 38, 146, 0.05);
+
+// new color
+$light-header-background: #FFFFFF;
+$light-skeleton-color: linear-gradient(90deg, #E9ECEF 25%, #C7C9CB 50%, #E9ECEF 75%);
+$light-background-color: #E9ECEF;
+$light-primary-text-color: #6c757d;
+$light-secondary-text-color: #232D42;
+$light-link-color: #1E90FF;
+$light-button-background-color: #3A57E8;
+$light-button-text-color: #FFFFFF;
+$light-border-color: #e9ecef;
+$light-box-shadow-color: rgba(0, 0, 0, 0.1);
+$light-color-icon: rgba(0, 0, 0, 0.1);
+$light-odd-color: #FFFFFF;
+$light-even-color: #FBFCFC;
+
+
+$dark-header-background: #222738;
+$dark-skeleton-color: linear-gradient(90deg, #151824 25%, #0B1321 50%, #151824 75%);
+$dark-background-color: #151824;
+$dark-primary-text-color: #6c757d;
+$dark-secondary-text-color: #D3D3D3;
+$dark-link-color: #1E90FF;
+$dark-button-background-color: #3A57E8;
+$dark-button-text-color: #FFFFFF;
+$dark-border-color: #343948;
+$dark-box-shadow-color: rgba(255, 255, 255, 0.1);
+$dark-odd-color: #222738;
+$dark-even-color: #252B3B;
+
+
+
+

@@ -1,19 +1,16 @@
 <script setup lang="ts">
 interface IStudentTable {
   th: string[]
-  td: {
-    title: string
-    time?: string
-    mentor?: string
-    status?: string
-    link?: string
-    name?: string
-    type?: string
-    keywords?: string
-  }[]
+  td: Array<{ [key: string]: any }>
 }
 
 defineProps<IStudentTable>()
+
+const emit = defineEmits(['action'])
+
+const handle = () => {
+  emit('action')
+}
 </script>
 
 <template>
@@ -33,15 +30,25 @@ defineProps<IStudentTable>()
 
     <tbody>
       <tr v-for="(tr, trInd) in td" :key="trInd">
-        <th scope="row">{{ tr.title }}</th>
+        <th scope="row">{{ tr.main }}</th>
         <td
           v-for="([key, value], index) in Object.entries(tr)"
           :key="index"
           :data-title="th[index]"
         >
-          <span v-if="key !== 'link'">{{ value }}</span>
+          <span v-if="key !== 'link' && key !== 'icon'">
+            {{ value }}
+          </span>
 
-          <a v-if="key === 'link'" :href="value" target="_blank">{{ value }}</a>
+          <Skeletor v-if="!value" />
+
+          <div class="table__row" v-if="key === 'link' && value">
+            <!--            <a class="table__link" :href="value" target="_blank">Посилання</a>-->
+          </div>
+
+          <div class="table__btn" v-if="key === 'icon'">
+            <button @click="handle">Edit</button>
+          </div>
         </td>
       </tr>
     </tbody>
@@ -49,5 +56,5 @@ defineProps<IStudentTable>()
 </template>
 
 <style lang="scss">
-@import 'styles';
+@import 'TheTable';
 </style>

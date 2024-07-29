@@ -1,0 +1,54 @@
+@import '@/shared/assets/scss/colors';
+@import '@/shared/assets/scss/font';
+
+.input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+  &__label {
+    font-family: $font-inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--primary-text);
+    transition: color 0.3s ease;
+  }
+
+  &__inp {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    background: var(--header);
+    color: var(--primary-text);
+    margin: 0 0 12px;
+  }
+
+  &__error {
+    text-overflow: ellipsis;
+    width: fit-content;
+    position: absolute;
+    top: calc(87% - 1px);
+    left: 16px;
+    z-index: 6;
+    background: $red;
+    border-radius: 4px;
+    color: var(--btn-text);
+    padding: 2px 8px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: red;
+      top: calc(0% - 5px);
+      left: 11px;
+      transform: rotate(45deg);
+      background: $red;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@import '../../../assets/scss';
+.switch {
+  width: 70px;
+  height: 30px;
+  background: #605c5c;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+
+  &__theme {
+    width: 24px;
+    height: 24px;
+    background: #FFFFFF;
+    border-radius: 100%;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    transition: 0.5s ease;
+
+    &_active {
+      transform: translateX(37px);
+
+    }
+
+  }
+}

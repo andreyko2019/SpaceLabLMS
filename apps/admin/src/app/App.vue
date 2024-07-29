@@ -1,31 +1,45 @@
 <template>
-  <div class="app-bg" />
-  <MainLayout>
-    <template v-slot:header>
-      <TheHeader />
-    </template>
+  <div class="wrapper" :data-theme="isTheme ? 'dark' : 'light'">
+    <MainLayout v-if="isDefaultLayout">
+      <!--      <template #header>-->
+      <!--        <TheHeader-->
+      <!--          :user="userInfo"-->
+      <!--          :theme="isTheme.theme"-->
+      <!--          :pages="namePage"-->
+      <!--          :switch-theme="tests"-->
+      <!--        />-->
+      <!--      </template>-->
 
-    <template v-slot:footer>
-      <TheFooter />
-    </template>
-  </MainLayout>
+      <template #sidebar>
+        <TheSidebar :data="pages" />
+      </template>
+
+      <!--      <template #footer>-->
+      <!--        <TheFooter />-->
+      <!--      </template>-->
+    </MainLayout>
+
+    <EmptyLayout v-else></EmptyLayout>
+
+    <SvgManager />
+  </div>
 </template>
 
 <script setup lang="ts">
-import './styles/index.scss'
+import { MainLayout, EmptyLayout } from '@/shared/layouts'
+import { computed, onMounted, provide, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { AppPages, AppRoutes, EAppProviders } from './providers'
+import { SvgManager, TheSidebar } from '@spacelablms/components'
+import { getPages, pages } from '@/entities'
 
-import { TheHeader } from '@/widgets/TheHeader'
-import { TheFooter } from '@/widgets/TheFooter'
-import { MainLayout, EmptyLayout } from '@/shared/ui/layouts'
-
-import { provide } from 'vue'
-import { EAppProviders, AppRoutes } from './providers'
-import { AppPages } from './providers/router'
-
+// TheSidebar
 provide(EAppProviders.AppRoutes, AppRoutes)
 provide(EAppProviders.AppPages, AppPages)
 
+const route = useRoute()
+const isTheme = ref(false)
+const isDefaultLayout = computed(() => route.meta.layout === 'DefaultLayout')
 
-// const isEmptyLayout = computed(() => route.meta.layout === 'empty')
-
+onMounted(getPages)
 </script>
