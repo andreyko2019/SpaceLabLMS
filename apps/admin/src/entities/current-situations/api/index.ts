@@ -1,7 +1,6 @@
 import { EnumControllerApi, useApi } from '@/shared'
-import { ref } from 'vue'
+import { currentSituations } from '../config'
 
-const currentSituations = ref()
 async function getCurrentSituations() {
   const api = useApi(EnumControllerApi)
 

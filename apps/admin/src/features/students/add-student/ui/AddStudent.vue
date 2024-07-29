@@ -11,7 +11,11 @@ import {
   course,
   getCourse,
   currentSituations,
+  englishLevel,
+  status,
   getCurrentSituations,
+  getEnglishLevel,
+  getStatus,
 } from '@/entities'
 import { studentInp, useValidAddStudentForm } from '@/features'
 
@@ -25,11 +29,13 @@ async function onSubmit() {
 async function feathData() {
   await getCourse()
   await getCurrentSituations()
+  await getEnglishLevel()
+  await getStatus()
 }
 onMounted(feathData)
 
-const selectedId = ref()
-const modelValue = ref()
+const courseId = ref()
+const selectedSituations = ref()
 </script>
 
 <template>
@@ -46,21 +52,33 @@ const modelValue = ref()
       :options="currentSituations"
       label="Поточне становище"
       val="Поточне становище"
-      @update:modelValue="modelValue = $event"
-      :model-value="modelValue"
+      @update:modelValue="selectedSituations = $event"
+      :model-value="selectedSituations"
     />
 
-    {{ modelValue }}
+    <BaseDropdown
+      :options="englishLevel"
+      label="Рівень англійської"
+      val="Поточне становище"
+      @update:modelValue="selectedSituations = $event"
+      :model-value="selectedSituations"
+    />
+
+    <BaseDropdown
+      :options="status"
+      label="Рівень англійської"
+      val="Поточне становище"
+      @update:modelValue="selectedSituations = $event"
+      :model-value="selectedSituations"
+    />
   </div>
 
   <Dropdown
     :options="course"
     label="label"
     value="value"
-    :modelValue="modelValue"
-    :selectId="selectedId"
-    @update:modelValue="modelValue = $event"
-    @update:selectedId="selectedId = $event"
+    :selectId="courseId"
+    @update:selectedId="courseId = $event"
   />
 
   <BaseButton text="Додати студента" type="submit" modify="primary" />

@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
         :key="index"
         @click="toggleOptionSelect(option)"
       >
-        {{ option.name }}
+        {{ option.name || option }}
       </li>
     </ul>
   </div>
