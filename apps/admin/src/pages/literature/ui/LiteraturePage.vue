@@ -1,8 +1,15 @@
-<template>
-  <div>Admin literature page</div>
-</template>
+<script setup lang="ts">
+import {Literature} from "@/features";
+</script>
 
-<script setup lang="ts"></script>
+
+<template>
+  <section class="literature">
+    <div class="container">
+      <Literature/>
+    </div>
+  </section>
+</template>
 
 <style lang="scss">
 @import 'LiteraturePage';

@@ -1,0 +1,17 @@
+.literature {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 32px;
+    margin: 0 0 40px;
+  }
+
+  &__add{
+    width: 200px;
+    height: 34px;
+  }
+}

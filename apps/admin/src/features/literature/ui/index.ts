@@ -1,0 +1,1 @@
+export {default as Literature} from './Literature.vue'
