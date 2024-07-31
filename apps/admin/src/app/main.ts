@@ -36,4 +36,5 @@ app.use(i18n)
 app.use(pinia)
 app.use(router)
 app.use(VueSweetalert2)
+
 app.mount('#app')

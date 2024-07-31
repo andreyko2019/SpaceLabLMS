@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-// import { BaseIcon } from '@/shared'
+import { BaseIcon } from '@/shared'
 
 interface IDropDownProps {
   options: Array<string>
@@ -16,55 +16,64 @@ const dropDown = ref<HTMLElement | null>(null)
 const dropdownOptions = ref<HTMLElement | null>(null)
 const selectedOption = ref<string | null>(null)
 const isDropDownVisible = ref<boolean>(false)
+const observer = ref<IntersectionObserver | null>(null)
 
 const mappedSelectionOption = computed(() => {
-  return selectedOption.value || props.val
+  return selectedOption.value || props.val || props.modelValue
 })
 
 const toggleOptionSelect = async (option: string) => {
+  isDropDownVisible.value = !isDropDownVisible.value
   selectedOption.value = option
+
   emit('update:modelValue', option)
-  setTimeout(() => {
-    isDropDownVisible.value = false
-  }, 300)
 }
 
 const closeDropDown = (event: MouseEvent) => {
-  if (!dropDown.value?.contains(event.target as Node)) {
-    isDropDownVisible.value = false
+  const target = event.target
+
+  if (target instanceof HTMLElement) {
+    if (!dropDown.value?.contains(target)) {
+      isDropDownVisible.value = false
+    }
   }
 }
 
-const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      dropdownOptions.value?.classList.add('dropdown__options_up')
-    } else {
-      dropdownOptions.value?.classList.remove('dropdown__options_up')
-    }
-  })
-}
+const handleIntersection = () => {
+  if (!dropDown.value || !dropdownOptions.value) return
 
-let observer: IntersectionObserver
+  observer.value = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting && isDropDownVisible.value) {
+          dropdownOptions.value!.style.top = `-${
+            dropdownOptions.value!.offsetHeight - 30
+          }px`
+          dropdownOptions.value!.style.bottom = 'auto'
+        } else {
+          dropdownOptions.value!.style.top = '100%'
+          dropdownOptions.value!.style.bottom = 'auto'
+        }
+      })
+    },
+    {
+      root: null,
+      rootMargin: '0px 0px -300px 0px',
+      threshold: 0,
+    }
+  )
+  observer.value.observe(dropdownOptions.value)
+}
 
 onMounted(() => {
   window.addEventListener('click', closeDropDown)
-  const offsetHeight = dropDown.value?.offsetHeight || 0
-  console.log(offsetHeight)
-  observer = new IntersectionObserver(handleIntersection, {
-    rootMargin: `0px 0px -${offsetHeight}px 0px`,
-    threshold: 1,
-  })
-
-  if (dropDown.value) {
-    observer.observe(dropDown.value)
-  }
+  handleIntersection()
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('click', closeDropDown)
-  if (observer && dropDown.value) {
-    observer.unobserve(dropDown.value)
+  if (observer.value) {
+    observer.value.disconnect()
   }
 })
 </script>
@@ -80,15 +89,15 @@ onBeforeUnmount(() => {
         class="dropdown__arrow"
         :class="{ dropdown__arrow_act: isDropDownVisible }"
       >
-        <!--        <BaseIcon icon="arrow-down" />-->
+        <BaseIcon icon="arrow-down" />
       </div>
     </div>
 
     <transition name="slide-fade">
       <ul
         ref="dropdownOptions"
-        v-if="isDropDownVisible"
         class="dropdown__options"
+        :class="{ 'dropdown__options_act': isDropDownVisible }"
       >
         <li
           v-for="(option, index) in props.options"

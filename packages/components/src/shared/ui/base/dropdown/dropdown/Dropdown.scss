@@ -1,3 +1,4 @@
+@import '../../../../assets/scss';
 .select {
   cursor: pointer;
   width: 100%;
@@ -8,7 +9,6 @@
     font-size: 16px;
     line-height: 1.75;
     color: var(--primary-text);
-    margin-bottom: 8px;
   }
 
   &__selected {
@@ -28,20 +28,19 @@
   }
 
   &__list {
-    display: block;
+    display: none;
     border: 1px solid var(--border);
     border-radius: 4px;
     width: 100%;
-    height: auto;
-    opacity: 0;
+    height: 100px;
     transform: translateY(-10px);
     background: var(--header);
     margin-top: 4px;
     position: absolute;
     top: 100%;
     z-index: -1;
-    transition: opacity 0.3s ease-in, transform 0.3s ease-in, top, .5s ease;;
-
+    transition: opacity 0.3s ease-in, transform 0.3s ease-in, top, 0.5s ease;
+    overflow: auto;
 
     &_act {
       opacity: 1;
@@ -49,6 +48,7 @@
       background: var(--header);
       border: 1px solid var(--border);
       z-index: 1;
+      display: block;
     }
 
     &::-webkit-scrollbar {

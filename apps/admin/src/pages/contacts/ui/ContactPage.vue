@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { Contact } from '@/features'
+import { Contact } from '@/entities'
 </script>
 <template>
-  <section class="contact">
-    <div class="container">
-      <Contact />
-    </div>
-  </section>
+  <div class="container">
+    <Contact />
+  </div>
 </template>
 
 <style lang="scss">

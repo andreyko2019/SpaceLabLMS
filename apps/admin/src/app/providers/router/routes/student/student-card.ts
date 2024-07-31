@@ -4,7 +4,7 @@ export const routeName = 'StudentCardPage'
 
 export const route: RouteRecordRaw = {
   name: routeName,
-  path: '/student/:card',
+  path: '/student-card',
   component: () => import('@/pages/student-card'),
   meta: {
     layout: 'DefaultLayout',

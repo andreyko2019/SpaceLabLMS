@@ -13,7 +13,6 @@
     font-size: 16px;
     line-height: 1.75;
     color: var(--primary-text);
-    margin-bottom: 8px;
   }
 
   &__selected {
@@ -60,13 +59,23 @@
     border-radius: 4px;
     width: 100%;
     height: auto;
-    overflow: auto;
-    //position: absolute;
-    //top: 100%;
+    opacity: 0;
+    transform: translateY(-10px);
     background: var(--header);
-    //z-index: 30;
     margin-top: 4px;
-    left: 0;
+    position: absolute;
+    top: 100%;
+    z-index: -1;
+    transition: opacity 0.3s ease-in, transform 0.3s ease-in, top, .5s ease;;
+
+
+    &_act {
+      opacity: 1;
+      transform: translateY(0);
+      background: var(--header);
+      border: 1px solid var(--border);
+      z-index: 1;
+    }
 
     &::-webkit-scrollbar {
       width: 8px;

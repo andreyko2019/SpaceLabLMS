@@ -79,7 +79,7 @@ const toggleSideBar = () => {
 
 const toggleSideBarMobile = useToggle(isToggleMobile)
 const handleResize = () => {
-  isMobile.value = window.innerWidth <= 767
+  isMobile.value = window.innerWidth <= 1023
 }
 
 useResize(handleResize)

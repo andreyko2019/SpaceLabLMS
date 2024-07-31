@@ -253,6 +253,7 @@ export interface Contact {
  * @interface ContactDto
  */
 export interface ContactDto {
+  id: number
   /**
    *
    * @type {string}
