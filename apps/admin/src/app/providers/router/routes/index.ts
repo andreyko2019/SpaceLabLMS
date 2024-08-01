@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { route as signInRoute } from './sign-in'
 import { route as LessonsRoute } from './lessons'
 import { route as notFoundRoute } from './not-found'
@@ -45,7 +45,7 @@ export const routes: RouteRecordRaw[] = rawRoutes.map((route) => ({
 }))
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 })
 

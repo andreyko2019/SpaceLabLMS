@@ -36,16 +36,32 @@ export class AppRoutes {
     return getRoute(AppPages.StudentPage, {})
   }
 
+  static getAdminStudentAdd() {
+    return getRoute(AppPages.StudentAddPage, {})
+  }
+
+  static getAdminStudentCard() {
+    return getRoute(AppPages.StudentCardPage, {})
+  }
+
   static getAdminLessons() {
     return getRoute(AppPages.LessonsPage, {})
   }
 
-  getAdminCourses() {
+  static getAdminCourses() {
     return getRoute(AppPages.CoursesPage, {})
   }
 
-  getAdminCourseCard(card: string) {
-    return getRoute(AppPages.CoursesCardPage, { card })
+  static getAdminCourseCard() {
+    return getRoute(AppPages.CoursesCardPage, {})
+  }
+
+  static getAdminCourseAdd() {
+    return getRoute(AppPages.ContactAddPage, {})
+  }
+
+  static getAdminCourseEdit() {
+    return getRoute(AppPages.ContactEditPage, {})
   }
 }
 
