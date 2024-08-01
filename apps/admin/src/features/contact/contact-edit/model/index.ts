@@ -1,2 +1,2 @@
 export * from './yupSchema'
-export * from './useValid'
+export * from './useValidEdit'

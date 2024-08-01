@@ -40,7 +40,7 @@ interface IStudentDtoForView extends StudentDtoForView {
 }
 
 interface IContact extends ContactDtoForFilter {
-  id: number
+  id?: number
   fullName?: string
   icon?: string[]
 }

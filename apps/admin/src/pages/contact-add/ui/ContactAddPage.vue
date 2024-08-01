@@ -1,5 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ContactAdd from '@/features/contact/contact-add/ui/ContactAdd.vue'
+</script>
 
-<template>add</template>
+<template>
+  <div class="container">
+    <ContactAdd />
+  </div>
+</template>
 
-<style scoped lang="scss"></style>
+<style lang="scss"></style>

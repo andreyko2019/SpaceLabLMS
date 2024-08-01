@@ -1,2 +1,2 @@
-export * from './ui'
-export * from './model'
+export * from './contact-edit'
+export * from './contact-add'

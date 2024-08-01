@@ -2,69 +2,62 @@
 import {
   BaseIcon,
   BaseForm,
-  BaseInput,
-  BaseButton,
-  BaseCheckbox,
   ThePreloader,
+  BaseInput,
+  BaseCheckbox,
+  BaseButton,
 } from '@spacelablms/components'
-
-import {
-  editContactInp,
-  editContactLinks,
-  isDisplay,
-  useValidEditContactForm,
-} from '@/features'
-import { ContactControllerApi, useApi } from '@/shared'
+import { addContactLinks, editContactInp, useValidAdd } from '@/features'
 import { ref } from 'vue'
-import { contactId } from '@/entities'
+import { ContactControllerApi, useApi } from '@/shared'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const isLoading = ref(false)
-const editContactForm = useValidEditContactForm()
+const isDisplay = ref(false)
+const editContactForm = useValidAdd()
 
-async function editContact() {
+async function addContact() {
   const api = useApi(ContactControllerApi)
 
   try {
-    await api.edit6({
-      id: contactId.value,
+    await api.add7({
       contactDto: {
         name: editContactForm.values.name,
         middleName: editContactForm.values.middlename,
         lastName: editContactForm.values.lastname,
-        telegram: editContactForm.values.telegram,
         telephone: editContactForm.values.telephone,
+        telegram: editContactForm.values.telegram,
         email: editContactForm.values.email,
-        display: isDisplay.value,
+        display: editContactForm.values.display,
       },
     })
 
     router.push('/contact')
   } catch (error) {
     console.error(error)
-  } finally {
   }
 }
-
 async function onSubmit() {
   const { valid } = await editContactForm.instance.validate()
 
   if (!valid) return
   isLoading.value = true
-  await editContact()
+  await addContact()
   isLoading.value = false
 }
 </script>
 
 <template>
+  <div class="add-contact"></div>
+
   <div class="edit-contact">
-    <h1 class="edit-contact__title">Редагувати контакт</h1>
+    <h1 class="edit-contact__title">Додати контакт</h1>
 
     <div class="edit-contact__links">
       <router-link
         class="edit-contact__links-item"
-        v-for="(link, index) in editContactLinks"
+        v-for="(link, index) in addContactLinks"
         :key="index"
         :to="link.href"
         :class="{ 'edit-contact__links-item_act': !link.icon }"
@@ -98,7 +91,7 @@ async function onSubmit() {
         />
 
         <div class="edit-contact__btn">
-          <BaseButton modify="primary" text="Редагувати" type="submit" />
+          <BaseButton modify="primary" text="Додати" type="submit" />
         </div>
       </div>
     </BaseForm>
@@ -107,6 +100,4 @@ async function onSubmit() {
   </div>
 </template>
 
-<style lang="scss">
-@import 'ContactEdit';
-</style>
+<style lang="scss"></style>
