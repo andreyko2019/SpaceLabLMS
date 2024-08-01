@@ -20,6 +20,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useCustomField } from '@/shared'
+// import { parsePhoneNumber, isValidPhoneNumber } from 'libphonenumber-js'
 
 type InputContent = string | number | null | object
 type InputType = 'text' | 'number' | 'password' | 'email' | 'tel'
@@ -37,10 +38,10 @@ interface IProps {
 
 const props = withDefaults(defineProps<IProps>(), {
   modelValue: null,
-  name: 'text',
+  type: 'text',
+  name: '',
   placeholder: '',
   errorMessage: '',
-  type: 'text',
   inputValue: '',
 })
 
@@ -66,14 +67,22 @@ const inputValue: any = computed({
 })
 
 function onInput(event: Event) {
-  const input = event.target
-
-  if (input instanceof HTMLInputElement) {
-    if (input) {
-      inputValue.value = input.value
-    }
-  }
+  const input = event.target as HTMLInputElement
+  inputValue.value = input.value
 }
+
+// function formatPhone() {
+//   if (props.type === 'tel') {
+//     try {
+//       const phoneNumber = parsePhoneNumber(inputValue.value, 'UA')
+//       if (phoneNumber && isValidPhoneNumber(inputValue.value)) {
+//         inputValue.value = phoneNumber.formatInternational()
+//       }
+//     } catch (error) {
+//       console.error('Invalid phone number', error)
+//     }
+//   }
+// }
 </script>
 
 <style lang="scss">

@@ -1,38 +1,30 @@
 <script setup lang="ts">
 import {
   BaseInput,
-  BaseButton,
   TheTable,
   ThePagination,
-  TheModal,
-  useToggle,
+  BaseDropdown,
 } from '@spacelablms/components'
 import { onMounted } from 'vue'
-import { StudentControllerApi, StudentDtoForView, useApi } from '@/shared'
+import { StudentControllerApi, useApi } from '@/shared'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { isModal, page, pageSize, studentTh, totalPage } from '@/entities'
-import { AddStudent } from '@/features'
-const { t } = useI18n()
+import {
+  handleAction,
+  IStudentDtoForView,
+  currentPage,
+  pageSize,
+  studentTh,
+  totalPage,
+  showPages,
+} from '@/entities'
 
-const studentTd = ref<ReturnType<typeof mapStudentData>[]>([])
-const openModal = useToggle(isModal)
-const closeModal = useToggle(isModal)
-function mapStudentData(item: StudentDtoForView) {
-  if (item.course) {
-    const courseValues = Object.values(item.course)
-    return {
-      ...item,
-      course: courseValues[0],
-      status: t(`LESSONS_STATUS.${item.status}`),
-      levelOfPreparation: t(`LEVEL_OF_PREPARATION.${item.levelOfPreparation}`),
-    }
-  }
-  return item
-}
+const { t } = useI18n()
+const studentTd = ref<IStudentDtoForView[]>([])
 
 async function getAllStudent(pageNumber = 0) {
   const studentApi = useApi(StudentControllerApi)
+  studentTd.value = []
 
   const studentData = await studentApi.getAll1({
     studentDtoForFilter: {
@@ -41,19 +33,40 @@ async function getAllStudent(pageNumber = 0) {
     },
   })
 
-  studentTd.value =
-    studentData.data.content?.map(({ id, ...item }) => mapStudentData(item)) ||
-    []
+  studentData.data.content?.forEach(({ course, ...item }) => {
+    const courseName =
+      typeof course === 'object' &&
+      course !== null &&
+      Object.keys(course).length > 0
+        ? course[Object.keys(course)[0]]
+        : ''
+
+    studentTd.value.push({
+      id: item.id,
+      fullName: item.fullName,
+      courseName,
+      dateOfJoining: item.dateOfJoining,
+      levelOfPreparation: item.levelOfPreparation,
+      task: item.task,
+      statusName: t(`LESSONS_STATUS.${item.status}`),
+      icon: ['edit', 'delete', 'tasks'],
+    })
+  })
+
   totalPage.value = studentData.data.totalPages || 0
 }
 
 async function onPageChange(pageNumber: number) {
-  page.value = pageNumber
-
-  await getAllStudent(pageNumber)
+  currentPage.value = pageNumber
+  await getAllStudent(currentPage.value - 1)
 }
 
-onMounted(getAllStudent)
+const fetchStudents = async (pageNumber = 0) => {
+  await getAllStudent(pageNumber)
+}
+onMounted(() => {
+  fetchStudents()
+})
 </script>
 
 <template>
@@ -66,29 +79,25 @@ onMounted(getAllStudent)
       </div>
 
       <div class="students__add-btn">
-        <BaseButton
-          text="Додати студента"
-          modify="primary"
-          @click="openModal"
-        />
+        <router-link to="/student-add">Додати студента</router-link>
       </div>
     </div>
 
     <div class="students__table">
-      <TheTable :th="studentTh" :td="studentTd" />
+      <TheTable :th="studentTh" :td="studentTd" @action="handleAction" />
 
-      <div class="contact__pagination">
-        <ThePagination
-          :model-value="page"
-          :count="totalPage"
-          @update:model-value="onPageChange"
-        />
+      <div class="students__pagination">
+        <div class="students__pages">
+          <BaseDropdown
+            :options="showPages"
+            val="4"
+            @update:modelValue="pageSize = $event"
+          />
+        </div>
+
+        <ThePagination :totalPage="totalPage" @change="onPageChange" />
       </div>
     </div>
-
-    <TheModal v-if="isModal" @close="closeModal" title="Додати студента">
-      <AddStudent />
-    </TheModal>
   </div>
 </template>
 

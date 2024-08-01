@@ -5,83 +5,168 @@ import {
   BaseInput,
   BaseButton,
   BaseDropdown,
+  BaseCheckbox,
+  BaseIcon,
+  ThePreloader,
 } from '@spacelablms/components'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { course, getCourse } from '@/entities'
 import {
-  course,
-  getCourse,
-  currentSituations,
-  englishLevel,
-  status,
-  getCurrentSituations,
-  getEnglishLevel,
-  getStatus,
-} from '@/entities'
-import { studentInp, useValidAddStudentForm } from '@/features'
+  dropDown,
+  links,
+  selectedValues,
+  studentInp,
+  useValidAddStudentForm,
+} from '@/features'
+import {
+  Add1CurrentSituationEnum,
+  StudentControllerApi,
+  useApi,
+} from '@/shared'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const courseId = ref()
+const isLoading = ref(false)
 
 const addStudentForm = useValidAddStudentForm()
+const isVideoReview = ref(false)
+
+const isStudentEmployed = computed(() => {
+  return (
+    selectedValues.value.currentSituations !== Add1CurrentSituationEnum.Working
+  )
+})
+
+function resetForm() {
+  addStudentForm.values.name = ''
+  addStudentForm.values.middlename = ''
+  addStudentForm.values.lastname = ''
+  addStudentForm.values.email = ''
+  addStudentForm.values.telegram = ''
+  addStudentForm.values.telephone = ''
+  addStudentForm.values.totalmark = 0
+  selectedValues.value.currentSituations = undefined
+  selectedValues.value.englishLevels = undefined
+  selectedValues.value.preparationLevels = undefined
+  courseId.value = undefined
+  selectedValues.value.studentStatuses = undefined
+  isVideoReview.value = false
+}
+
+async function postAddStudent() {
+  const api = useApi(StudentControllerApi)
+
+  try {
+    await api.add1({
+      name: addStudentForm.values.name,
+      middleName: addStudentForm.values.middlename,
+      lastName: addStudentForm.values.lastname,
+      email: addStudentForm.values.email,
+      telegram: addStudentForm.values.telegram,
+      telephone: addStudentForm.values.telephone,
+      totalMark: addStudentForm.values.totalmark,
+      currentSituation: selectedValues.value.currentSituations,
+      englishLevel: selectedValues.value.englishLevels,
+      levelOfPreparation: selectedValues.value.preparationLevels,
+      courseId: +courseId.value,
+      status: selectedValues.value.studentStatuses,
+      isVideoReview: isVideoReview.value,
+      display: false,
+    })
+    router.push('/student')
+  } catch (error) {
+    console.log(error)
+  } finally {
+    resetForm()
+    isLoading.value = false
+  }
+}
 async function onSubmit() {
   const { valid } = await addStudentForm.instance.validate()
 
   if (!valid) return
+  isLoading.value = true
+  await postAddStudent()
+  resetForm()
+  isLoading.value = false
 }
 
 async function feathData() {
   await getCourse()
-  await getCurrentSituations()
-  await getEnglishLevel()
-  await getStatus()
 }
 onMounted(feathData)
-
-const courseId = ref()
-const selectedSituations = ref()
 </script>
 
 <template>
-  <BaseForm @send="onSubmit"> </BaseForm>
-  <div class="add-student__form">
-    <BaseInput
-      v-for="(inp, index) in studentInp"
-      :key="index"
-      :label="inp.label"
-      :name="inp.name"
-    />
+  <div class="add-student">
+    <h1 class="add-student__title">Додати студента</h1>
 
-    <BaseDropdown
-      :options="currentSituations"
-      label="Поточне становище"
-      val="Поточне становище"
-      @update:modelValue="selectedSituations = $event"
-      :model-value="selectedSituations"
-    />
+    <div class="add-student__links">
+      <router-link
+        class="add-student__links-item"
+        v-for="(link, index) in links"
+        :key="index"
+        :to="link.href"
+        :class="{ 'add-student__links-item_act': !link.icon }"
+      >
+        {{ link.name }}
 
-    <BaseDropdown
-      :options="englishLevel"
-      label="Рівень англійської"
-      val="Поточне становище"
-      @update:modelValue="selectedSituations = $event"
-      :model-value="selectedSituations"
-    />
+        <span v-if="link.icon">
+          <BaseIcon :icon="link.icon" />
+        </span>
+      </router-link>
+    </div>
 
-    <BaseDropdown
-      :options="status"
-      label="Рівень англійської"
-      val="Поточне становище"
-      @update:modelValue="selectedSituations = $event"
-      :model-value="selectedSituations"
-    />
+    <BaseForm @send="onSubmit" class="add-student__form">
+      <div class="add-student__column">
+        <BaseInput
+          v-for="(inp, index) in studentInp"
+          :key="index"
+          :label="inp.label"
+          :name="inp.name"
+          :type="inp.type"
+        />
+
+        <BaseInput
+          label="Робота"
+          name="work"
+          :is-disabled="isStudentEmployed"
+        />
+
+        <BaseDropdown
+          v-for="(item, index) in dropDown"
+          :key="index"
+          :options="item.option"
+          :label="item.label"
+          :val="item.label"
+          @update:modelValue="selectedValues[item.select] = $event"
+        />
+
+        <Dropdown
+          :options="course"
+          label="Курс"
+          value="Назва курсу"
+          :selectId="courseId"
+          @update:selectedId="courseId = $event"
+        />
+
+        <BaseCheckbox
+          label="Надав відео відгук"
+          id="video"
+          name="video"
+          value="Надав відео відгук"
+          v-model:checked="isVideoReview"
+        />
+      </div>
+
+      <div class="add-student__btn">
+        <BaseButton text="Додати студента" type="submit" modify="primary" />
+      </div>
+    </BaseForm>
+
+    <ThePreloader v-if="isLoading" />
   </div>
-
-  <Dropdown
-    :options="course"
-    label="label"
-    value="value"
-    :selectId="courseId"
-    @update:selectedId="courseId = $event"
-  />
-
-  <BaseButton text="Додати студента" type="submit" modify="primary" />
 </template>
 
 <style lang="scss">

@@ -24,14 +24,13 @@
     width: 100%;
     background: var(--header);
     color: var(--primary-text);
-    margin: 0 0 12px;
   }
 
   &__error {
     text-overflow: ellipsis;
     width: fit-content;
     position: absolute;
-    top: calc(87% - 1px);
+    top: calc(105% - 1px);
     left: 16px;
     z-index: 6;
     background: $red;

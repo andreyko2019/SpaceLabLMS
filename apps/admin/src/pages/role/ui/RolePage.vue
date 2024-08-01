@@ -1,13 +1,11 @@
 <template>
-  <section class="role">
-    <div class="container">
-      <CreateRoles />
-    </div>
-  </section>
+  <div class="container">
+    <Role />
+  </div>
 </template>
 
 <script setup lang="ts">
-import { CreateRoles } from '@/features'
+import { Role } from '@/entities'
 </script>
 
 <style lang="scss">

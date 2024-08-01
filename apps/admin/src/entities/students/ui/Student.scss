@@ -12,6 +12,10 @@
     align-items: center;
     width: 100%;
     margin: 0 0 32px;
+
+    @include media-breakpoint-down(xs){
+      flex-direction: column;
+    }
   }
 
   &__search {
@@ -23,12 +27,39 @@
     }
 
     @include media-breakpoint-down(sm) {
+      width: 15rem;
+    }
+
+    @include media-breakpoint-down(xs) {
       width: 100%;
+      margin: 0 0 16px;
     }
   }
 
   &__add-btn {
-    width: 200px;
-    height: 34px;
+    a{
+      display: block;
+      border-radius: 4px;
+      font-weight: 500;
+      border: 1px solid var(--btn-bg);
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      padding: 7px 40px;
+
+      &:hover {
+        background: var(--btn-text);
+        color: var(--btn-bg);
+      }
+
+      @include media-breakpoint-down(sm){
+        padding: 7px 20px;
+      }
+    }
+  }
+
+  &__pagination{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }

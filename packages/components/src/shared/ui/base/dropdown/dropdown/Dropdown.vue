@@ -15,6 +15,7 @@ interface IProps {
 }
 
 const props = defineProps<IProps>()
+
 const selectedOption = ref<string | null>(null)
 const isDropDown = ref(false)
 const select = ref<HTMLElement | null>(null)
@@ -33,6 +34,7 @@ const emit = defineEmits<{
 const toggleOptionSelect = (option: Option) => {
   isDropDown.value = !isDropDown.value
   selectedOption.value = option.name
+
   emit('update:selectedId', option.id)
   emit('update:modelValue', option.name)
 }
@@ -57,7 +59,6 @@ const setupIntersectionObserver = () => {
           selectList.value!.style.top = `-${
             selectList.value!.offsetHeight - 30
           }px`
-          // selectList.value!.style.bottom = '55%'
           selectList.value!.style.bottom = 'auto'
         } else {
           selectList.value!.style.top = '100%'

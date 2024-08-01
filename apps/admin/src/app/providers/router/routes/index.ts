@@ -14,7 +14,9 @@ import { route as StatisticsRoute } from './statistics'
 import { route as RolesRoute } from './roles'
 import { route as LiteratureRoute } from './literature'
 import { route as mainRoute } from './main'
-import { route as contactRoute } from './contacts'
+import { route as contactRoute } from './contact/contacts'
+import { route as contactAddRoute } from './contact/contact-add'
+import { route as contactEditRoute } from './contact/contact-edit'
 import { authGuard } from './auth'
 
 const rawRoutes: RouteRecordRaw[] = [
@@ -33,6 +35,8 @@ const rawRoutes: RouteRecordRaw[] = [
   LiteratureRoute,
   mainRoute,
   contactRoute,
+  contactAddRoute,
+  contactEditRoute,
 ]
 
 export const routes: RouteRecordRaw[] = rawRoutes.map((route) => ({

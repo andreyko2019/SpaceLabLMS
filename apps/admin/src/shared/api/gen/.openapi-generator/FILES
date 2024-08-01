@@ -1,6 +1,6 @@
 .gitignore
 .npmignore
-api.ts
+index.ts
 base.ts
 common.ts
 configuration.ts

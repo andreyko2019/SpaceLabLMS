@@ -1,5 +1,6 @@
-import { date, InferType, object, string } from 'yup'
+import { InferType, number, object, string } from 'yup'
 import { useI18n } from 'vue-i18n'
+import { isValidPhoneNumber } from 'libphonenumber-js'
 
 const namePattern = /^[a-zA-Zа-яА-Я]([a-zA-Zа-яА-Я]+)*$/
 const name = namePattern
@@ -7,8 +8,9 @@ const lastNamePattern = namePattern
 const middleNamePattern = namePattern
 const emailPattern =
   /^[а-яА-ЯёЁa-zA-Z0-9._%+-]+@[а-яА-ЯёЁa-zA-Z0-9.-]+\.[а-яА-ЯёЁa-zA-Z]{2,4}$/
-const phonePattern = /^(\+380)[0-9]{9}$/
+const phonePattern = isValidPhoneNumber
 const telegramPattern = /^@[a-zA-Z][a-zA-Z0-9_]{1,31}$/
+const datePatterm = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/
 
 export function addStudentSchema() {
   const { t } = useI18n()
@@ -38,13 +40,19 @@ export function addStudentSchema() {
         return lastNamePattern.test(value)
       }),
 
-    birthday: date().required(t('VALIDATION.THE_REQUIRED_FIELD')),
+    birthday: string()
+      .required(t('VALIDATION.THE_REQUIRED_FIELD'))
+      .test('date', t('VALIDATION.DATE'), (value) => {
+        return datePatterm.test(value)
+      }),
 
     telephone: string()
       .required(t('VALIDATION.THE_REQUIRED_FIELD'))
       .test('phone', t('VALIDATION.TELEPHONE'), (value) => {
-        return phonePattern.test(value)
+        return phonePattern(value)
       }),
+
+    totalmark: number().required(t('VALIDATION.THE_REQUIRED_FIELD')),
 
     email: string()
       .required(t('VALIDATION.THE_REQUIRED_FIELD'))
@@ -57,6 +65,8 @@ export function addStudentSchema() {
       .test('telegram', t('VALIDATION.TELEGRAM'), (value) => {
         return telegramPattern.test(value)
       }),
+
+    work: string().max(100),
   })
 }
 

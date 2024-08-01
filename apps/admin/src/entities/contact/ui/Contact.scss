@@ -1,0 +1,66 @@
+@import '../../../../../../packages/components/dist/scss';
+.contact{
+  &__title {
+    font-weight: 600;
+    font-size: 32px;
+    margin: 0 0 40px;
+  }
+
+  &__row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0 0 32px;
+
+  }
+
+  &__search{
+    width: 25rem;
+    margin: 0 16px 0 0;
+
+    @include media-breakpoint-down(md){
+      width: 20rem;
+    }
+
+    @include media-breakpoint-down(sm){
+      width: 100%;
+    }
+  }
+
+  &__add{
+    a{
+      display: block;
+      border-radius: 4px;
+      font-weight: 500;
+      border: 1px solid var(--btn-bg);
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      padding: 7px 40px;
+
+      &:hover {
+        background: var(--btn-text);
+        color: var(--btn-bg);
+      }
+
+      @include media-breakpoint-down(sm){
+        padding: 7px 20px;
+      }
+    }
+  }
+
+  &__pagination{
+    display: flex;
+    justify-content: flex-end;
+    margin: 32px 0 0 ;
+
+    @include media-breakpoint-down(sm){
+      justify-content: center;
+    }
+  }
+
+  &__btn{
+    margin: 16px 0 0 ;
+    height: 32px;
+  }
+}
