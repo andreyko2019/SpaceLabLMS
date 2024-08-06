@@ -91,7 +91,7 @@
       width: 26px;
       height: 26px;
       background: #fff;
-      background: var(--header);
+      background: var(--btn-bg);
       border-radius: 90px;
       transition: 0.3s;
       transform: translateY(-50%);
@@ -103,7 +103,7 @@
       background: var(--header);
 
       &:after {
-        background: #fff;
+        background: var(--btn-bg);
         left: calc(100% - 5px);
         transform: translateX(-100%) translateY(-50%);
       }

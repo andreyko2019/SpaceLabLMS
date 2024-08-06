@@ -27,34 +27,3 @@ async function getContact(pageNumber: number = 0) {
 }
 
 export { getContact }
-
-// async function getPagination(pageNumber = 0) {
-//   isLoading.value = true
-//   const api = useApi(ContactControllerApi)
-//
-//   try {
-//     const data = await api.getAll7({
-//       contactDtoForFilter: {
-//         page: pageNumber,
-//         pageSize: pageSize.value,
-//       },
-//     })
-//
-//     if (data.data.content && data.data) {
-//       tdData.value = data.data.content.map((item) => ({
-//         name: `${item.name} ${item.middleName} ${item.lastName}`,
-//         telephone: item.telephone,
-//         telegram: item.telegram,
-//         email: item.email,
-//         icon: 'pencil',
-//       }))
-//
-//       totalPage.value = data.data.totalPages || 0
-//     }
-//   } catch (error) {
-//     console.error(error)
-//     isTest.value = false
-//   } finally {
-//     isLoading.value = false
-//   }
-// }

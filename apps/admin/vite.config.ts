@@ -8,8 +8,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, envDir)
 
   return {
-    base: '/spaceLabLMS',
-
+    base: env.VITE_ADMIN_PATH_PREFIX,
     envDir,
 
     server: {

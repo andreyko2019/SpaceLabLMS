@@ -7,7 +7,7 @@ import {
   BaseCheckbox,
   BaseButton,
 } from '@spacelablms/components'
-import { addContactLinks, editContactInp, useValidAdd } from '@/features'
+import { addContactInp, addContactLinks, form } from '@/features'
 import { ref } from 'vue'
 import { ContactControllerApi, useApi } from '@/shared'
 import { useRouter } from 'vue-router'
@@ -15,21 +15,21 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const isLoading = ref(false)
 const isDisplay = ref(false)
-const editContactForm = useValidAdd()
+const addContactForm = form()
 
-async function addContact() {
+async function addNewContact() {
   const api = useApi(ContactControllerApi)
 
   try {
     await api.add7({
       contactDto: {
-        name: editContactForm.values.name,
-        middleName: editContactForm.values.middlename,
-        lastName: editContactForm.values.lastname,
-        telephone: editContactForm.values.telephone,
-        telegram: editContactForm.values.telegram,
-        email: editContactForm.values.email,
-        display: editContactForm.values.display,
+        name: addContactForm.values.add_name,
+        middleName: addContactForm.values.add_middlename,
+        lastName: addContactForm.values.add_lastname,
+        telephone: addContactForm.values.add_telephone,
+        telegram: addContactForm.values.add_telegram,
+        email: addContactForm.values.add_email,
+        display: isDisplay.value,
       },
     })
 
@@ -39,11 +39,11 @@ async function addContact() {
   }
 }
 async function onSubmit() {
-  const { valid } = await editContactForm.instance.validate()
+  const { valid } = await addContactForm.instance.validate()
 
   if (!valid) return
   isLoading.value = true
-  await addContact()
+  await addNewContact()
   isLoading.value = false
 }
 </script>
@@ -73,7 +73,7 @@ async function onSubmit() {
     <BaseForm @send="onSubmit">
       <div class="edit-contact__form">
         <BaseInput
-          v-for="(inp, index) in editContactInp"
+          v-for="(inp, index) in addContactInp"
           :key="index"
           :label="inp.label"
           :name="inp.name"

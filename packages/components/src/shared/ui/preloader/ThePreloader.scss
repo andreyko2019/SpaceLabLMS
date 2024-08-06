@@ -1,4 +1,5 @@
 @import "../../assets/scss";
+@import "../../assets/scss/variables";
 
 .preloader-item{
   position: fixed;
@@ -67,7 +68,6 @@
   }
 }
 
-/* Animations */
 @keyframes tiltSpin {
   from {
     transform: rotateY(0) rotateX(30deg);

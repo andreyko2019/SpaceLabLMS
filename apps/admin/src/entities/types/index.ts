@@ -14,13 +14,13 @@ interface StudentInput {
   name: string
   type?: InputType
 }
-//
+
 // type DropDownItem = {
 //   label: string
 //   option: string[]
 //   select: keyof SelectedValues
 // }
-
+//
 // type CurrentSituation = Add1CurrentSituationEnum | undefined
 // type EnglishLevel = Add1EnglishLevelEnum | undefined
 // type PreparationLevel = Add1LevelOfPreparationEnum | undefined
@@ -32,7 +32,7 @@ interface StudentInput {
 //   studentStatuses: StudentStatus
 //   preparationLevels: PreparationLevel
 // }
-
+//
 interface IStudentDtoForView extends StudentDtoForView {
   courseName?: string
   statusName?: string

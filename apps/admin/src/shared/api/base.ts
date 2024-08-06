@@ -22,6 +22,7 @@ export interface ApiOptions {
 export interface BlobResponse extends AxiosResponse {
   data: Blob | object | void
 }
+
 const token = useGetCookie('admin-access-token')
 
 const conf = new Configuration({
@@ -51,15 +52,19 @@ async function refreshAccessToken() {
 
       console.log(data)
 
-      const newAccessToken = <string>data.accessToken
+      const newAccessToken = data.accessToken as string
       useSetCookie('admin-access-token', newAccessToken)
       console.log('токен оновлено')
       return newAccessToken
+    } else {
+      console.error('Refresh token is missing')
     }
   } catch (error) {
-    console.error(error)
+    console.error('Error refreshing access token:', error)
     throw error
   }
 }
 
-await refreshAccessToken()
+;(async () => {
+  await refreshAccessToken()
+})()

@@ -5,11 +5,13 @@
     "STUDIES_AND_WORKING": "Навчаюся та працюю",
     "UNEMPLOYED": "Безробітний"
   },
+
   "STATUS": {
     "ACTIVE": "Активний",
     "INACTIVE": "Неактивний",
     "RECRUITING": "Набір"
   },
+
   "LESSONS_STATUS": {
     "ACTIVE": "Активний",
     "BLOCKED": "Заблокований",
@@ -49,6 +51,10 @@
     "BAD_SKILLS": "Погані навички",
     "GOOD_SKILLS": "Хороші навички",
     "READY": "Готовий"
+  },
+
+  "ROLE": {
+    "ROLE_ADMIN": "Адміністратор"
   }
 
 
