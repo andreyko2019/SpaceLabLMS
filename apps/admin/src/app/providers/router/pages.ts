@@ -1,4 +1,5 @@
 import { routeName as signIn } from './routes/sign-in'
+import { routeName as ProfilePage } from './routes/profile'
 import { routeName as LessonsPage } from './routes/lessons'
 import { routeName as TaskPage } from './routes/task/task'
 import { routeName as notFoundRoute } from './routes/not-found'
@@ -16,6 +17,7 @@ import { routeName as ContactsPage } from './routes/contacts'
 
 export const pages = {
   signIn,
+  ProfilePage,
   LessonsPage,
   TaskPage,
   notFoundRoute,
