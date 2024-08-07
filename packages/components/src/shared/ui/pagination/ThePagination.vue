@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { BaseButton, BaseIcon } from '@/shared'
+import { BaseButton, BaseIcon, BaseInput } from '@/shared'
 
 interface IPagination {
   totalPage: number,
@@ -10,10 +10,12 @@ const props = defineProps<IPagination>()
 const emit = defineEmits(['change'])
 
 const currentPage = ref(1)
+const inputPage = ref(currentPage.value.toString())
 
 const goToPage = (page: number) => {
   if (page >= 1 && page <= props.totalPage) {
     currentPage.value = page
+    inputPage.value = currentPage.value.toString()
     emit('change', currentPage.value)
   }
 }
@@ -43,23 +45,35 @@ const pageNumbers = computed(() => {
     const left = Math.max(currentPage.value - 1, 1)
     const right = Math.min(currentPage.value + 1, total)
 
-    if (left > 2) {
+    if (left > 1) {
       pages.push(1)
-      pages.push('...')
+      if (left > 2) {
+        pages.push('...')
+      }
     }
 
     for (let i = left; i <= right; i++) {
       pages.push(i)
     }
 
-    if (right < total - 1) {
-      pages.push('...')
+    if (right < total) {
+      if (right < total - 1) {
+        pages.push('...')
+      }
       pages.push(total)
     }
   }
 
   return pages
 })
+
+const handleInputChange = (event: Event) => {
+  const value = (event.target as HTMLInputElement).value
+  const pageNumber = parseInt(value, 10)
+  if (!isNaN(pageNumber)) {
+    goToPage(pageNumber)
+  }
+}
 </script>
 
 <template>
@@ -70,7 +84,7 @@ const pageNumbers = computed(() => {
       :disabled="currentPage === 1"
       class="pagination__button-prev"
     >
-      <BaseIcon icon="arrow-left" />
+      <BaseIcon icon="pagination-left" />
     </BaseButton>
 
     <span
@@ -89,8 +103,21 @@ const pageNumbers = computed(() => {
       :disabled="currentPage === props.totalPage"
       class="pagination__button-next"
     >
-      <BaseIcon icon="arrow-left" />
+      <BaseIcon icon="pagination-right" />
     </BaseButton>
+
+    <div class="pagination__page">
+      <span class="pagination__txt">Go to page</span>
+
+      <div class="pagination__inp">
+        <BaseInput
+          type="number"
+          v-model="inputPage"
+          @input="handleInputChange"
+          class="pagination__input"
+        />
+      </div>
+    </div>
   </div>
 </template>
 

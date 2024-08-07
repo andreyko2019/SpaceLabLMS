@@ -12,7 +12,7 @@ async function getCourse() {
     },
   })
 
-  course.value = courseData.data.content
+  course.value = courseData.data
 }
 
 export { getCourse, course }

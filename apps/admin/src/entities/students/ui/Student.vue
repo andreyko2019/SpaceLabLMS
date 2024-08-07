@@ -12,12 +12,13 @@ import { useI18n } from 'vue-i18n'
 import {
   handleAction,
   IStudentDtoForView,
-  currentPage,
+  // currentPage,
   pageSize,
   studentTh,
   totalPage,
   showPages,
 } from '@/entities'
+import { useRoute, useRouter } from 'vue-router'
 
 const { t } = useI18n()
 const studentTd = ref<IStudentDtoForView[]>([])
@@ -56,9 +57,15 @@ async function getAllStudent(pageNumber = 0) {
   totalPage.value = studentData.data.totalPages || 0
 }
 
+const totalPages = ref(10)
+const currentPage = ref(1)
+const route = useRoute()
+const router = useRouter()
+console.log(route.path)
 async function onPageChange(pageNumber: number) {
   currentPage.value = pageNumber
-  await getAllStudent(currentPage.value - 1)
+  // await getAllStudent(currentPage.value - 1)
+  router.push({ query: { page: pageNumber } })
 }
 
 const fetchStudents = async (pageNumber = 0) => {
@@ -95,7 +102,7 @@ onMounted(() => {
           />
         </div>
 
-        <ThePagination :totalPage="totalPage" @change="onPageChange" />
+        <ThePagination :totalPage="totalPages" @change="onPageChange" />
       </div>
     </div>
   </div>

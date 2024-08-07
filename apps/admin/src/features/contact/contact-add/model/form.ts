@@ -2,12 +2,12 @@ import { nextTick, ref } from 'vue'
 import { useAppForm } from '@spacelablms/components'
 
 import { DetailedErrorMessageItem } from '@/shared'
-import { yupAddSchema, SchemaAddContactType } from '@/features'
+import { formSchema, SchemaAddContactType } from '@/features'
 // todo виправити схему
-export function useValidAdd() {
+export function form() {
   const serverErrorMessages = ref<string[]>([])
 
-  const schema = yupAddSchema()
+  const schema = formSchema()
   const form = useAppForm<SchemaAddContactType>({
     validationSchema: schema,
     initialValues: schema.getDefault(),

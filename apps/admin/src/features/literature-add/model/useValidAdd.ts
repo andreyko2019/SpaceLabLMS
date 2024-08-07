@@ -2,12 +2,12 @@ import { nextTick, ref } from 'vue'
 import { useAppForm } from '@spacelablms/components'
 
 import { DetailedErrorMessageItem } from '@/shared'
-import { yupAddSchema, SchemaAddLiteratureType } from '@/features'
+import {SchemaAddLiteratureType, yupAddLiteratureSchema} from '@/features'
 
 export function useValidAddLiterature() {
     const serverErrorMessages = ref<string[]>([])
 
-    const schema = yupAddSchema()
+    const schema = yupAddLiteratureSchema()
     const form = useAppForm<SchemaAddLiteratureType>({
         validationSchema: schema,
         initialValues: schema.getDefault(),

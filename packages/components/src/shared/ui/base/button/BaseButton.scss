@@ -10,15 +10,21 @@
     background: var(--btn-bg);
     color: var(--btn-text);
 
+
     &_disabled {
       border: 1px solid var(--heade);
       background: var(--box-shadow);
       color: var(--border);
+      cursor: default;
     }
 
     &:hover {
       background: var(--btn-text);
       color: var(--btn-bg);
+
+      svg{
+        fill: var(--btn-bg);}
+
     }
   }
 
@@ -37,6 +43,7 @@
       border: 1px solid var(--heade);
       background: var(--box-shadow);
       color: var(--border);
+      cursor: default;
     }
 
     &_active {

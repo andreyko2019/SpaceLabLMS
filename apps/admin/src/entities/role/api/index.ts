@@ -1,9 +1,7 @@
 import { RoleControllerApi, useApi } from '@/shared'
-import { roles } from '@/entities'
-import { useI18n } from 'vue-i18n'
+import { rolesTd } from '@/entities'
 
 async function getAllRole() {
-  const { t } = useI18n()
   const api = useApi(RoleControllerApi)
 
   const data = await api.getAll2({
@@ -15,20 +13,20 @@ async function getAllRole() {
       name: '',
     },
   })
-  console.log(data.data)
-  roles.value =
-    data.data.content?.map(
-      ({ id, nameEng, nameUkr, managers, pages, ...item }) => {
-        const formattedPages = pages
-          ? pages.map((page) => t(`PAGES.${page}`)).join(', ')
-          : ''
 
-        return {
-          ...item,
-          pages: formattedPages,
-        }
-      }
-    ) || []
+  const roleData = data.data.content
+
+  // console.log(managersImage)
+  //
+  // console.log(managersImage)
+
+  roleData?.map((item) => {
+    rolesTd.value.push({
+      id: item.id,
+      name: item.name,
+      managers: item.managers,
+    })
+  })
 }
 
 export { getAllRole }

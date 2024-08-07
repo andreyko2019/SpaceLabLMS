@@ -1,4 +1,4 @@
-import { InferType, object, string, boolean } from 'yup'
+import { InferType, object, string } from 'yup'
 import { useI18n } from 'vue-i18n'
 
 const namePattern = /^[a-zA-Zа-яА-Я]([a-zA-Zа-яА-Я]+)*$/
@@ -10,11 +10,11 @@ const emailPattern =
 const phonePattern = /^(\+380)[0-9]{9}$/
 const telegramPattern = /^@[a-zA-Z][a-zA-Z0-9_]{1,31}$/
 
-export function yupAddSchema() {
+export function formSchema() {
   const { t } = useI18n()
 
   return object({
-    name: string()
+    add_name: string()
       .required(t('VALIDATION.THE_REQUIRED_FIELD'))
       .min(3, t('VALIDATION.MIN'))
       .max(100, t('VALIDATION.MAX'))
@@ -22,7 +22,7 @@ export function yupAddSchema() {
         return name.test(value)
       }),
 
-    middlename: string()
+    add_middlename: string()
       .required(t('VALIDATION.THE_REQUIRED_FIELD'))
       .min(3, t('VALIDATION.MIN'))
       .max(100, t('VALIDATION.MAX'))
@@ -30,7 +30,7 @@ export function yupAddSchema() {
         return middleNamePattern.test(value)
       }),
 
-    lastname: string()
+    add_lastname: string()
       .required(t('VALIDATION.THE_REQUIRED_FIELD'))
       .min(3, t('VALIDATION.MIN'))
       .max(100, t('VALIDATION.MAX'))
@@ -38,26 +38,24 @@ export function yupAddSchema() {
         return lastNamePattern.test(value)
       }),
 
-    telephone: string()
+    add_telephone: string()
       .required(t('VALIDATION.THE_REQUIRED_FIELD'))
       .test('phone', t('VALIDATION.TELEPHONE'), (value) => {
         return phonePattern.test(value)
       }),
 
-    telegram: string()
+    add_telegram: string()
       .required(t('VALIDATION.THE_REQUIRED_FIELD'))
       .test('telegram', t('VALIDATION.TELEGRAM'), (value) => {
         return telegramPattern.test(value)
       }),
 
-    email: string()
+    add_email: string()
       .required(t('VALIDATION.THE_REQUIRED_FIELD'))
       .test('email', t('VALIDATION.EMAIL'), (value) => {
         return emailPattern.test(value)
       }),
-
-    display: boolean().required(t('VALIDATION.THE_REQUIRED_FIELD')),
   })
 }
 
-export type SchemaAddContactType = InferType<ReturnType<typeof yupAddSchema>>
+export type SchemaAddContactType = InferType<ReturnType<typeof formSchema>>

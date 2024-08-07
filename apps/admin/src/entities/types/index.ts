@@ -1,6 +1,10 @@
 import {
 
   ContactDtoForFilter, LiteratureDtoForFilter,
+  // Add1CurrentSituationEnum,
+  // Add1EnglishLevelEnum,
+  // Add1LevelOfPreparationEnum,
+  // Add1StatusEnum,
   StudentDtoForView,
 } from '@/shared'
 
@@ -17,7 +21,7 @@ interface StudentInput {
 //   option: string[]
 //   select: keyof SelectedValues
 // }
-
+//
 // type CurrentSituation = Add1CurrentSituationEnum | undefined
 // type EnglishLevel = Add1EnglishLevelEnum | undefined
 // type PreparationLevel = Add1LevelOfPreparationEnum | undefined
@@ -29,7 +33,7 @@ interface StudentInput {
 //   studentStatuses: StudentStatus
 //   preparationLevels: PreparationLevel
 // }
-
+//
 interface IStudentDtoForView extends StudentDtoForView {
   courseName?: string
   statusName?: string
@@ -52,6 +56,8 @@ export interface ILiterature extends Omit<LiteratureDtoForFilter, 'typeLiteratur
 
 export type {
   StudentInput,
+  // DropDownItem,
+  // SelectedValues,
   IStudentDtoForView,
   IContact,
 }

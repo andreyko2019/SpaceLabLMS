@@ -1,6 +1,7 @@
 import { ref } from 'vue'
+import { RoleDtoView } from '@/shared'
 
-const rolesTh = ref(['Назва', 'Користувачі', 'Дозволені сторінки'])
-const roles = ref()
+const rolesTh = ref(['ID', 'Назва', 'Користувачі', 'Дозволені сторінки'])
+const rolesTd = ref<RoleDtoView[]>([])
 
-export { roles, rolesTh }
+export { rolesTd, rolesTh }

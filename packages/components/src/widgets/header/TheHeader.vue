@@ -6,12 +6,27 @@
           <div class="header__user-avatar">
             <template v-if="!isMobile">
               <router-link to="/dashboard">
-                <BaseImage :src="user.image" alt="avatar" />
+                <BaseImage v-if="user.image" :src="user.image" alt="avatar" />
+                <div v-else class="header__user-avatar-placeholder">
+                  {{ getInitials(user.name) }}
+                </div>
               </router-link>
             </template>
 
             <template v-if="isMobile">
-              <BaseImage @click="handleToggle" :src="user.image" alt="avatar" />
+              <BaseImage
+                v-if="user.image"
+                @click="handleToggle"
+                :src="user.image"
+                alt="avatar"
+              />
+              <div
+                v-else
+                class="header__user-avatar-placeholder"
+                @click="handleToggle"
+              >
+                {{ getInitials(user.name) }}
+              </div>
             </template>
           </div>
 
@@ -20,7 +35,13 @@
             :class="{ 'header__user-column_active': isToggle }"
           >
             <div class="header__user-row">
-              <BaseSwitch @theme="switchTheme" :val="theme" />
+              <BaseCheckbox
+                type="switch"
+                name="switch"
+                id="switch"
+                :checked="isChecked"
+                @change="handleCheckboxChange"
+              />
 
               <BaseButton
                 v-if="isMobile"
@@ -64,40 +85,44 @@
 
 <script setup lang="ts">
 import {
-  BaseSwitch,
   BaseImage,
   useResize,
   BaseButton,
   useToggle,
+  BaseCheckbox,
 } from '@/shared'
-import { PropType, ref } from 'vue'
+import { ref } from 'vue'
+import { ManagerDtoForCard } from '@spacelablms/admin/src/shared'
 
-defineProps({
-  user: {
-    type: Object,
-    required: true,
-  },
+defineProps<{
+  user: ManagerDtoForCard
+  pages?: Array<{ name: string; href: string }>
+  isChecked: boolean
+}>()
 
-  theme: {
-    type: Boolean,
-    required: true,
-  },
-  pages: {
-    type: Object,
-    required: true,
-  },
-
-  switchTheme: {
-    type: Function as PropType<() => void>,
-    required: true,
-  },
-})
+const emit = defineEmits(['changeTheme', 'updateIsChecked'])
 
 const isMobile = ref(window.innerWidth <= 575)
 const isToggle = ref(false)
+
 const handleToggle = useToggle(isToggle)
 const handleResize = () => {
   isMobile.value = window.innerWidth <= 575
+}
+
+const handleCheckboxChange = (event: Event) => {
+  const target = event.target
+
+  if (target instanceof HTMLInputElement) {
+    emit('updateIsChecked', target.checked)
+  }
+}
+
+const getInitials = (name: string) => {
+  if (!name) return ''
+  const parts = name.split(' ')
+  if (parts.length < 2) return parts[0].charAt(0)
+  return `${parts[0].charAt(0)}${parts[1].charAt(0)}`
 }
 
 useResize(handleResize)

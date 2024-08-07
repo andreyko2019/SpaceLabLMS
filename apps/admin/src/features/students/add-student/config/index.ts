@@ -1,7 +1,15 @@
 import { ref } from 'vue'
 
 import {  StudentInput } from '@/entities'
+// import {
+//   getCurrentSituations,
+//   getEnglishLevels,
+//   getPreparationLevels,
+//   getStudentStatuses,
+// } from '@/shared'
 
+
+//
 const studentInp = ref<StudentInput[]>([
   { label: "Ім'я", name: 'name', type: 'text' },
   { label: 'По батькові', name: 'middlename', type: 'text' },
@@ -13,7 +21,7 @@ const studentInp = ref<StudentInput[]>([
   { label: 'Загальна оцінка', name: 'totalmark', type: 'text' },
 ])
 
-// const dropDown = ref<DropDownItem[]>([
+// const dropDown = ref([
 //   {
 //     label: 'Поточне становище',
 //     option: await getCurrentSituations(),
@@ -35,7 +43,7 @@ const studentInp = ref<StudentInput[]>([
 //     select: 'preparationLevels',
 //   },
 // ])
-// const selectedValues = ref<SelectedValues>({
+// const selectedValues = ref({
 //   'currentSituations': undefined,
 //   'englishLevels': undefined,
 //   'studentStatuses': undefined,
