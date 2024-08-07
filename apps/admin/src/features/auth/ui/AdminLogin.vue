@@ -37,7 +37,6 @@ async function adminSignIn() {
 }
 const adminOnSubmit = async () => {
   const { valid } = await adminForm.instance.validate()
-
   if (!valid) return
 
   await adminSignIn()

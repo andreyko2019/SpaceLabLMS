@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import { BaseButton, BaseIcon } from '@/shared'
 
 interface IPagination {
-  totalPage: number
+  totalPage: number,
 }
 
 const props = defineProps<IPagination>()

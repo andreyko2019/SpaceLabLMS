@@ -7,14 +7,11 @@ import {
   BaseDropdown,
   BaseCheckbox,
   BaseIcon,
-  ThePreloader,
 } from '@spacelablms/components'
 import { computed, onMounted, ref } from 'vue'
 import { course, getCourse } from '@/entities'
 import {
-  dropDown,
   links,
-  selectedValues,
   studentInp,
   useValidAddStudentForm,
 } from '@/features'
@@ -46,11 +43,7 @@ function resetForm() {
   addStudentForm.values.telegram = ''
   addStudentForm.values.telephone = ''
   addStudentForm.values.totalmark = 0
-  selectedValues.value.currentSituations = undefined
-  selectedValues.value.englishLevels = undefined
-  selectedValues.value.preparationLevels = undefined
   courseId.value = undefined
-  selectedValues.value.studentStatuses = undefined
   isVideoReview.value = false
 }
 
@@ -66,11 +59,8 @@ async function postAddStudent() {
       telegram: addStudentForm.values.telegram,
       telephone: addStudentForm.values.telephone,
       totalMark: addStudentForm.values.totalmark,
-      currentSituation: selectedValues.value.currentSituations,
-      englishLevel: selectedValues.value.englishLevels,
-      levelOfPreparation: selectedValues.value.preparationLevels,
+
       courseId: +courseId.value,
-      status: selectedValues.value.studentStatuses,
       isVideoReview: isVideoReview.value,
       display: false,
     })

@@ -11,7 +11,8 @@ import { routeName as StudentListPage } from './routes/student/student-list'
 
 import { routeName as StatisticsPage } from './routes/statistics'
 import { routeName as RolesPage } from './routes/roles'
-import { routeName as LiteraturePage } from './routes/literature'
+import { routeName as LiteraturePage } from './routes/literature/literature'
+import { routeName as LiteratureAddPage } from './routes/literature/literature-add'
 import { routeName as ContactsPage } from './routes/contact/contacts'
 import { routeName as ContactAddPage } from './routes/contact/contact-add'
 import { routeName as ContactEditPage } from './routes/contact/contact-edit'
@@ -30,6 +31,7 @@ export const pages = {
   StatisticsPage,
   RolesPage,
   LiteraturePage,
+  LiteratureAddPage,
   ContactsPage,
   ContactAddPage,
   ContactEditPage,

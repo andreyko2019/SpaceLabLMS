@@ -1,9 +1,6 @@
 import {
-  Add1CurrentSituationEnum,
-  Add1EnglishLevelEnum,
-  Add1LevelOfPreparationEnum,
-  Add1StatusEnum,
-  ContactDtoForFilter,
+
+  ContactDtoForFilter, LiteratureDtoForFilter,
   StudentDtoForView,
 } from '@/shared'
 
@@ -15,23 +12,23 @@ interface StudentInput {
   type?: InputType
 }
 
-type DropDownItem = {
-  label: string
-  option: string[]
-  select: keyof SelectedValues
-}
+// type DropDownItem = {
+//   label: string
+//   option: string[]
+//   select: keyof SelectedValues
+// }
 
-type CurrentSituation = Add1CurrentSituationEnum | undefined
-type EnglishLevel = Add1EnglishLevelEnum | undefined
-type PreparationLevel = Add1LevelOfPreparationEnum | undefined
-type StudentStatus = Add1StatusEnum | undefined
-
-type SelectedValues = {
-  currentSituations: CurrentSituation
-  englishLevels: EnglishLevel
-  studentStatuses: StudentStatus
-  preparationLevels: PreparationLevel
-}
+// type CurrentSituation = Add1CurrentSituationEnum | undefined
+// type EnglishLevel = Add1EnglishLevelEnum | undefined
+// type PreparationLevel = Add1LevelOfPreparationEnum | undefined
+// type StudentStatus = Add1StatusEnum | undefined
+//
+// type SelectedValues = {
+//   currentSituations: CurrentSituation
+//   englishLevels: EnglishLevel
+//   studentStatuses: StudentStatus
+//   preparationLevels: PreparationLevel
+// }
 
 interface IStudentDtoForView extends StudentDtoForView {
   courseName?: string
@@ -45,10 +42,16 @@ interface IContact extends ContactDtoForFilter {
   icon?: string[]
 }
 
+export interface ILiterature extends Omit<LiteratureDtoForFilter, 'typeLiterature'> {
+  name?: string;
+  typeLiterature?: string;
+  course?: string | null;
+  keyWords?: string;
+  icon?: string[];
+}
+
 export type {
   StudentInput,
-  DropDownItem,
-  SelectedValues,
   IStudentDtoForView,
   IContact,
 }

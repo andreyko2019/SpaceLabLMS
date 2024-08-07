@@ -12,7 +12,8 @@ import { route as StudentListRoute } from './student/student-list'
 
 import { route as StatisticsRoute } from './statistics'
 import { route as RolesRoute } from './roles'
-import { route as LiteratureRoute } from './literature'
+import { route as LiteratureRoute } from './literature/literature'
+import { route as LiteratureAddRoute } from './literature/literature-add'
 import { route as mainRoute } from './main'
 import { route as contactRoute } from './contact/contacts'
 import { route as contactAddRoute } from './contact/contact-add'
@@ -33,6 +34,7 @@ const rawRoutes: RouteRecordRaw[] = [
   StatisticsRoute,
   RolesRoute,
   LiteratureRoute,
+  LiteratureAddRoute,
   mainRoute,
   contactRoute,
   contactAddRoute,
