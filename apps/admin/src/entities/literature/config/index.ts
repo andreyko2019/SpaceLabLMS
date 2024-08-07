@@ -14,5 +14,4 @@ const literatureTh = ref<string[]>([
     '',
 ])
 
-
 export {literatureTotalPage, literatureCurrentPage, literatureTh, literatureTd, literatureId}
