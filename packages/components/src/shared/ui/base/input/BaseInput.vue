@@ -1,48 +1,137 @@
+<!--<template>-->
+<!--  <div class="input">-->
+<!--    <label class="input__label" :for="name" v-if="label">{{ label }}</label>-->
+<!--    <input-->
+<!--      class="input__inp"-->
+<!--      :type="type"-->
+<!--      :placeholder="placeholder"-->
+<!--      autocomplete="off"-->
+<!--      :value="inputValue"-->
+<!--      :disabled="isDisabled"-->
+<!--      :name="name"-->
+<!--      @input="onInput"-->
+<!--    />-->
+<!--    <small class="input__error" v-if="errorMessage">-->
+<!--      {{ errorMessage }}-->
+<!--    </small>-->
+<!--  </div>-->
+<!--</template>-->
+
+<!--<script setup lang="ts">-->
+<!--import { computed } from 'vue'-->
+<!--import { useCustomField } from '@/shared'-->
+<!--// import { parsePhoneNumber, isValidPhoneNumber } from 'libphonenumber-js'-->
+
+<!--type InputContent = string | number | null | object-->
+<!--type InputType = 'text' | 'number' | 'password' | 'email' | 'tel'-->
+
+<!--interface IProps {-->
+<!--  label?: string-->
+<!--  modelValue?: InputContent-->
+<!--  type: InputType-->
+<!--  name?: string-->
+<!--  placeholder?: string-->
+<!--  errorMessage?: string-->
+<!--  isDisabled?: boolean-->
+<!--  inputValue?: string-->
+<!--}-->
+
+<!--const props = withDefaults(defineProps<IProps>(), {-->
+<!--  modelValue: null,-->
+<!--  type: 'text',-->
+<!--  name: '',-->
+<!--  placeholder: '',-->
+<!--  errorMessage: '',-->
+<!--  inputValue: '',-->
+<!--})-->
+
+<!--const emit = defineEmits<{-->
+<!--  (e: 'update:modelValue', value: InputContent): void-->
+<!--}>()-->
+
+<!--const { value, errorMessage } = useCustomField<InputContent>(props)-->
+
+<!--const inputValue: any = computed({-->
+<!--  get() {-->
+<!--    if (props.name) {-->
+<!--      return value.value-->
+<!--    }-->
+<!--    return props.modelValue-->
+<!--  },-->
+<!--  set(next: InputContent) {-->
+<!--    if (props.name) {-->
+<!--      value.value = next-->
+<!--    }-->
+<!--    emit('update:modelValue', next)-->
+<!--  },-->
+<!--})-->
+
+<!--function onInput(event: Event) {-->
+<!--  const input = event.target as HTMLInputElement-->
+<!--  inputValue.value = input.value-->
+<!--}-->
+
+<!--// function formatPhone() {-->
+<!--//   if (props.type === 'tel') {-->
+<!--//     try {-->
+<!--//       const phoneNumber = parsePhoneNumber(inputValue.value, 'UA')-->
+<!--//       if (phoneNumber && isValidPhoneNumber(inputValue.value)) {-->
+<!--//         inputValue.value = phoneNumber.formatInternational()-->
+<!--//       }-->
+<!--//     } catch (error) {-->
+<!--//       console.error('Invalid phone number', error)-->
+<!--//     }-->
+<!--//   }-->
+<!--// }-->
+<!--</script>-->
+
+<!--<style lang="scss">-->
+<!--@import 'BaseInput';-->
+<!--</style>-->
+
+
 <template>
-  <div class="input">
-    <label class="input__label" :for="name" v-if="label">{{ label }}</label>
+  <div>
+    <label>{{ label }}</label>
     <input
-      class="input__inp"
-      :type="type"
-      :placeholder="placeholder"
-      autocomplete="off"
-      :value="inputValue"
-      :disabled="isDisabled"
-      :name="name"
-      @input="onInput"
+        class="input__inp"
+        type="text"
+        :placeholder="placeholder"
+        autocomplete="off"
+        :value="inputValue"
+        @input="onInput"
+        @blur="onBlur"
+        :class="{ input__error: errorMessage }"
     />
-    <small class="input__error" v-if="errorMessage">
+    <div class="input__error" v-if="errorMessage">
       {{ errorMessage }}
-    </small>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useCustomField } from '@/shared'
-// import { parsePhoneNumber, isValidPhoneNumber } from 'libphonenumber-js'
 
-type InputContent = string | number | null | object
-type InputType = 'text' | 'number' | 'password' | 'email' | 'tel'
+type InputContent = string | number | null
 
-interface IProps {
-  label?: string
+type InputType = 'text' | 'number' | 'password' | 'email' | 'url'
+
+interface Props {
   modelValue?: InputContent
-  type: InputType
-  name?: string
+  type?: InputType
+  name?: string | null
   placeholder?: string
-  errorMessage?: string
-  isDisabled?: boolean
-  inputValue?: string
+  errorMessage?: any
+  label?: string
 }
 
-const props = withDefaults(defineProps<IProps>(), {
+const props = withDefaults(defineProps<Props>(), {
   modelValue: null,
-  type: 'text',
-  name: '',
+  name: null,
   placeholder: '',
   errorMessage: '',
-  inputValue: '',
+  label: ''
 })
 
 const emit = defineEmits<{
@@ -51,7 +140,21 @@ const emit = defineEmits<{
 
 const { value, errorMessage } = useCustomField<InputContent>(props)
 
-const inputValue: any = computed({
+function getValueForNumber(initial: InputContent) {
+  if (initial === '' || initial === null || initial === undefined) {
+    return null
+  }
+
+  const val = Number(initial)
+
+  if (Number.isNaN(val)) {
+    return null
+  }
+
+  return val
+}
+
+const inputValue = computed({
   get() {
     if (props.name) {
       return value.value
@@ -63,7 +166,7 @@ const inputValue: any = computed({
       value.value = next
     }
     emit('update:modelValue', next)
-  },
+  }
 })
 
 function onInput(event: Event) {
@@ -71,18 +174,13 @@ function onInput(event: Event) {
   inputValue.value = input.value
 }
 
-// function formatPhone() {
-//   if (props.type === 'tel') {
-//     try {
-//       const phoneNumber = parsePhoneNumber(inputValue.value, 'UA')
-//       if (phoneNumber && isValidPhoneNumber(inputValue.value)) {
-//         inputValue.value = phoneNumber.formatInternational()
-//       }
-//     } catch (error) {
-//       console.error('Invalid phone number', error)
-//     }
-//   }
-// }
+function onBlur(event: FocusEvent) {
+  const input = event.target as HTMLInputElement
+
+  inputValue.value = props.type === 'number' ? getValueForNumber(input.value) : input.value
+
+  input.value = inputValue.value?.toString() || ''
+}
 </script>
 
 <style lang="scss">

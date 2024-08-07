@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {addLiteratureInp, addLiteratureLinks, useValidAddLiterature} from "@/features";
+import { addLiteratureLinks, useValidAddLiterature} from "@/features";
 import {BaseButton, BaseCheckbox, BaseForm, BaseIcon, BaseInput} from "@spacelablms/components";
 import { LiteratureControllerApi, useApi} from "@/shared";
 import {useRouter} from "vue-router";
@@ -61,12 +61,24 @@ async function onSubmit() {
     <BaseForm @send="onSubmit">
       <div class="add-literature__form">
         <BaseInput
-            v-for="(inp, index) in addLiteratureInp"
-            :key="index"
-            :label="inp.label"
-            :name="inp.name"
-            :placeholder="inp.label"
+            placeholder="Назва"
+            label="Назва"
+            name="name"
         />
+
+        <BaseInput
+            placeholder="Посилання"
+            label="Посилання"
+            name="linkForDownload"
+        />
+
+        <BaseInput
+            placeholder="Ключові слова"
+            label="Ключові слова"
+            name="keyWords"
+        />
+
+
       </div>
 
       <div class="add-literature__row">
